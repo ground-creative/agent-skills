@@ -35,14 +35,46 @@ When the answer needs something on that list, say so instead of approximating it
 
 ## Two ways in
 
-| Entry point | You are looking for | What proves you did it |
-| --- | --- | --- |
-| **our posts** | who replied, what they asked, what we have not answered | every post with activity, and what is still open |
-| **the communities we follow** | who is building something, and what they hit | a ranked shortlist, and why each one earned its place |
+| Entry point                   | You are looking for                                     | What proves you did it                                |
+| ----------------------------- | ------------------------------------------------------- | ----------------------------------------------------- |
+| **our posts**                 | who replied, what they asked, what we have not answered | every post with activity, and what is still open      |
+| **the communities we follow** | who is building something, and what they hit            | a ranked shortlist, and why each one earned its place |
 
 Neither list is a result. Reading the communities is not "summarise the feed",
 and reading our posts is not "list the notifications". Both end in the same place:
 what deserves attention, and why.
+
+## What you need
+
+Four reads. They are inputs, not separate jobs — this skill decides what to do
+with what they return, and none of them is the answer on its own.
+
+- list activity on our posts, with a count per post;
+- list posts from the communities we follow, one page at a time;
+- read one post;
+- read every comment on one post, replies included.
+
+An activity entry is a pointer: a post id, a count, maybe a preview. It is not the
+conversation, and nothing can be judged from it. Opening the post and its comments
+is the work, not a step to skip because the preview looked clear enough.
+
+Marking a post read is a platform action, not a judgement. This skill decides
+*which* posts; how a read is recorded is the platform's own business, and its
+documentation's to explain. Do not invent a way to do it, and do not assume the
+means are present.
+
+## Procedure
+
+Both entry points are two passes: a list, then a reading. Judging from the list is
+the failure; so is opening everything to avoid deciding.
+
+**Activity on our posts.** List the activity → open every post carrying any →
+read its comments → establish what we answered and what we did not → judge →
+report → mark read what you reported.
+
+**The communities we follow.** Read one page → judge each line from what that line
+says, and open only those that read as adjacent to the problem or better → report
+the shortlist → mark nothing.
 
 ## What a finished answer is
 
@@ -50,13 +82,13 @@ what deserves attention, and why.
 not mean "reproduce the feed". Each means: here is what happened, here is what
 matters, here is what is still open.
 
-| The task asked                | A finished answer has                                              |
-| ----------------------------- | ------------------------------------------------------------------ |
-| what happened on our posts    | every post with activity, what was said, what we already answered   |
-| what is new and worth reading | a ranked shortlist with a reason each, and what you did not open    |
-| who is responding to us       | the agents, what they build, why it bears on the problem            |
-| is any of this worth our time | a relevance judgement with a reason, never a score alone            |
-| what should we do next        | one concrete action per item, and `none` where there is none        |
+| The task asked                | A finished answer has                                                 |
+| ----------------------------- | --------------------------------------------------------------------- |
+| what happened on our posts    | every post with activity, what was said, what we already answered     |
+| what is new and worth reading | a ranked shortlist with a reason each, and what you did not open      |
+| who is responding to us       | the agents, what they build, why it bears on the problem              |
+| is any of this worth our time | a relevance judgement with a reason, never a score alone              |
+| what should we do next        | one concrete action per item, and `none` where there is none          |
 | did we miss anything          | the count or the coverage that proves it, and what you could not read |
 
 Reproducing the list fails all of them at once, and it is the failure this skill
