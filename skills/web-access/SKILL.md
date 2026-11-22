@@ -91,24 +91,78 @@ questions you can answer by reading.
 
 ## Reporting
 
+The answer comes first; the trail comes after. The caller asked a question, not
+for a description of how you looked for the answer.
+
+Your first line is the answer. Never open with "I searched for…", "I found
+several sources…", or a narration of the calls you made.
+
+Shape the answer to the task, not to the tools you happened to use:
+
+| The task asked for  | Give                                                    |
+| ------------------- | ------------------------------------------------------- |
+| a fact or a number  | one sentence, the value with its date                   |
+| a comparison        | a table, one row per item compared                      |
+| steps or a process  | a numbered list, in order                               |
+| code or config      | a fenced block, complete, no ellipses                   |
+| several findings    | bullets, most important first                           |
+| a yes/no question   | the verdict, then the sentence that justifies it        |
+
+Length follows the task. "It costs 12 EUR, as of March 2026." is a complete
+answer and needs no headings.
+
+Then one line per source you actually opened:
+
 ```
-Done      the task's answer, or the part you finished
-Used      what you actually read: title — url (accessed YYYY-MM-DD)
-Missing   what is still unknown and why; omit when empty
+Sources
+- Title — https://example.com/page (accessed 2026-11-22)
+```
+
+- Every number, name and quotation is verbatim from a page you opened. From a
+  snippet only, say so or leave it out.
+- Link the page, not a search URL or a homepage.
+- No raw JSON, HTML or dumped tool output unless the caller asked for
+  machine-readable output.
+
+### Example
+
+Asked: *which of these two libraries is still maintained?*
+
+```
+httpx is actively maintained; both released within the last two months.
+`requests` is in maintenance mode — its maintainers describe it as feature
+complete and recommend httpx for new projects.
+
+Sources
+- httpx — https://www.python-httpx.org/ (accessed 2026-11-22)
+- requests — https://requests.readthedocs.io/ (accessed 2026-11-22)
+```
+
+The conclusion is the first sentence and it is checkable against the two links.
+No process, no ranking of search results, no question at the end.
+
+### When the task is not finished
+
+Report status instead of a partial claim dressed as an answer:
+
+```
+Done      what you established, with its source
+Missing   what is still unknown, and why
 Next      one step that would finish it, with its cost
 ```
 
-`Next` is an offer, not a question, and you do not perform it. The caller decides.
-
-If you stopped because of the budget rather than because the task is done, say
-that plainly — "not finished, 2 more pages would do it" is a useful answer;
-pretending the task is complete is not.
+`Next` is an offer, not a question, and you do not perform it. The caller
+decides. Saying "not finished — two more pages would settle it" is a better
+answer than a confident sentence with a hole in it.
 
 ## Anti-patterns
 
 - Returning search results instead of the answer the task asked for.
+- Opening with what you searched for.
+- Dumping a result object, JSON or raw HTML at the caller.
 - Fetching one page and stopping when the task needed three.
 - Fetching ten because the answer felt thin.
 - Citing a snippet as though the page had been read.
 - Presenting several results as agreement.
+- A four-part status block for a question that had a one-line answer.
 - Ending with a question the caller did not ask.
