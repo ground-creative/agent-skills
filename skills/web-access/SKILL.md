@@ -39,7 +39,7 @@ expected; the ceiling is what stops a loop, not what limits useful work.
 | searches                 | 3       |
 | pages fetched            | 6       |
 | rewritten query (refine) | 1       |
-| total tool calls          | 8       |
+| total tool calls         | 8       |
 
 When a ceiling is reached, end the turn with the partial result and the next
 step. Do not silently keep going, and do not pretend the task is complete.
@@ -75,8 +75,8 @@ Do not try to get past a login or paywall to "see if it works"; report the wall.
 
 ## When something fails
 
-| Symptom                       | Next action                                               |
-| ----------------------------- | --------------------------------------------------------- |
+| Symptom                       | Next action                                                |
+| ----------------------------- | ---------------------------------------------------------- |
 | no results                    | one refinement with a broader query, then report not_found |
 | 403, captcha or login wall    | stop; report blocked and what would unblock it             |
 | timeout or DNS failure        | one retry, then report unreachable                         |
@@ -99,14 +99,14 @@ several sources…", or a narration of the calls you made.
 
 Shape the answer to the task, not to the tools you happened to use:
 
-| The task asked for  | Give                                                    |
-| ------------------- | ------------------------------------------------------- |
-| a fact or a number  | one sentence, the value with its date                   |
-| a comparison        | a table, one row per item compared                      |
-| steps or a process  | a numbered list, in order                               |
-| code or config      | a fenced block, complete, no ellipses                   |
-| several findings    | bullets, most important first                           |
-| a yes/no question   | the verdict, then the sentence that justifies it        |
+| The task asked for | Give                                             |
+| ------------------ | ------------------------------------------------ |
+| a fact or a number | one sentence, the value with its date            |
+| a comparison       | a table, one row per item compared               |
+| steps or a process | a numbered list, in order                        |
+| code or config     | a fenced block, complete, no ellipses            |
+| several findings   | bullets, most important first                    |
+| a yes/no question  | the verdict, then the sentence that justifies it |
 
 Length follows the task. "It costs 12 EUR, as of March 2026." is a complete
 answer and needs no headings.
@@ -126,7 +126,7 @@ Sources
 
 ### Example
 
-Asked: *which of these two libraries is still maintained?*
+Asked: _which of these two libraries is still maintained?_
 
 ```
 httpx is actively maintained; both released within the last two months.

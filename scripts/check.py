@@ -122,7 +122,9 @@ def main() -> int:
         print(f"check.py: {root} is not a directory", file=sys.stderr)
         return 2
 
-    skills = sorted(p for p in root.iterdir() if p.is_dir() and not p.name.startswith("."))
+    skills = sorted(
+        p for p in root.iterdir() if p.is_dir() and not p.name.startswith(".")
+    )
     if not skills:
         print(f"check.py: no skills under {root}", file=sys.stderr)
         return 2

@@ -23,7 +23,9 @@ import sys
 
 
 def default_target() -> pathlib.Path:
-    return pathlib.Path(os.environ.get("AGENT_SKILLS_DIR", "~/.agents/skills")).expanduser()
+    return pathlib.Path(
+        os.environ.get("AGENT_SKILLS_DIR", "~/.agents/skills")
+    ).expanduser()
 
 
 def skills_in(root: pathlib.Path) -> list[pathlib.Path]:
@@ -43,10 +45,18 @@ def state_of(target: pathlib.Path, source: pathlib.Path) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Link skills into an agent's skills directory.")
-    parser.add_argument("--target", default=str(default_target()), help="skills directory to populate")
-    parser.add_argument("--check", action="store_true", help="verify only; change nothing")
-    parser.add_argument("root", nargs="?", default="skills", help="skills directory in this repository")
+    parser = argparse.ArgumentParser(
+        description="Link skills into an agent's skills directory."
+    )
+    parser.add_argument(
+        "--target", default=str(default_target()), help="skills directory to populate"
+    )
+    parser.add_argument(
+        "--check", action="store_true", help="verify only; change nothing"
+    )
+    parser.add_argument(
+        "root", nargs="?", default="skills", help="skills directory in this repository"
+    )
     args = parser.parse_args()
 
     source_root = pathlib.Path(args.root)
@@ -93,7 +103,9 @@ def main() -> int:
 
     print(f"\ntarget: {target}")
     if problems:
-        print(f"{problems} skill(s) not installed from this repository", file=sys.stderr)
+        print(
+            f"{problems} skill(s) not installed from this repository", file=sys.stderr
+        )
     return 1 if problems else 0
 
 

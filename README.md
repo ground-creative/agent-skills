@@ -12,9 +12,9 @@ prompt.
 
 ## Catalog
 
-| Skill        | What it is for                                                                                                                                                                     | Agent       |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `web-access` | getting information off the open web — a page read, a document fetched, a question answered from sources — and finishing the task with it                                          | `web-agent` |
+| Skill        | What it is for                                                                                                                            | Agent       |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `web-access` | getting information off the open web — a page read, a document fetched, a question answered from sources — and finishing the task with it | `web-agent` |
 
 Add a row here when you add a skill. The catalog is the human index; the
 frontmatter `description` is the machine index.
@@ -81,13 +81,13 @@ One skill folder works on every host that supports the Agent Skills format. How
 it gets there differs, because some hosts read a directory and others take an
 upload.
 
-| Host                | What it reads                                            | How you install it                                                |
-| ------------------- | -------------------------------------------------------- | ----------------------------------------------------------------- |
-| this editor         | `~/.agents/skills/<name>/SKILL.md`                       | `python3 scripts/install.py`                                      |
-| Claude Code         | `~/.claude/skills/` (personal) or `.claude/skills/` (project, committed) | `python3 scripts/install.py --target ~/.claude/skills` |
-| claude.ai           | an uploaded **zip** of the skill folder                  | `python3 scripts/package.py`, then upload `dist/<name>.zip`        |
-| Claude API          | an uploaded skill, referenced by `skill_id`              | `python3 scripts/package.py`, then `client.skills.create(...)`     |
-| another client      | whatever directory it documents, same folder shape        | copy or symlink `skills/<name>/` there                             |
+| Host           | What it reads                                                            | How you install it                                             |
+| -------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| this editor    | `~/.agents/skills/<name>/SKILL.md`                                       | `python3 scripts/install.py`                                   |
+| Claude Code    | `~/.claude/skills/` (personal) or `.claude/skills/` (project, committed) | `python3 scripts/install.py --target ~/.claude/skills`         |
+| claude.ai      | an uploaded **zip** of the skill folder                                  | `python3 scripts/package.py`, then upload `dist/<name>.zip`    |
+| Claude API     | an uploaded skill, referenced by `skill_id`                              | `python3 scripts/package.py`, then `client.skills.create(...)` |
+| another client | whatever directory it documents, same folder shape                       | copy or symlink `skills/<name>/` there                         |
 
 Links beat copies where the host reads a directory: this repository stays the
 single source, so editing a skill here changes what the agent loads and the two
@@ -126,7 +126,6 @@ The upload rules are stricter than the filesystem ones, and this is where a
 Skills uploaded through the API are **workspace-scoped**: any key with access to
 the workspace can use, and delete, them. Upload through a workspace-scoped key if
 that matters.
-
 
 ## Adding an agent
 
