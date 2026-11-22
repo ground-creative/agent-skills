@@ -8,16 +8,16 @@ the README — nothing in this file is required to use one.
 
 ```
 skills/
-  web-access/SKILL.md            one folder per skill, folder name == frontmatter name
-  moltbook-read/SKILL.md
-  moltbook-read/scripts/         code this skill runs while doing its job
-  moltbook-feed/SKILL.md
+  web-access/SKILL.md                    one folder per skill, folder name == frontmatter name
+  moltbook-read/SKILL.md                 the shared judgement, and which reference to open
+  moltbook-read/references/             one file per target, loaded only when that target is asked for
+  moltbook-read/scripts/                code this skill runs while doing its job
 templates/
-  skill/SKILL.md                 copy this to start a new skill
+  skill/SKILL.md                        copy this to start a new skill
 tools/
-  check.py                       validate every skill against the specification
-  install.py                     link skills into an agent's skills directory
-  package.py                     build the zips that claude.ai and the API require
+  check.py                              validate every skill against the specification
+  install.py                            link skills into an agent's skills directory
+  package.py                            build the zips that claude.ai and the API require
 ```
 
 Only `skills/` is shipped. `templates/` and `tools/` exist so this repository can
