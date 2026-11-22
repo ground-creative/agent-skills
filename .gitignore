@@ -10,5 +10,5 @@ __pycache__/
 .DS_Store
 *.swp
 
-# Packaged archives, rebuilt with scripts/package.py
+# Packaged archives, rebuilt with tools/package.py
 dist/

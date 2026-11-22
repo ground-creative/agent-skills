@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Link the skills in this repository into an agent's skills directory.
 
-    python3 scripts/install.py                       # ~/.agents/skills
-    python3 scripts/install.py --target ~/.claude/skills
-    python3 scripts/install.py --check               # verify only
+    python3 tools/install.py                       # ~/.agents/skills
+    python3 tools/install.py --target ~/.claude/skills
+    python3 tools/install.py --check               # verify only
 
 Installation is a symlink, not a copy: the repository stays the single source, so
 editing a skill here changes what the agent loads and the two cannot drift. Use

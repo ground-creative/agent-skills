@@ -31,5 +31,5 @@ Authoring notes, delete before shipping:
 - `name` must equal the directory name, lowercase, hyphens only.
 - Body under 500 lines; move detail into references/ and link it.
 - No tool schemas: the MCP server already advertises them.
-- Validate with `python3 scripts/check.py skills`.
+- Validate with `python3 tools/check.py skills`.
 -->

@@ -19,4 +19,4 @@ jobs:
         run: pip install pyyaml
 
       - name: Validate skills against the specification
-        run: python3 scripts/check.py skills
+        run: python3 tools/check.py skills

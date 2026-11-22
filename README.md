@@ -26,14 +26,24 @@ skills/
   web-access/SKILL.md       one folder per skill, folder name == frontmatter name
 templates/
   skill/SKILL.md            copy this to start a new skill
-scripts/
+tools/
   check.py                  validate every skill against the specification
   install.py                link skills into an agent's skills directory
   package.py                build the zips that claude.ai and the API require
 ```
 
-`templates/` sits outside `skills/` on purpose: it is not a skill, and the
-validator would rightly reject a skill whose name is `skill-name`.
+Two things sit outside `skills/` on purpose:
+
+- `templates/` is not a skill, and the validator would rightly reject a skill
+  whose name is `skill-name`.
+- `tools/` is repository maintenance. Nothing in it is loaded by an agent.
+
+That separation is not cosmetic. The specification reserves `scripts/` **inside**
+a skill for code the agent runs while doing the task —
+`skills/<name>/scripts/fetch.py` is part of the skill and ships in the archive.
+Repository tooling under the same name would make the two indistinguishable, so
+tooling lives in `tools/` and `scripts/` means one thing only: agent-executed
+code belonging to a skill.
 
 ## Add a skill
 
@@ -51,13 +61,13 @@ Then:
 3. Put invariants in the skill body; keep the agent's prompt down to role plus
    activation.
 4. If the body passes 500 lines, move detail into `references/` and link it.
-5. Add a row to the catalog, run `python3 scripts/check.py skills`, commit.
+5. Add a row to the catalog, run `python3 tools/check.py skills`, commit.
 
 ## Validate
 
 ```bash
 pip install pyyaml
-python3 scripts/check.py skills
+python3 tools/check.py skills
 ```
 
 Checks what is easy to get wrong and expensive to discover late:
@@ -82,10 +92,10 @@ upload.
 
 | Host           | What it reads                                                            | How you install it                                             |
 | -------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------- |
-| this editor    | `~/.agents/skills/<name>/SKILL.md`                                       | `python3 scripts/install.py`                                   |
-| Claude Code    | `~/.claude/skills/` (personal) or `.claude/skills/` (project, committed) | `python3 scripts/install.py --target ~/.claude/skills`         |
-| claude.ai      | an uploaded **zip** of the skill folder                                  | `python3 scripts/package.py`, then upload `dist/<name>.zip`    |
-| Claude API     | an uploaded skill, referenced by `skill_id`                              | `python3 scripts/package.py`, then `client.skills.create(...)` |
+| this editor    | `~/.agents/skills/<name>/SKILL.md`                                       | `python3 tools/install.py`                                     |
+| Claude Code    | `~/.claude/skills/` (personal) or `.claude/skills/` (project, committed) | `python3 tools/install.py --target ~/.claude/skills`           |
+| claude.ai      | an uploaded **zip** of the skill folder                                  | `python3 tools/package.py`, then upload `dist/<name>.zip`      |
+| Claude API     | an uploaded skill, referenced by `skill_id`                              | `python3 tools/package.py`, then `client.skills.create(...)`   |
 | another client | whatever directory it documents, same folder shape                       | copy or symlink `skills/<name>/` there                         |
 
 Links beat copies where the host reads a directory: this repository stays the
@@ -94,9 +104,9 @@ cannot drift. Claude Code follows a symlinked skill folder, so `install.py` is
 safe there as well as here.
 
 ```bash
-python3 scripts/install.py                 # link into ~/.agents/skills
-python3 scripts/install.py --target ~/.claude/skills
-python3 scripts/install.py --check         # verify a host, change nothing
+python3 tools/install.py                 # link into ~/.agents/skills
+python3 tools/install.py --target ~/.claude/skills
+python3 tools/install.py --check         # verify a host, change nothing
 ```
 
 `--check` exits non-zero when a skill is missing or points somewhere else, which
@@ -107,7 +117,7 @@ is how you verify a host instead of assuming it.
 Those paths do not read a directory, so the folder has to be packaged:
 
 ```bash
-python3 scripts/package.py            # writes dist/<name>.zip for every skill
+python3 tools/package.py            # writes dist/<name>.zip for every skill
 ```
 
 The upload rules are stricter than the filesystem ones, and this is where a
@@ -134,7 +144,7 @@ repository ships skills and nothing else. An agent prompt should be three things
 
 1. the role, in one sentence;
 2. "activate `web-access`" — the description is what does the activating;
-3. the rules that are true of *this* agent and not of every agent that reads the
+3. the rules that are true of _this_ agent and not of every agent that reads the
    web.
 
 Anything general belongs in the skill. If you find yourself writing the budget,

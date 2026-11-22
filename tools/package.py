@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Package skills into zips for hosts that take an upload instead of a directory.
 
-    python3 scripts/package.py                 # every skill -> dist/<name>.zip
-    python3 scripts/package.py web-access      # one skill
-    python3 scripts/package.py --out /tmp/pkg  # somewhere else
+    python3 tools/package.py                 # every skill -> dist/<name>.zip
+    python3 tools/package.py web-access      # one skill
+    python3 tools/package.py --out /tmp/pkg  # somewhere else
 
 Claude Code, and this editor, read a directory and need none of this. claude.ai
 and the Skills API do, and they are stricter than the filesystem is:

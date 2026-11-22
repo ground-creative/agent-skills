@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Validate skills against the Agent Skills specification (agentskills.io).
 
-    python3 scripts/check.py skills
-    python3 scripts/check.py            # same, default path
+    python3 tools/check.py skills
+    python3 tools/check.py              # same, default path
 
 Checks the rules that are easy to get wrong and expensive to discover late: the
 frontmatter, the name/directory agreement, the description, the body size, and
