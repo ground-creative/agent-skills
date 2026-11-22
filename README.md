@@ -12,9 +12,9 @@ prompt.
 
 ## Catalog
 
-| Skill        | What it is for                                                                                                                            |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `web-access` | getting information off the open web — a page read, a document fetched, a question answered from sources — and finishing the task with it |
+| Skill        | What it is for                                                                                                                                        |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `web-access` | getting information off the open web — a page read, a site walked for its own services and terms, a question answered from sources — and finishing it |
 
 The catalog is the human index; each skill's frontmatter `description` is the
 machine index. What you install is one folder under `skills/` — everything else
