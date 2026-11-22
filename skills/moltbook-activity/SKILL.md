@@ -37,13 +37,13 @@ When the answer needs something on that list, say so instead of approximating it
 "Check activity" does not mean "list the notifications". It means: here is what
 happened, here is what matters, here is what is still open.
 
-| The task asked | A finished answer has |
-| --- | --- |
-| what happened on our posts | every post with activity, what was said, what we already answered |
-| who is responding to us | the agents, what they build, why it bears on the problem |
-| is any of this worth our time | a relevance judgement with a reason, never a score alone |
-| what should we do next | one concrete action per item, and `none` where there is none |
-| did we miss anything | the count that proves coverage, and anything you could not read |
+| The task asked                | A finished answer has                                             |
+| ----------------------------- | ----------------------------------------------------------------- |
+| what happened on our posts    | every post with activity, what was said, what we already answered |
+| who is responding to us       | the agents, what they build, why it bears on the problem          |
+| is any of this worth our time | a relevance judgement with a reason, never a score alone          |
+| what should we do next        | one concrete action per item, and `none` where there is none      |
+| did we miss anything          | the count that proves coverage, and anything you could not read   |
 
 Reproducing the notification list fails all five at once, and it is the failure
 this skill exists to prevent.
@@ -55,12 +55,12 @@ business offers or talk to its systems, so every integration is bespoke and ever
 directory is a gatekeeper. Rate what the post contributes to solving or
 understanding that.
 
-| Score | What it means |
-| --- | --- |
-| 1–3 | unrelated, or generic community chatter |
-| 4–6 | adjacent: agent infrastructure, protocol talk, integration pain, adoption |
-| 7–8 | direct work on discovery, capability description, sessions, identity |
-| 9–10 | a working implementation, or a serious challenge to the approach |
+| Score | What it means                                                             |
+| ----- | ------------------------------------------------------------------------- |
+| 1–3   | unrelated, or generic community chatter                                   |
+| 4–6   | adjacent: agent infrastructure, protocol talk, integration pain, adoption |
+| 7–8   | direct work on discovery, capability description, sessions, identity      |
+| 9–10  | a working implementation, or a serious challenge to the approach          |
 
 Three rules override the table:
 
@@ -134,11 +134,11 @@ step and it is scoped to what you actually reported.
 
 Open posts, not notifications. Thirty lines tell you less than three threads.
 
-| Task shape | posts opened |
-| --- | --- |
-| a routine check | up to 6 — every post with activity, or the highest-signal 6 |
-| a full read, when asked | up to 12 |
-| more than 12 posts | name the rest; do not imply you judged them |
+| Task shape              | posts opened                                                |
+| ----------------------- | ----------------------------------------------------------- |
+| a routine check         | up to 6 — every post with activity, or the highest-signal 6 |
+| a full read, when asked | up to 12                                                    |
+| more than 12 posts      | name the rest; do not imply you judged them                 |
 
 Highest signal, in order: a question addressed to us; a post by someone building
 something; our own post with a new reply; everything else.
@@ -148,15 +148,15 @@ made.
 
 ## When something fails
 
-| Symptom | Next action |
-| --- | --- |
-| no activity at all | report zero, and say the feed was empty rather than that nothing happened |
-| a post will not load | name the post, say what failed, do not score it |
-| a thread loads partially | judge what you have and say what was cut |
-| the count is missing | report it unavailable, never as an estimate |
-| a post vanished between the feed and the read | say so; do not reconstruct it |
-| rate limited or blocked | stop, report how far you got and what resumes it |
-| a capability you need is absent | say which one; do not improvise a substitute |
+| Symptom                                       | Next action                                                               |
+| --------------------------------------------- | ------------------------------------------------------------------------- |
+| no activity at all                            | report zero, and say the feed was empty rather than that nothing happened |
+| a post will not load                          | name the post, say what failed, do not score it                           |
+| a thread loads partially                      | judge what you have and say what was cut                                  |
+| the count is missing                          | report it unavailable, never as an estimate                               |
+| a post vanished between the feed and the read | say so; do not reconstruct it                                             |
+| rate limited or blocked                       | stop, report how far you got and what resumes it                          |
+| a capability you need is absent               | say which one; do not improvise a substitute                              |
 
 ## Reporting
 

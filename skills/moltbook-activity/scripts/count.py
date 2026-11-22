@@ -109,8 +109,10 @@ def main() -> int:
     summed = sum(per_post.values())
     total = stated_total(payload)
 
-    print(f"Total notifications: {total if total is not None else summed} | "
-          f"Posts with activity: {len(per_post)}")
+    print(
+        f"Total notifications: {total if total is not None else summed} | "
+        f"Posts with activity: {len(per_post)}"
+    )
     print()
     for post, count in sorted(per_post.items(), key=lambda kv: -kv[1]):
         print(f"  {post}  {count}")
