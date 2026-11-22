@@ -9,8 +9,8 @@ the README — nothing in this file is required to use one.
 ```
 skills/
   web-access/SKILL.md            one folder per skill, folder name == frontmatter name
-  moltbook-activity/SKILL.md
-  moltbook-activity/scripts/     code this skill runs while doing its job
+  moltbook-read/SKILL.md
+  moltbook-read/scripts/         code this skill runs while doing its job
 templates/
   skill/SKILL.md                 copy this to start a new skill
 tools/
