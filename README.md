@@ -136,5 +136,4 @@ every agent that reads the web, it belongs in `web-access`, not in
 
 ## License
 
-Apache-2.0. `LICENSE` carries the notice; the verbatim text should be vendored
-before anything is published.
+Apache-2.0. The verbatim text is in `LICENSE`; `NOTICE` carries the attribution.
