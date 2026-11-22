@@ -34,15 +34,28 @@ you already read.
 Ceilings per turn, not targets. Several searches and several pages are normal and
 expected; the ceiling is what stops a loop, not what limits useful work.
 
-| Action                   | Ceiling |
-| ------------------------ | ------- |
-| searches                 | 3       |
-| pages fetched            | 6       |
-| rewritten query (refine) | 1       |
-| total tool calls         | 8       |
+The ceiling scales with the job. Pick the row that matches the task before the
+first call, and say which row you picked only if the task turns out to need the
+larger one:
+
+| Task shape                                     | searches | pages | refine | tool calls |
+| ---------------------------------------------- | -------- | ----- | ------ | ---------- |
+| a fact, one URL read, a yes/no question        | 3        | 6     | 1      | 8          |
+| a comparison, or 2–4 sources named in the task | 4        | 10    | 2      | 14         |
+| a survey, a list, or 5+ sources named          | 6        | 16    | 3      | 22         |
+
+Two rules beat the table:
+
+- **Named sources set a floor.** If the task names N pages to read, the page
+  ceiling is at least N + 2. A default that forbids reading what you were told to
+  read is the wrong default.
+- **Nothing beats the hard cap** of 8 searches, 20 pages and 28 tool calls in one
+  turn. A task that needs more than that is a multi-turn task; do not pretend
+  otherwise.
 
 When a ceiling is reached, end the turn with the partial result and the next
-step. Do not silently keep going, and do not pretend the task is complete.
+step. Do not silently keep going, and do not pretend the task is complete. Say
+which ceiling you hit when it was the hard cap rather than the row.
 
 Never repeat an identical query. Never fetch the same URL twice. One URL is one
 source, however many searches returned it.
