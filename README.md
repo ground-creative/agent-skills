@@ -23,17 +23,30 @@ in this repository is for the people maintaining it, see
 
 ## Install
 
+### 1. Get the repository
+
+```bash
+git clone https://github.com/ground-creative/agent-skills.git
+cd agent-skills
+```
+
+Without git, download
+`https://github.com/ground-creative/agent-skills/archive/refs/heads/main.tar.gz`
+and unpack it. Every command below is relative to that checkout, so `cd` in first.
+
+### 2. Put the skill where a host looks
+
 One skill folder works on every host that supports the Agent Skills format. How
 it gets there differs, because some hosts read a directory and others take an
 upload.
 
-| Host           | What it reads                                                            | How you install it                                             |
-| -------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------- |
-| this editor    | `~/.agents/skills/<name>/SKILL.md`                                       | `python3 tools/install.py`                                     |
-| Claude Code    | `~/.claude/skills/` (personal) or `.claude/skills/` (project, committed) | `python3 tools/install.py --target ~/.claude/skills`           |
-| claude.ai      | an uploaded **zip** of the skill folder                                  | `python3 tools/package.py`, then upload `dist/<name>.zip`      |
-| Claude API     | an uploaded skill, referenced by `skill_id`                              | `python3 tools/package.py`, then `client.skills.create(...)`   |
-| another client | whatever directory it documents, same folder shape                       | copy or symlink `skills/<name>/` there                         |
+| Host             | Reads                                                                          | Install                                                      |
+| ---------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| VS Code (Copilot) | `~/.agents/skills/<name>/SKILL.md`                                            | `python3 tools/install.py`                                   |
+| Claude Code      | `~/.claude/skills/<name>/` (personal) or `.claude/skills/` (project, committed) | `python3 tools/install.py --target ~/.claude/skills`         |
+| claude.ai        | an uploaded **zip** of the skill folder                                         | `python3 tools/package.py`, then upload `dist/<name>.zip`    |
+| Claude API       | an uploaded skill, referenced by `skill_id`                                     | `python3 tools/package.py`, then `client.skills.create(...)` |
+| another client   | whatever directory its own docs name, same folder shape                         | copy or symlink `skills/<name>/` there                       |
 
 Links beat copies where the host reads a directory: this repository stays the
 single source, so editing a skill here changes what the agent loads and the two
@@ -48,6 +61,13 @@ python3 tools/install.py --check         # verify a host, change nothing
 
 `--check` exits non-zero when a skill is missing or points somewhere else, which
 is how you verify a host instead of assuming it.
+
+The whole installation, if you would rather not run a script:
+
+```bash
+mkdir -p ~/.agents/skills
+ln -s "$PWD/skills/web-access" ~/.agents/skills/web-access
+```
 
 ### Uploading to claude.ai or the API
 
