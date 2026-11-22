@@ -1,0 +1,14 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Local agent directories, when someone points the target at the repo
+.agents/
+.claude/
+
+# Editor and OS noise
+.DS_Store
+*.swp
+
+# Packaged archives, rebuilt with scripts/package.py
+dist/
