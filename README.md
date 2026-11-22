@@ -12,9 +12,9 @@ prompt.
 
 ## Catalog
 
-| Skill        | What it is for                                                                                                                            | Agent       |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `web-access` | getting information off the open web — a page read, a document fetched, a question answered from sources — and finishing the task with it | `web-agent` |
+| Skill        | What it is for                                                                                                                            |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `web-access` | getting information off the open web — a page read, a document fetched, a question answered from sources — and finishing the task with it |
 
 Add a row here when you add a skill. The catalog is the human index; the
 frontmatter `description` is the machine index.
@@ -26,11 +26,10 @@ skills/
   web-access/SKILL.md       one folder per skill, folder name == frontmatter name
 templates/
   skill/SKILL.md            copy this to start a new skill
-agents/
-  web-agent.md              one agent that uses a skill: role + activation only
 scripts/
   check.py                  validate every skill against the specification
   install.py                link skills into an agent's skills directory
+  package.py                build the zips that claude.ai and the API require
 ```
 
 `templates/` sits outside `skills/` on purpose: it is not a skill, and the
@@ -127,12 +126,20 @@ Skills uploaded through the API are **workspace-scoped**: any key with access to
 the workspace can use, and delete, them. Upload through a workspace-scoped key if
 that matters.
 
-## Adding an agent
+## Using a skill from an agent
 
-An agent file is a prompt, not a skill: role, which skill to activate, and the
-behavioural rules specific to that agent. Keep it short — if a rule would apply to
-every agent that reads the web, it belongs in `web-access`, not in
-`agents/web-agent.md`.
+A host's prompt format is the host's business — Claude Code, VS Code and others
+each define their own, and none of them is the Agent Skills format. So this
+repository ships skills and nothing else. An agent prompt should be three things:
+
+1. the role, in one sentence;
+2. "activate `web-access`" — the description is what does the activating;
+3. the rules that are true of *this* agent and not of every agent that reads the
+   web.
+
+Anything general belongs in the skill. If you find yourself writing the budget,
+a citation rule or a failure table into a prompt, it is in the wrong file: the
+skill is versioned and validated, the prompt is neither.
 
 ## License
 
