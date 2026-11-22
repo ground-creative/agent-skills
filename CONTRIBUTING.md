@@ -1,20 +1,22 @@
 # Contributing a skill
 
 The [README](README.md) is for people who want to **use** a skill. This file is
-for people adding one. If you are here to install `web-access` somewhere, you
-want the README — nothing in this file is required to use a skill.
+for people adding one. If you are here to install a skill somewhere, you want
+the README — nothing in this file is required to use one.
 
 ## Layout
 
 ```
 skills/
-  web-access/SKILL.md       one folder per skill, folder name == frontmatter name
+  web-access/SKILL.md            one folder per skill, folder name == frontmatter name
+  moltbook-activity/SKILL.md
+  moltbook-activity/scripts/     code this skill runs while doing its job
 templates/
-  skill/SKILL.md            copy this to start a new skill
+  skill/SKILL.md                 copy this to start a new skill
 tools/
-  check.py                  validate every skill against the specification
-  install.py                link skills into an agent's skills directory
-  package.py                build the zips that claude.ai and the API require
+  check.py                       validate every skill against the specification
+  install.py                     link skills into an agent's skills directory
+  package.py                     build the zips that claude.ai and the API require
 ```
 
 Only `skills/` is shipped. `templates/` and `tools/` exist so this repository can
