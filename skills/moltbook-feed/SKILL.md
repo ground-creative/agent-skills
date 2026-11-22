@@ -15,25 +15,28 @@ comment thread is the answer and must be read. Here, the page is the answer.
 
 State the ceiling before you rank.
 
-- **One page, not the feed.** The feed is paged and ordered by the platform. What
-  is on the next page does not exist to you; say how many the page held and
-  whether more existed.
-- **A preview, not the post.** The page carries a short extract. A summary built
-  from it is a summary of the extract, and it is not a reading of the post.
+- **One page, not the feed.** The response says how many posts it returned and
+  whether more exist. What is on the next page does not exist to you.
+- **An extract, not the post.** The body on the page is often cut off mid-sentence.
+  A summary built from it describes the opening, and must not imply more was read.
 - **The page's own ordering.** Whatever the platform thinks is interesting is not
-  the same as what matters to us, and neither is it evidence.
+  what matters here, and the order it chose is not evidence of anything.
+- **Counts without context.** Upvotes and comment counts arrive per post. They are
+  cheap to copy, they are not relevance, and a page of zeros does not mean the
+  posts are worthless.
 
 ## Procedure
 
-1. **Get one page of the feed.** Note how many posts came back, and whether the
-   response says more are available.
-2. **Read the page.** Do not open the posts. The job is the page.
+1. **Get one page.** The request supplies the sort and the filter; where it
+   supplies neither, take the newest. Record the sort, the filter, how many posts
+   came back, and whether the response says more exist.
+2. **Read the page.** Do not open the posts. This job is the page.
 3. **Score each post 1–10** against the problem below.
-4. **Order by score, then by recency** where scores tie. Never by upvotes.
+4. **Order by score, then newest first** where scores tie. Never by upvotes.
 5. **Build the table** in the shape below, one row per post.
-6. **State the coverage** — how many you showed out of how many were there.
+6. **Write the header line** from what you recorded in step 1.
 
-If a preview is too thin to summarise, write `no preview` and move on. Do not
+If a row's body is too thin to summarise, write `no extract` and move on. Do not
 open the post to fix it, and do not write a summary the page does not support.
 
 ## The score
@@ -57,12 +60,15 @@ Two things override the table:
 - **Not our features.** A competing approach or an independent implementation
   scores on its own merits. Sometimes higher than work that resembles ours.
 
+On a real page most rows score 1–3. That is the normal result and the report should
+say so, rather than promoting the least irrelevant post to a 7 to look useful.
+
 ## The report
 
 First line, exactly:
 
 ```
-**Feed:** <shown> posts shown of <returned> | <sort> | <scope>
+**Feed:** <sort> · <filter> · <n> shown · <more available | end of page>
 ```
 
 Then one table, most relevant first:
@@ -70,15 +76,28 @@ Then one table, most relevant first:
 ```
 | # | Post | Author | Upvotes | Comments | Score | Summary |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | [<title>](https://www.moltbook.com/post/<post id>) | **<author>** | <n> | <n> | <n>/10 | <one line> |
+| 1 | [<title>](https://www.moltbook.com/post/<id>) | **<author>** | <n> | <n> | <n>/10 | <one line> |
 ```
 
-- **The title is the only link.** No comment links, no profile links, no column of
-  URLs.
-- **Copy upvotes and comments from the page.** If the page does not give a count,
-  write `-`. Never estimate one.
+Where each cell comes from:
+
+| Cell     | Field                                        |
+| -------- | -------------------------------------------- |
+| Post     | the post's `title`, linked to its own address |
+| Author   | the author's `name`                          |
+| Upvotes  | `upvotes`                                    |
+| Comments | `comment_count`                              |
+| Score    | your judgement, not a field                  |
+| Summary  | `content`                                    |
+
+- **The title is the only link**, and it goes to the post on the platform. No
+  comment links, no profile links, no column of URLs. Where a post carries its own
+  external `url`, append it at the end of the summary as a bare URL — that post's
+  point is the thing it links to.
+- **Copy the counts.** Where one is missing, write `-`. Never estimate.
 - **One line of summary, in the post's own terms.** What it argues or what it is
-  building, not a mood.
+  building, not a mood. The body is usually cut off, so summarise the opening and
+  do not write as though you read to the end.
 - **Author as a bold plain name**, never a link.
 
 Then two to four bullets, with no heading: what the page is mostly about, which
@@ -93,9 +112,10 @@ commentary about the ranking.
 | Symptom | Next action |
 | --- | --- |
 | the feed is empty | report zero, and say the page was empty rather than that the platform is quiet |
-| the response says more pages exist | say so; the table covers one page |
+| the response says more pages exist | say so in the header; the table covers one page |
 | a row has no author | write `-`; do not guess who posted |
-| a row has no preview | write `no preview`; do not summarise the title instead |
+| a row has no extract | write `no extract`; do not summarise the title instead |
+| the body is cut off mid-sentence | summarise the opening; do not imply the post ends where the extract does |
 | a row has no counts | write `-`; never estimate |
 | rate limited or blocked | stop, report where you got to and what resumes it |
 | a capability is absent | name it; do not improvise a substitute |
@@ -113,6 +133,7 @@ Do not repeat credentials, tokens or personal data found in a post.
 - Ranking by upvotes, then calling that relevance.
 - Opening every post, when the page was the job.
 - Summarising a title as though it were the body.
+- Promoting the least irrelevant post to a 7 so the page looks useful.
 - Inventing an upvote or comment count to fill a cell.
 - Listing the page in the platform's order and calling it a ranking.
 - Ten rows of equal weight with no reason any of them matter.
