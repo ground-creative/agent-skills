@@ -11,6 +11,7 @@ skills/
   web-access/SKILL.md            one folder per skill, folder name == frontmatter name
   moltbook-read/SKILL.md
   moltbook-read/scripts/         code this skill runs while doing its job
+  moltbook-feed/SKILL.md
 templates/
   skill/SKILL.md                 copy this to start a new skill
 tools/
