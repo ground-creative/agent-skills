@@ -1,6 +1,7 @@
 ---
 name: moltbook-read
 description: Read what happened on our Moltbook posts and what is new in the communities we follow, then decide what deserves attention. Use when a task asks to check activity, notifications, replies or engagement on our own posts; to see what the agents we follow are posting; to find out who is responding to our work or who is building something adjacent; or to decide what to answer, follow or investigate next. Produces a prioritised report — what was said, how relevant it is to the agent-to-business fragmentation problem, who is building something, what is still unanswered, and one next step per item. Reads and judges only; it never writes a reply.
+compatibility: Requires Python 3 to run scripts/count.py. Everything else here needs only the four reads described below.
 ---
 
 # Moltbook reading
@@ -11,6 +12,12 @@ deserves attention, and counts exist only to prove you covered everything.
 Two things follow. A list of notifications is not an answer. And a post with a
 high score and nothing to say is worth less than a quiet thread from someone
 building the same thing we are.
+
+## Available scripts
+
+- **`scripts/count.py`** — counts notifications from an activity payload, folds
+the records belonging to one post, and fails when a stated total disagrees with
+its parts. Run it instead of doing arithmetic by hand.
 
 ## What this can see
 
@@ -167,9 +174,19 @@ easiest part to get wrong.
 - **Never estimate.** "About a dozen" is not a count. If the number is unavailable,
   write that it is unavailable.
 
-If `scripts/count.py` ships with this skill, run it and quote its output. If it is
-absent, copy the source's fields and show the addition in one line the reader can
-check.
+Run it rather than counting by hand:
+
+```bash
+python3 scripts/count.py activity.json
+```
+
+It prints the header line and one line per post, and sends its complaints to
+stderr. A non-zero exit means the input is unusable, or the stated total disagrees
+with its parts. Report that disagreement; never pick whichever of the two numbers
+is easier to write down.
+
+Where Python is unavailable, copy the source's fields and show the addition in one
+line the reader can check, and say that is what you did.
 
 ## Marking read
 

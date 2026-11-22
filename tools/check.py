@@ -23,6 +23,8 @@ except ImportError:  # pragma: no cover - documented dependency
 NAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 XML = re.compile(r"<[A-Za-z/][^>]*>")
 MD_LINK = re.compile(r"\]\((?!https?:|mailto:|#)([^)\s]+\.md)\)")
+PATH_REF = re.compile(r"(?<![\w/])((?:scripts|references|assets)/[\w./-]+)")
+BUNDLED = ("scripts", "references", "assets")
 RESERVED = ("anthropic", "claude")
 BODY_LINE_LIMIT = 500
 
@@ -112,6 +114,30 @@ def check(skill: pathlib.Path) -> tuple[list[str], list[str]]:
     for target in MD_LINK.findall(body):
         if not (skill / target).exists():
             errors.append(f"{skill.name}: link {target!r} does not exist")
+
+    referenced = {
+        target.rstrip(".,;:)'\"") for target in PATH_REF.findall(body)
+    }
+    for target in sorted(referenced):
+        if not (skill / target).exists():
+            errors.append(
+                f"{skill.name}: {target} is named in SKILL.md but does not exist; "
+                f"the agent will try to run a file that is not there"
+            )
+
+    for folder in BUNDLED:
+        bundled = skill / folder
+        if not bundled.is_dir():
+            continue
+        for path in sorted(bundled.rglob("*")):
+            if not path.is_file():
+                continue
+            relative = path.relative_to(skill).as_posix()
+            if relative not in referenced:
+                errors.append(
+                    f"{skill.name}: {relative} is bundled but never named in "
+                    f"SKILL.md; an agent cannot use what it cannot see"
+                )
 
     return errors, warnings
 

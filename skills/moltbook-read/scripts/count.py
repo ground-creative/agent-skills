@@ -1,21 +1,26 @@
 #!/usr/bin/env python3
-"""Count Moltbook activity without doing arithmetic by hand.
+"""Count Moltbook notifications without doing arithmetic by hand.
+
+The header line of the report is the one number with an exact right answer, and
+it is the one a model gets wrong silently. This does the arithmetic instead, and
+refuses to invent anything.
 
     python3 scripts/count.py activity.json
-    <fetch activity> | python3 scripts/count.py
+    cat activity.json | python3 scripts/count.py
+    python3 scripts/count.py --help
 
-Reads the activity payload and prints the header the report needs, then one line
-per post. It prefers a total supplied by the source and otherwise sums the
-per-record counts; it never invents a number, and it fails when the parts do not
-add up to the stated whole.
+Prints the header line, then one line per post. Diagnostics go to stderr; the
+counts go to stdout.
 
-Why a script: a model counting notifications gets it wrong silently, and the
-wrong number is the first line of the report. The arithmetic is the part that
-must not be improvised.
+Exit codes:
+    0  counted (a sum is labelled as a sum when the source gives no total)
+    1  the stated total disagrees with its parts, or there is nothing to count
+    2  bad arguments, or the input is not readable JSON
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 
@@ -73,16 +78,45 @@ def count_of(record):
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(
+        prog="count.py",
+        description="Count Moltbook notifications and check that the parts add up.",
+        epilog=(
+            "A non-zero exit means the payload disagrees with itself: report the "
+            "disagreement rather than one of the two numbers."
+        ),
+    )
+    parser.add_argument(
+        "payload",
+        nargs="?",
+        default="-",
+        help="activity JSON file, or - to read stdin (default)",
+    )
+    args = parser.parse_args()
+
     try:
-        if len(sys.argv) > 1 and sys.argv[1] != "-":
-            payload = json.load(open(sys.argv[1], encoding="utf-8"))
+        if args.payload != "-":
+            with open(args.payload, encoding="utf-8") as handle:
+                payload = json.load(handle)
         else:
+            if sys.stdin.isatty():
+                print(
+                    "count.py: no input. Pass a file or pipe a payload:\n"
+                    "  python3 scripts/count.py activity.json\n"
+                    "  cat activity.json | python3 scripts/count.py",
+                    file=sys.stderr,
+                )
+                return 2
             payload = json.load(sys.stdin)
     except OSError as exc:
-        print(f"count.py: cannot read input: {exc}", file=sys.stderr)
+        print(f"count.py: cannot read {args.payload}: {exc}", file=sys.stderr)
         return 2
     except json.JSONDecodeError as exc:
-        print(f"count.py: input is not JSON: {exc}", file=sys.stderr)
+        print(
+            f"count.py: {args.payload} is not JSON: {exc}. Expected the activity "
+            f"payload as returned by the platform.",
+            file=sys.stderr,
+        )
         return 2
 
     records = records_of(payload)
