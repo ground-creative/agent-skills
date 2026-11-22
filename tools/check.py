@@ -115,9 +115,7 @@ def check(skill: pathlib.Path) -> tuple[list[str], list[str]]:
         if not (skill / target).exists():
             errors.append(f"{skill.name}: link {target!r} does not exist")
 
-    referenced = {
-        target.rstrip(".,;:)'\"") for target in PATH_REF.findall(body)
-    }
+    referenced = {target.rstrip(".,;:)'\"") for target in PATH_REF.findall(body)}
     for target in sorted(referenced):
         if not (skill / target).exists():
             errors.append(
