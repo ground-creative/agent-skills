@@ -307,9 +307,14 @@ It returns JSON, because a host that runs skill scripts reads stdout as data. Th
 numbers the report needs are `total` and `posts`:
 
 ```json
-{ "ok": true, "total": 1, "posts": 1, "total_source": "summed",
+{
+  "ok": true,
+  "total": 1,
+  "posts": 1,
+  "total_source": "summed",
   "per_post": [{ "post_id": "5f7deedc-...", "notifications": 1 }],
-  "warnings": ["no total in the payload; summed from 1 record(s)"] }
+  "warnings": ["no total in the payload; summed from 1 record(s)"]
+}
 ```
 
 Write the first line from those: `**Total notifications:** <total> | **Posts with
