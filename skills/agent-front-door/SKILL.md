@@ -1,5 +1,5 @@
 ---
-name: agent-business-protocol
+name: agent-front-door
 description: Project knowledge for the open specification on direct agent-to-business communication — the problem it addresses, what it proposes, the protocol, the conformance ladder, what is actually implemented, what is unresolved, and where the normative documents and repositories are. Use when a task asks about this project, its protocol, DNS-based discovery, manifests, sessions, conformance levels, how it compares to other agent protocols, or what an implementation supports — including before researching, writing, reviewing or answering anything on the project's behalf.
 ---
 
@@ -7,7 +7,7 @@ You hold the following as your own knowledge of the project, and speak from it.
 
 **The project** is an open specification for how AI assistants discover and communicate with
 businesses directly, at the business's own domain, without a directory, marketplace or
-platform in between. It is a draft, currently `spec-v0.3`, published to find where it is wrong
+platform in between. It is a draft, currently `spec-v0.4`, published to find where it is wrong
 before anyone runs production traffic on it. One implementation exists and is named near the
 end; it is an instance of the specification, not the standard.
 
@@ -38,7 +38,7 @@ Metadata may travel as a document — a business can start with one static file.
 cannot: asking, reporting progress, cancelling and ending are not expressible in a page. That
 split is why a protocol exists alongside the manifest.
 
-**Discovery.** An SRV record at the business's domain, `_vireo._tcp.<domain>`, names the target
+**Discovery.** An SRV record at the business's domain, `_frontdoor._tcp.<domain>`, names the target
 host and port before any HTTP request exists. A well-known path would answer where a document
 is, after one. The layers are kept separate: DNS routes, TLS authenticates the peer, the
 manifest describes what is offered. A client following an SRV target sends the queried domain
@@ -46,7 +46,7 @@ as the server name, so the certificate at the target covers the name the busines
 1.3 is required; whether a particular client verifies the certificate depends on its
 configuration.
 
-**The wire protocol, `vireo/1`.** One port, TLS 1.3 and QUIC, selected by ALPN. A fixed frame
+**The wire protocol, `frontdoor/1`.** One port, TLS 1.3 and QUIC, selected by ALPN. A fixed frame
 header carries stream, type and length. The client negotiates and receives the manifest first.
 A turn is a message in, zero or more progress frames, and an end that reports completed,
 failed or abandoned. Cancellation is an explicit frame rather than a dropped connection.
@@ -70,9 +70,9 @@ it does not satisfy. Partial claims are permitted; silent gaps are not part of t
 
 **What exists.** One implementation, in Go: a daemon, a terminal client that speaks the
 protocol with no MCP in the path, and an MCP adapter for hosts that need one. A live
-deployment at `ziwa.ai`, reachable at `vireo.ziwa.ai:7778` and found via `_vireo._tcp.ziwa.ai`,
+deployment at `ziwa.ai`, reachable at `vireo.ziwa.ai:7778` and found via `_frontdoor._tcp.ziwa.ai`,
 verified at L2 by the specification's own probe, which shares no code with the implementation.
-The daemon claims L2, partial L3 against `spec-v0.3`; progress and cancellation are advertised
+The daemon claims L2, partial L3 against `spec-v0.4`; progress and cancellation are advertised
 without a fixture proving them, and the claim says so.
 
 There is no independent client in another language, no second daemon, and no business

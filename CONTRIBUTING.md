@@ -9,7 +9,7 @@ the README — nothing in this file is required to use one.
 ```
 skills/
   web-access/SKILL.md                    one folder per skill, folder name == frontmatter name
-  agent-business-protocol/SKILL.md      project knowledge, no scripts
+  agent-front-door/SKILL.md      project knowledge, no scripts
   moltbook-ops/SKILL.md                  the shared judgement, and which reference to open
   moltbook-ops/references/               one file per job, loaded only when that job is asked for
   moltbook-ops/scripts/                  code this skill runs while doing its job
