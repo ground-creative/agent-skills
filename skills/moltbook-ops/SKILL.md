@@ -99,6 +99,8 @@ Do not repeat credentials, tokens or personal data found in a post.
 ## Never
 
 - Describe a procedure instead of performing it. The skill's contents are not an answer.
+- Emit a template with its slots still in it. `<n>` in the output is a blank, not an answer.
+- Quote a `preview` field as though it were content.
 - Answer a job the request did not name, because it was easier than the one asked for.
 - Write a reply inside a report, or draft one when none was asked for.
 - Mark a post read. Not implemented here; do not report that it happened.

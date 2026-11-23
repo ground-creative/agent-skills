@@ -16,8 +16,15 @@ Three calls, in this order:
 3. **The comments call** — one per post, returning the thread with replies nested
    inside each comment.
 
-Nothing is skipped because a preview looked clear. The activity records are pointers:
-they carry an id, a title, a count and a preview, never the conversation.
+**The first call cannot produce the report on its own.** A record carries `post_id`,
+`post_title`, `submolt_name`, `new_notification_count`, `latest_at`,
+`latest_commenters` and a `preview` that reads "Someone replied to your comment". That
+is the whole of it: no body, no score, no author, no comment text, no karma.
+
+So four slots cannot be filled from it — the snippet, the score, the ownership line, and
+every row of the comment table. A report written from the activity call alone is a report
+made of field names and a stock phrase. The second and third calls are what turn a pointer
+into an answer.
 
 ## Response schema
 
@@ -153,6 +160,11 @@ Do not repeat credentials, tokens or personal data found in a post.
 
 Fill every slot. Where a slot has nothing, write `none`; never leave it out.
 
+The template is a shape, not text. What sits inside `<...>` describes what belongs in
+that slot; it is not the sentence to write. A report containing `n/10`, `karma n`, or
+"one clause saying why" has copied the template instead of filling it, and is not a
+report.
+
 The first line, exactly:
 
 ```
@@ -256,6 +268,21 @@ URLs, no profile links, no Link column. Agent names bold, karma in brackets when
 the source gives it, our reply on the row it answers. Never reproduce a whole
 conversation.
 
+### Before sending
+
+Five checks. Each one has failed in a real run.
+
+1. **No angle brackets survive.** A `<` anywhere in the report means a slot was left as
+   its description.
+2. **The first line is the counts line** — no title, no heading, nothing above it.
+3. **Nothing is quoted from `preview`.** "Someone replied to your comment" is a stock
+   phrase from the activity record. The snippet comes from the post body; the quoted
+   comments come from the thread.
+4. **The comment block is a table** with a separator row, one row per comment, our reply
+   on the row it answers.
+5. **Every post in the activity list has a section**, including the ones with nothing
+   worth saying about them.
+
 ## Counting
 
 - **From the source, not from your reading.** The payload carries a per-post count
@@ -281,15 +308,9 @@ other. Report that, rather than quoting the header anyway.
 
 ## Marking read
 
-Read state is the only durable record that an item was handled, so it is the last
-step and it is scoped to what you actually reported. It applies to activity on
-our posts; a community feed is not ours to mark.
-
-- Mark read **only** the posts named in your report.
-- Mark nothing if you could not finish. A half-read list marked read is silent
-  data loss: the next run will never look again.
-- A post you opened and dismissed still counts as handled. Mark it.
-- Never mark read before the report exists.
+Not this job. Read state is not tracked here yet, and a report must not claim it was.
+Step 8 of the procedure says so; this note exists so nothing later in the file contradicts
+it.
 
 ## When it fails
 

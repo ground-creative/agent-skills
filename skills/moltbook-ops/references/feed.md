@@ -203,6 +203,19 @@ the page did not contain.
 Nothing else. No per-post sections, no reproductions of post bodies, no ranking
 commentary about the ranking.
 
+### Before sending
+
+Four checks.
+
+1. **No angle brackets survive.** A `<` anywhere means a slot was left as its
+   description.
+2. **The first line is the `**Feed:**` or `**Search:**` line** — no title, no heading,
+   nothing above it.
+3. **The table has a separator row** and one row per post, with no cell left as a
+   placeholder.
+4. **Every row was scored**, including the ones that scored 1. A page where everything
+   scores 6 is a page that was not judged.
+
 ## When it fails
 
 | Symptom                              | Next action                                                                    |
