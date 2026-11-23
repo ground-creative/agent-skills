@@ -1,6 +1,6 @@
 ---
-name: front-door
-description: Project knowledge for the open specification on direct agent-to-business communication — the problem it addresses, what it proposes, the protocol, the conformance ladder, what is actually implemented, what is unresolved, and where the normative documents live. Use when a task asks about this project, its protocol, DNS-based discovery, manifests, sessions, conformance levels, how it compares to MCP or A2A, or what an implementation supports — including before researching, writing, reviewing or answering anything on the project's behalf.
+name: agent-business-protocol
+description: Project knowledge for the open specification on direct agent-to-business communication — the problem it addresses, what it proposes, the protocol, the conformance ladder, what is actually implemented, what is unresolved, and where the normative documents and repositories are. Use when a task asks about this project, its protocol, DNS-based discovery, manifests, sessions, conformance levels, how it compares to other agent protocols, or what an implementation supports — including before researching, writing, reviewing or answering anything on the project's behalf.
 ---
 
 You hold the following as your own knowledge of the project, and speak from it.
@@ -96,35 +96,40 @@ rather than a well-known path, session semantics with explicit turn states, and 
 ladder whose claims admit their gaps. A manifest can point at an A2A Agent Card or an OpenAPI
 document, and a business can publish all three.
 
-**Vocabulary.** front door — the arrangement. manifest — what an endpoint exposes. discovery
-— the SRV lookup. session — the envelope scoping a conversation, not the conversation.
-caller — the client side. business — the party owning the domain, daemon and backend.
-conformance — a claim with its gaps listed. daemon — a process, not the standard.
+**Vocabulary.** manifest — what an endpoint exposes. discovery — the SRV lookup. session — the
+envelope scoping a conversation, not the conversation. caller — the client side. business —
+the party owning the domain, daemon and backend. conformance — a claim with its gaps listed.
+daemon — a process, not the standard.
 
-## Where the source is
+## Where the detail is
 
-Answer from the knowledge above. When an answer needs a field name, a requirement identifier,
-a frame layout, a conformance matrix or an example document, fetch the matching file with web
-access rather than reconstructing it from memory: the raw addresses below return the document
-itself, while the `blob` form returns a page with navigation around it. Use the `blob` form
-only when a human should click it.
+Answer from the knowledge above. When an answer needs a field name, a requirement identifier, a
+frame layout, a conformance matrix or an example document, read the matching file rather than
+reconstructing it from memory. The raw addresses below return the document itself; the `blob`
+form returns a page with navigation around it, which is for a human to click.
 
-| Document | Fetch | Click |
-| --- | --- | --- |
-| The problem and argument | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/PROPOSAL.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/PROPOSAL.md |
-| Why SRV, why the manifest rides inside | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/RATIONALE.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/RATIONALE.md |
-| Versus MCP, A2A, OpenAPI, llms.txt | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/COMPARISON.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/COMPARISON.md |
-| Questions reviewers ask | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/FAQ.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/FAQ.md |
-| Manifest, field by field | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/MANIFEST.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/MANIFEST.md |
-| Protocol: frames, handshake, sessions, webhook, errors | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/PROTOCOL.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/PROTOCOL.md |
-| Conformance: levels and requirement matrix | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/CONFORMANCE.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/CONFORMANCE.md |
-| Security: threat model and TLS rules | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/SECURITY.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/SECURITY.md |
-| Manifest JSON Schema | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/machine/schema/manifest.schema.json` | https://github.com/ground-creative/agent-front-door-spec/blob/main/machine/schema/manifest.schema.json |
-| Minimal example manifest | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/machine/examples/manifest.minimal.json` | https://github.com/ground-creative/agent-front-door-spec/blob/main/machine/examples/manifest.minimal.json |
-| Independent conformance probe | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/machine/conformance.py` | https://github.com/ground-creative/agent-front-door-spec/blob/main/machine/conformance.py |
+| Document                                               | Read                                                                                                                  | Click                                                                                                     |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| The problem and argument                               | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/PROPOSAL.md`                | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/PROPOSAL.md                |
+| Why SRV, why the manifest rides inside                 | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/RATIONALE.md`               | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/RATIONALE.md               |
+| Versus A2A, OpenAPI, llms.txt, scraping                | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/COMPARISON.md`              | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/COMPARISON.md              |
+| Questions reviewers ask                                | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/FAQ.md`                     | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/FAQ.md                     |
+| Manifest, field by field                               | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/MANIFEST.md`                  | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/MANIFEST.md                  |
+| Protocol: frames, handshake, sessions, webhook, errors | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/PROTOCOL.md`                  | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/PROTOCOL.md                  |
+| Conformance: levels and requirement matrix             | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/CONFORMANCE.md`               | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/CONFORMANCE.md               |
+| Security: threat model and TLS rules                   | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/SECURITY.md`                  | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/SECURITY.md                  |
+| Manifest JSON Schema                                   | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/machine/schema/manifest.schema.json`    | https://github.com/ground-creative/agent-front-door-spec/blob/main/machine/schema/manifest.schema.json    |
+| Minimal example manifest                               | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/machine/examples/manifest.minimal.json` | https://github.com/ground-creative/agent-front-door-spec/blob/main/machine/examples/manifest.minimal.json |
+| Independent conformance probe                          | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/machine/conformance.py`                 | https://github.com/ground-creative/agent-front-door-spec/blob/main/machine/conformance.py                 |
 
-The implementation is https://github.com/ground-creative/vireo and the MCP adapter is
-https://github.com/ground-creative/vireo-mcp.
+For questions about the code rather than the contract — how a daemon is configured, how a
+deployment is laid out, what a client does — the repositories are the source:
 
-`MANIFEST.md` and `PROTOCOL.md` are long. Fetch one when the answer genuinely needs it, not
-for orientation: the knowledge above already carries the shape.
+| Repository | What it holds |
+| --- | --- |
+| https://github.com/ground-creative/agent-front-door-spec | the specification: `normative/` for the rules, `informative/` for the argument, `machine/` for schema, examples, fixtures and probe, `proposals/` for numbered changes |
+| https://github.com/ground-creative/vireo | the reference implementation: daemon, terminal client, conformance tests, configuration and deployment documents |
+| https://github.com/ground-creative/vireo-mcp | the adapter that exposes a daemon to hosts that speak another protocol |
+
+`MANIFEST.md` and `PROTOCOL.md` are long. Read one when the answer genuinely needs it, not for
+orientation: the knowledge above already carries the shape.
