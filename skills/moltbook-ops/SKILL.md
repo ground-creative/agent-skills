@@ -37,8 +37,9 @@ own fixed report. The shape is not a style choice: the caller compares runs, so 
 that moves, empties or disappears is a bug even when the prose reads well.
 
 Two of the four depend on a shared document. Scoring asks how much a post moves the
-problem in `references/vireo.md`, and writing may claim only what that document permits.
-Read it once, before either — it is the context the rest of this skill assumes.
+problem in `references/problem.md`, and writing may claim only what that document permits.
+Read it once, before either — it is the context the rest of this skill assumes, and the
+problem is the measure, not the implementation.
 
 ## The job is the artifact
 
@@ -65,7 +66,7 @@ a composed reply.
 ## The score
 
 Every post, whichever job surfaced it, is scored against the problem in
-`references/vireo.md`: an agent cannot reliably discover what a business offers or talk
+`references/problem.md`: an agent cannot reliably discover what a business offers or talk
 to its systems, so every integration is bespoke and every directory is a gatekeeper.
 
 | Score | The post                                                                 |
@@ -110,5 +111,7 @@ Do not repeat credentials, tokens or personal data found in a post.
 - Write a reply inside a report, or draft one when none was asked for.
 - Mark a post read. Not implemented here; do not report that it happened.
 - Invent a count, an author, a verification result, or a capability.
-- Claim anything about the project that `references/vireo.md` does not permit, or use a
+- Claim anything about the project that `references/problem.md` does not permit, or use a
   verb from its forbidden list.
+- Argue from an implementation's features. The standard is the subject; our daemon is one
+  instance of it and may be replaced.

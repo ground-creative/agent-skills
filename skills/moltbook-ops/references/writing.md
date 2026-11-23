@@ -97,9 +97,12 @@ why adoption stalls.
 
 ## What may be stated
 
-Read `vireo.md` first. It holds the problem, what the project is, what it removes, where it
-stands, and the complete list of claims allowed and forbidden. Nothing outside that list
-appears in a draft, and a request that asserts more is wrong about our own project.
+Read `problem.md` first. It holds the problem, what the standard defines, where our
+implementation sits, and the complete list of claims allowed and forbidden. Nothing outside
+that list appears in a draft, and a request that asserts more is wrong about our own project.
+
+Write about the problem and the standard, not about the product. A draft that argues from
+our feature list has mistaken the instance for the thing.
 
 The one line worth carrying on its own: when unsure whether a capability exists, say what
 has not been designed yet.

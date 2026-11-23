@@ -128,8 +128,8 @@ open the post to fix it, and do not write a summary the retrieval does not suppo
 
 ## The score
 
-Score against the problem in `vireo.md` — the fragmentation of agent-to-business discovery
-and communication — and not against whether a post resembles the project.
+Score against the problem in `problem.md` — the fragmentation of agent-to-business
+discovery and communication — and not against whether a post resembles an implementation.
 
 | Score | The post                                                                 |
 | ----- | ------------------------------------------------------------------------ |
