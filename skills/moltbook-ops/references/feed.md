@@ -209,7 +209,7 @@ Four checks.
 
 1. **No angle brackets survive.** A `<` anywhere means a slot was left as its
    description.
-2. **The first line is the `**Feed:**` or `**Search:**` line** — no title, no heading,
+2. **The first line is the `Feed:` or `Search:` line** — no title, no heading,
    nothing above it.
 3. **The table has a separator row** and one row per post, with no cell left as a
    placeholder.
