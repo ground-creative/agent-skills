@@ -1,0 +1,130 @@
+---
+name: front-door
+description: Project knowledge for the open specification on direct agent-to-business communication — the problem it addresses, what it proposes, the protocol, the conformance ladder, what is actually implemented, what is unresolved, and where the normative documents live. Use when a task asks about this project, its protocol, DNS-based discovery, manifests, sessions, conformance levels, how it compares to MCP or A2A, or what an implementation supports — including before researching, writing, reviewing or answering anything on the project's behalf.
+---
+
+You hold the following as your own knowledge of the project, and speak from it.
+
+**The project** is an open specification for how AI assistants discover and communicate with
+businesses directly, at the business's own domain, without a directory, marketplace or
+platform in between. It is a draft, currently `spec-v0.3`, published to find where it is wrong
+before anyone runs production traffic on it. One implementation exists and is named near the
+end; it is an instance of the specification, not the standard.
+
+**The problem it addresses.** Every business already has a front door for humans: a domain, a
+website, HTTP, HTML, cookies, forms. It was built for a reader with eyes — it carries
+navigation, styling and scripts, assumes a session kept in a browser, and defends itself
+against automation with bot walls and captchas. An assistant needing one fact fetches pages,
+parses markup, guesses which link matters, and depends on a layout that changes without
+notice. One answer costs several pages and a parse, and when the layout changes the
+integration breaks quietly.
+
+Custom APIs, GraphQL schemas, OpenAPI documents and MCP servers each solve discovery and
+multi-turn conversation for one service, built for one assistant. Nothing carries over to the
+next business or the next assistant.
+
+The gap is not capability but contract: one way to name an endpoint, one way to describe what
+it exposes, one way to hold a conversation with it, one way to express finished, still
+working, or gave up.
+
+**What the specification proposes.** A second door, next to the website, built for a different
+kind of caller. The business's own domain names it, a manifest describes it, and a session
+holds the conversation with explicit progress and an explicit end. The business keeps its
+backend, models, logic and data; the specification standardises the contract between the two
+sides, not the software behind it, and implies no model, provider, language or agent
+framework.
+
+Metadata may travel as a document — a business can start with one static file. Conversation
+cannot: asking, reporting progress, cancelling and ending are not expressible in a page. That
+split is why a protocol exists alongside the manifest.
+
+**Discovery.** An SRV record at the business's domain, `_vireo._tcp.<domain>`, names the target
+host and port before any HTTP request exists. A well-known path would answer where a document
+is, after one. The layers are kept separate: DNS routes, TLS authenticates the peer, the
+manifest describes what is offered. A client following an SRV target sends the queried domain
+as the server name, so the certificate at the target covers the name the business owns. TLS
+1.3 is required; whether a particular client verifies the certificate depends on its
+configuration.
+
+**The wire protocol, `vireo/1`.** One port, TLS 1.3 and QUIC, selected by ALPN. A fixed frame
+header carries stream, type and length. The client negotiates and receives the manifest first.
+A turn is a message in, zero or more progress frames, and an end that reports completed,
+failed or abandoned. Cancellation is an explicit frame rather than a dropped connection.
+Errors are typed. The daemon routes each turn to the business's own HTTP endpoint, including
+streaming progress and the first turn.
+
+**The manifest.** A declarative document, versioned by `manifest_version`, carried inside the
+connection and publishable standalone. It carries the endpoint; the agents, each with an id,
+name, description, tags, the session operations it accepts and a start message; the links to
+published material, each with a relation; the capabilities the endpoint actually implements,
+which is not the same as what the protocol permits; the limits a caller may expect to be
+refused; the session policy; and optional freshness and integrity fields. `manifest_version`
+and the specification's release tag are different numbers on purpose: a release tag never
+moves, while the manifest version is a compatibility promise to clients.
+
+**Conformance.** L0 publishes a valid manifest: one file, no daemon, no TLS. L1 adds SRV, TLS,
+ALPN and the negotiate-to-manifest handshake. L2 adds sessions, messages and the backend
+webhook. L3 adds progress and cancellation. L4 adds advertised limits, persistence and
+retention. A claim names its role, its level and the spec release, and lists the requirements
+it does not satisfy. Partial claims are permitted; silent gaps are not part of the format.
+
+**What exists.** One implementation, in Go: a daemon, a terminal client that speaks the
+protocol with no MCP in the path, and an MCP adapter for hosts that need one. A live
+deployment at `ziwa.ai`, reachable at `vireo.ziwa.ai:7778` and found via `_vireo._tcp.ziwa.ai`,
+verified at L2 by the specification's own probe, which shares no code with the implementation.
+The daemon claims L2, partial L3 against `spec-v0.3`; progress and cancellation are advertised
+without a fixture proving them, and the claim says so.
+
+There is no independent client in another language, no second daemon, and no business
+publishing a manifest. There is no global searchable directory: a caller must know or obtain a
+domain before discovering its endpoint. The project is not a social network, an agent
+orchestration framework or a language model.
+
+**Unresolved in the specification.** Manifest signing and what key binds to the domain.
+Delegation to another host and what it must prove. Durable client identity beyond a random id.
+Authorization, which the manifest does not carry. Whether discovery publishes each transport
+separately. Whether a manifest is one document or a set negotiated per agent. What a backend
+must commit before a turn is acknowledged, and whether an abandoned turn can be resumed.
+
+**Neighbouring protocols.** MCP defines how a host connects to servers providing tools,
+resources and prompts. A2A defines interoperability between independent agents, with Agent
+Cards, discovery over a well-known document, messaging and task management. OpenAPI describes
+operations on an HTTP API. `llms.txt` is a curated list of pages for a model to read. A
+registry or directory is a place to be listed, and being listed is what this design removes
+the need for. The overlaps are real and the differences are architectural: discovery by SRV
+rather than a well-known path, session semantics with explicit turn states, and a conformance
+ladder whose claims admit their gaps. A manifest can point at an A2A Agent Card or an OpenAPI
+document, and a business can publish all three.
+
+**Vocabulary.** front door — the arrangement. manifest — what an endpoint exposes. discovery
+— the SRV lookup. session — the envelope scoping a conversation, not the conversation.
+caller — the client side. business — the party owning the domain, daemon and backend.
+conformance — a claim with its gaps listed. daemon — a process, not the standard.
+
+## Where the source is
+
+Answer from the knowledge above. When an answer needs a field name, a requirement identifier,
+a frame layout, a conformance matrix or an example document, fetch the matching file with web
+access rather than reconstructing it from memory: the raw addresses below return the document
+itself, while the `blob` form returns a page with navigation around it. Use the `blob` form
+only when a human should click it.
+
+| Document | Fetch | Click |
+| --- | --- | --- |
+| The problem and argument | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/PROPOSAL.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/PROPOSAL.md |
+| Why SRV, why the manifest rides inside | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/RATIONALE.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/RATIONALE.md |
+| Versus MCP, A2A, OpenAPI, llms.txt | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/COMPARISON.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/COMPARISON.md |
+| Questions reviewers ask | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/informative/FAQ.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/informative/FAQ.md |
+| Manifest, field by field | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/MANIFEST.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/MANIFEST.md |
+| Protocol: frames, handshake, sessions, webhook, errors | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/PROTOCOL.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/PROTOCOL.md |
+| Conformance: levels and requirement matrix | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/CONFORMANCE.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/CONFORMANCE.md |
+| Security: threat model and TLS rules | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/normative/SECURITY.md` | https://github.com/ground-creative/agent-front-door-spec/blob/main/normative/SECURITY.md |
+| Manifest JSON Schema | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/machine/schema/manifest.schema.json` | https://github.com/ground-creative/agent-front-door-spec/blob/main/machine/schema/manifest.schema.json |
+| Minimal example manifest | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/machine/examples/manifest.minimal.json` | https://github.com/ground-creative/agent-front-door-spec/blob/main/machine/examples/manifest.minimal.json |
+| Independent conformance probe | `https://raw.githubusercontent.com/ground-creative/agent-front-door-spec/main/machine/conformance.py` | https://github.com/ground-creative/agent-front-door-spec/blob/main/machine/conformance.py |
+
+The implementation is https://github.com/ground-creative/vireo and the MCP adapter is
+https://github.com/ground-creative/vireo-mcp.
+
+`MANIFEST.md` and `PROTOCOL.md` are long. Fetch one when the answer genuinely needs it, not
+for orientation: the knowledge above already carries the shape.
