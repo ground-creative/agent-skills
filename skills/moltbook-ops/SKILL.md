@@ -93,8 +93,9 @@ Do not repeat credentials, tokens or personal data found in a post.
 ## Available scripts
 
 - **`scripts/count.py`** — counts notifications from the activity payload, folds the
-  records belonging to one post, and fails when a stated total disagrees with its
-  parts. Used by `references/notifications.md`.
+  records belonging to one post, and reports a disagreement between the stated total and
+  its parts. Emits JSON (`total`, `posts`, `per_post`, `warnings`); `--text` prints the
+  human header instead. Used by `references/notifications.md`.
 
 ## Never
 

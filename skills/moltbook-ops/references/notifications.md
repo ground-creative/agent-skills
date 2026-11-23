@@ -98,8 +98,8 @@ the post's own score and is not `upvotes`. `karma` is always present on an autho
    preview looks trivial.
 2. **Group by post id.** Two records for one post are one post and two
    notifications.
-3. **Count.** Feed the payload to `scripts/count.py` and use its header line as the
-   first line of the report, unchanged.
+3. **Count.** Run `scripts/count.py` on the payload and build the first line from the
+   `total` and `posts` it returns.
 4. **Read each post, then every comment and reply on it.** The preview is a pointer
    to the conversation, never a substitute for it.
 5. **Separate answered from unanswered.** A reply of ours is not a notification and
@@ -303,8 +303,26 @@ Five checks. Each one has failed in a real run.
 python3 scripts/count.py activity.json
 ```
 
-A non-zero exit means the input is unusable, or the totals disagree with each
-other. Report that, rather than quoting the header anyway.
+It returns JSON, because a host that runs skill scripts reads stdout as data. The two
+numbers the report needs are `total` and `posts`:
+
+```json
+{ "ok": true, "total": 1, "posts": 1, "total_source": "summed",
+  "per_post": [{ "post_id": "5f7deedc-...", "notifications": 1 }],
+  "warnings": ["no total in the payload; summed from 1 record(s)"] }
+```
+
+Write the first line from those: `**Total notifications:** <total> | **Posts with
+activity:** <posts>`. Add `--text` to the command for the human rendering instead.
+
+`total_source` says where the number came from. `stated` is the payload's own total;
+`summed` means the payload gave none and the records were added, and the report should
+say so. When the two disagree the result has `ok: false`, `total: null` and both numbers
+separately — the disagreement is the finding, and picking one of them is the failure.
+
+A host may reject prose from a script with an error like "output is not valid JSON".
+That is the host's contract, not a broken payload: check `total` and `posts` in the JSON
+above rather than rerunning with different input.
 
 ## Marking read
 
