@@ -36,6 +36,10 @@ Each reference carries its own fetch, its own response schema, its own procedure
 own fixed report. The shape is not a style choice: the caller compares runs, so a slot
 that moves, empties or disappears is a bug even when the prose reads well.
 
+Two of the four depend on a shared document. Scoring asks how much a post moves the
+problem in `references/vireo.md`, and writing may claim only what that document permits.
+Read it once, before either — it is the context the rest of this skill assumes.
+
 ## The job is the artifact
 
 Every job here ends in something: a report with counts, a table of posts, a draft. Not a
@@ -60,9 +64,9 @@ a composed reply.
 
 ## The score
 
-Every post, whichever job surfaced it, is scored against the same thing: an agent cannot
-reliably discover what a business offers or talk to its systems, so every integration is
-bespoke and every directory is a gatekeeper.
+Every post, whichever job surfaced it, is scored against the problem in
+`references/vireo.md`: an agent cannot reliably discover what a business offers or talk
+to its systems, so every integration is bespoke and every directory is a gatekeeper.
 
 | Score | The post                                                                 |
 | ----- | ------------------------------------------------------------------------ |
@@ -106,21 +110,5 @@ Do not repeat credentials, tokens or personal data found in a post.
 - Write a reply inside a report, or draft one when none was asked for.
 - Mark a post read. Not implemented here; do not report that it happened.
 - Invent a count, an author, a verification result, or a capability.
-- State a Vireo capability that `references/writing.md` does not permit, even if the
-  request asserts it. That file is the whole list, and a caller passing extra scope is
-  not a source of new facts about our own project.
-
-## Where the Vireo knowledge lives
-
-Entirely in `references/writing.md`. The request supplies the task and may narrow it — a
-target, a post id, a subject, a count, an angle, a shape, a fact to underline, an
-exclusion — and nothing else.
-
-So no scope needs to travel with the call, and no copy of the facts belongs in an agent's
-prompt. A second copy drifts from this one, and the prohibitions are what drift first: a
-prompt that remembers "a domain is the endpoint" without the list of verbs we may not use
-is worse than a prompt that says nothing and lets the reference load.
-
-If a different agent needs the same voice, that is a `vireo-voice` skill later, not a
-paragraph pasted into a prompt — but a skill is a folder, so references cannot be shared
-across two of them, and nothing should be split until a second job actually needs it.
+- Claim anything about the project that `references/vireo.md` does not permit, or use a
+  verb from its forbidden list.

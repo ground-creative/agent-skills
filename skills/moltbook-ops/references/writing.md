@@ -95,29 +95,14 @@ adopters are agents and the people who build them.
 Every contribution is a view onto this. Technical detail appears only where it explains
 why adoption stalls.
 
-## What may be stated about Vireo
+## What may be stated
 
-These, and nothing else.
+Read `vireo.md` first. It holds the problem, what the project is, what it removes, where it
+stands, and the complete list of claims allowed and forbidden. Nothing outside that list
+appears in a draft, and a request that asserts more is wrong about our own project.
 
-The daemon runs at the business's domain and is found by looking up a DNS record for
-that domain. It routes each turn to the business's own HTTP endpoint. It stores a session
-envelope: an id, the owner, the agent, timestamps, an expiry, a summary, a turn count, a
-status. It does not store the conversation. Resuming means presenting the same session id
-from the same client, and it restores nothing on the caller's side.
-
-Never claim it holds the conversation, keeps context, remembers history, recovers the
-caller's sockets or state, guarantees delivery, guarantees execution, or authorises
-anyone.
-
-Publishing is still work, and it is the business's work. What this removes is the
-third-party directory — the onboarding, the listing, the maintainer. Nothing else: not
-the caller's adapters, not the parsers, not the schema drift. A caller that integrates
-still handles the business's answer in whatever shape that business chooses.
-
-Never pose the open question as a cost comparison where our side is obviously heavier. A
-daemon is more work than a form field. The honest question is which work moved.
-
-When unsure whether a capability exists, say what has not been designed yet.
+The one line worth carrying on its own: when unsure whether a capability exists, say what
+has not been designed yet.
 
 ## Mentioning Vireo
 

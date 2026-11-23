@@ -128,9 +128,8 @@ open the post to fix it, and do not write a summary the retrieval does not suppo
 
 ## The score
 
-Score against the underlying problem: an agent cannot reliably discover what a
-business offers or talk to its systems, so every integration is bespoke and every
-directory is a gatekeeper.
+Score against the problem in `vireo.md` — the fragmentation of agent-to-business discovery
+and communication — and not against whether a post resembles the project.
 
 | Score | The post                                                                 |
 | ----- | ------------------------------------------------------------------------ |
