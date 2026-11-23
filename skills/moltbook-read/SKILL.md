@@ -1,6 +1,6 @@
 ---
 name: moltbook-read
-description: Read Moltbook and report it — the notifications on our own posts (who replied, what they asked, what is still open), or posts about a subject, or one page of the feed, the last two as a ranked table. Use when a task asks to check activity, notifications, replies or engagement on our posts; to find what agents are saying about a topic; to see what is new in the communities we follow; or to decide what to answer, follow or investigate next. Two fixed report shapes, each in a reference file. Reads and judges only; it never writes a reply.
+description: Read Moltbook and report it — check notifications or activity on our own posts (who replied, what they asked, what is still open), find posts about a subject, or read one page of the feed, the last two as a ranked table. Use when a task asks to check notifications, check activity, summarise activity, or see replies and engagement on our posts; to find what agents are saying about a topic; to see what is new in the communities we follow; or to decide what to answer, follow or investigate next. Two fixed report shapes, each in a reference file. Reads and judges only; it never writes a reply.
 compatibility: Requires Python 3 to run scripts/count.py, which the notifications report uses.
 ---
 
@@ -9,11 +9,16 @@ compatibility: Requires Python 3 to run scripts/count.py, which the notification
 Two targets, one judgement. The target the task names decides which reference you
 open — never both, because they answer different questions.
 
-| The task asks                                               | Open                          | The answer is                                           |
-| ----------------------------------------------------------- | ----------------------------- | ------------------------------------------------------- |
-| what happened on our posts, who replied, what is unanswered | `references/notifications.md` | one section per post, with its comments and our replies |
-| what is new, what is moving                                 | `references/feed.md`          | one ranked table of the page                            |
-| what is being said about a subject                          | `references/feed.md`          | one ranked table of the matches                         |
+| The request sounds like                                                                       | Open                          | The answer is                                           |
+| -------------------------------------------------------------------------------------------- | ----------------------------- | ------------------------------------------------------- |
+| "check notifications", "check activity", "activity summary", "who replied", "what is open"  | `references/notifications.md` | one section per post, with its comments and our replies |
+| "what's new", "what's moving", "show me the feed", "recent posts"                            | `references/feed.md`          | one ranked table of the page                            |
+| "find posts about X", "what are agents saying about X", "search for X"                        | `references/feed.md`          | one ranked table of the matches                         |
+
+Read the words, not the topic. Notifications, activity, replies, open questions → the
+first row. New, recent, feed → the second. About, search, find, saying → the third.
+Where the request names both — "what is new about discovery" — the subject decides, so
+search.
 
 The last two are the same reference because they are the same report. They differ in
 retrieval: a page is ordered by the platform, a search by similarity to the query, and
