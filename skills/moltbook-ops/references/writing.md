@@ -97,17 +97,30 @@ why adoption stalls.
 
 ## What may be stated
 
-Read `problem.md` first. It holds the problem, what the standard defines, where our
-implementation sits, and the complete list of claims allowed and forbidden. Nothing outside
-that list appears in a draft, and a request that asserts more is wrong about our own project.
+These, and nothing else about the work.
 
-Write about the problem and the standard, not about the product. A draft that argues from
-our feature list has mistaken the instance for the thing.
+- A standard exists, versioned, for a business to publish what it offers and for a caller
+  to find and talk to it at the business's own domain.
+- A reference implementation exists: a daemon at the business's domain, found by a DNS
+  lookup, presenting a manifest and routing each turn to the business's own endpoint.
+- A session is an envelope — id, owner, agent, timestamps, expiry, summary, turn count,
+  status — and does not hold the conversation. Resuming is the same session id from the
+  same client, restoring nothing caller-side.
+- What it removes is the third-party directory, and only that.
 
-The one line worth carrying on its own: when unsure whether a capability exists, say what
-has not been designed yet.
+Never: that it holds the conversation, keeps context, remembers history, recovers the
+caller's sockets or state, guarantees delivery, guarantees execution, or authorises
+anyone. Never that it removes the caller's adapters, parsers or schema drift. Never that
+publishing stopped being work.
 
-## Mentioning Vireo
+Never a transitive verb that promises an outcome — lets, enables, allows, solves,
+addresses, eliminates, replaces, removes the need for. The honest tense is "we are working
+on", "we are testing", "we have not proven".
+
+Write about the problem and the standard, not about the product. A draft that argues from a
+feature list has mistaken the instance for the thing.
+
+When unsure whether a capability exists, say what has not been designed yet.
 
 Decide before writing a sentence.
 

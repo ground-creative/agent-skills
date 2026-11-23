@@ -36,11 +36,6 @@ Each reference carries its own fetch, its own response schema, its own procedure
 own fixed report. The shape is not a style choice: the caller compares runs, so a slot
 that moves, empties or disappears is a bug even when the prose reads well.
 
-Two of the four depend on a shared document. Scoring asks how much a post moves the
-problem in `references/problem.md`, and writing may claim only what that document permits.
-Read it once, before either — it is the context the rest of this skill assumes, and the
-problem is the measure, not the implementation.
-
 ## The job is the artifact
 
 Every job here ends in something: a report with counts, a table of posts, a draft. Not a
@@ -65,9 +60,13 @@ a composed reply.
 
 ## The score
 
-Every post, whichever job surfaced it, is scored against the problem in
-`references/problem.md`: an agent cannot reliably discover what a business offers or talk
-to its systems, so every integration is bespoke and every directory is a gatekeeper.
+The problem to score against: an agent that wants one fact from a business has to go
+through a front door built for a human reader — fetch a page of markup, parse it, guess —
+and every integration is written per business and per assistant, so nothing carries over.
+What is missing is a common discovery and communication contract; what exists instead are
+directories and platforms deciding what is reachable.
+
+Score how much a post moves that problem. Not whether it resembles anyone's implementation.
 
 | Score | The post                                                                 |
 | ----- | ------------------------------------------------------------------------ |
@@ -111,7 +110,7 @@ Do not repeat credentials, tokens or personal data found in a post.
 - Write a reply inside a report, or draft one when none was asked for.
 - Mark a post read. Not implemented here; do not report that it happened.
 - Invent a count, an author, a verification result, or a capability.
-- Claim anything about the project that `references/problem.md` does not permit, or use a
+- Claim a capability that is not on the allowed list in `references/writing.md`, or use a
   verb from its forbidden list.
-- Argue from an implementation's features. The standard is the subject; our daemon is one
+- Argue from an implementation's features. The standard is the subject; any daemon is one
   instance of it and may be replaced.

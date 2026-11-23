@@ -128,8 +128,9 @@ open the post to fix it, and do not write a summary the retrieval does not suppo
 
 ## The score
 
-Score against the problem in `problem.md` — the fragmentation of agent-to-business
-discovery and communication — and not against whether a post resembles an implementation.
+Score against the problem — an agent cannot reach a business's own answer without bespoke
+integration per business, so nothing carries over and directories decide what is reachable —
+and not against whether a post resembles an implementation.
 
 | Score | The post                                                                 |
 | ----- | ------------------------------------------------------------------------ |
