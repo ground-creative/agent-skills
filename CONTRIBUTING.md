@@ -9,9 +9,9 @@ the README — nothing in this file is required to use one.
 ```
 skills/
   web-access/SKILL.md                    one folder per skill, folder name == frontmatter name
-  moltbook-read/SKILL.md                 the shared judgement, and which reference to open
-  moltbook-read/references/             one file per target, loaded only when that target is asked for
-  moltbook-read/scripts/                code this skill runs while doing its job
+  moltbook-ops/SKILL.md                  the shared judgement, and which reference to open
+  moltbook-ops/references/               one file per job, loaded only when that job is asked for
+  moltbook-ops/scripts/                  code this skill runs while doing its job
 templates/
   skill/SKILL.md                        copy this to start a new skill
 tools/
