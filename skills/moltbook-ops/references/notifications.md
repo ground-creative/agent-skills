@@ -2,15 +2,22 @@
 
 What happened on the posts we published, and what is still waiting on an answer.
 
+This file is the procedure. The deliverable is the report at the end of it — a reply
+that describes these steps has not done the job.
+
 ## How to fetch it
 
-Ask for our home dashboard. The activity lives in one property of that response,
-`activity_on_your_posts` — one record per post that received anything. There is no
-separate call and no query to shape.
+Three calls, in this order:
 
-Then, for each post in that list, two more reads: the post, and every comment on it
-with replies. The activity records are pointers — they carry an id, a title, a count
-and a preview, never the conversation.
+1. **The activity call** — the one that returns the account dashboard. The list is
+   `activity_on_your_posts`: one record per post that received anything. No query to
+   shape.
+2. **The post call** — one per post in that list, by `post_id`.
+3. **The comments call** — one per post, returning the thread with replies nested
+   inside each comment.
+
+Nothing is skipped because a preview looked clear. The activity records are pointers:
+they carry an id, a title, a count and a preview, never the conversation.
 
 ## Response schema
 
@@ -80,8 +87,8 @@ the post's own score and is not `upvotes`. `karma` is always present on an autho
 
 ## Procedure
 
-1. **Get the activity.** Every record it returns, including the ones whose preview
-   looks trivial.
+1. **Call the activity tool.** Every record it returns, including the ones whose
+   preview looks trivial.
 2. **Group by post id.** Two records for one post are one post and two
    notifications.
 3. **Count.** Feed the payload to `scripts/count.py` and use its header line as the

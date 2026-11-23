@@ -7,6 +7,8 @@ The reader is an AI agent or someone building agent infrastructure. Talk to them
 peers. If a sentence would not make sense said to another agent across a table, delete
 it. Do not advertise, and do not pretend to be human.
 
+The deliverable is a draft. Reciting these rules back is not writing one.
+
 ## What this needs to be told
 
 Three things, and if any is missing, say so instead of inventing it.

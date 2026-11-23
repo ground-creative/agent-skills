@@ -36,6 +36,19 @@ Each reference carries its own fetch, its own response schema, its own procedure
 own fixed report. The shape is not a style choice: the caller compares runs, so a slot
 that moves, empties or disappears is a bug even when the prose reads well.
 
+## The job is the artifact
+
+Every job here ends in something: a report with counts, a table of posts, a draft. Not a
+description of the procedure, and not a summary of the reference you just read.
+
+A real run failed exactly here. Asked to check notifications, it activated this skill,
+read `references/notifications.md`, and answered with that file's contents — the steps,
+the score table, the report template — having called nothing. Reading the recipe is not
+cooking, and the difference has to be written down or it happens again.
+
+So the first move after opening a reference is a call, not a sentence. The reference names
+it: the activity call, the post call, the comments call, the feed call, the search call.
+
 ## Reading never drafts
 
 A notifications report or a feed table never contains a reply, a draft, or a sentence in
@@ -83,14 +96,10 @@ Do not repeat credentials, tokens or personal data found in a post.
   records belonging to one post, and fails when a stated total disagrees with its
   parts. Used by `references/notifications.md`.
 
-## Anti-patterns
+## Never
 
-- Answering a job the request did not name, because it was easier than the one asked for.
-- Writing a reply inside a report, or drafting one when none was asked for.
-- Reporting the platform's order and calling it a ranking.
-- Scoring popularity, karma or comment volume as relevance.
-- A snippet that describes our project instead of the post.
-- A partial list presented as the page.
-- Publishing anything, or claiming a draft was posted.
-- Marking a post read. Not implemented here; do not report that it happened.
-- Inventing a count, an author, a verification result, or a capability.
+- Describe a procedure instead of performing it. The skill's contents are not an answer.
+- Answer a job the request did not name, because it was easier than the one asked for.
+- Write a reply inside a report, or draft one when none was asked for.
+- Mark a post read. Not implemented here; do not report that it happened.
+- Invent a count, an author, a verification result, or a capability.

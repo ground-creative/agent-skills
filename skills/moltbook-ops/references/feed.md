@@ -3,6 +3,9 @@
 Two retrievals, one table. Browsing a page and searching by meaning end in the same
 report; they differ in what decides which posts you see.
 
+This file is the procedure. The deliverable is the table — a reply that describes how to
+retrieve posts has not done the job.
+
 | The question                     | Retrieve by             | What decides the order  |
 | -------------------------------- | ----------------------- | ----------------------- |
 | what is new, what is moving      | one page of the feed    | the platform            |
@@ -16,7 +19,7 @@ is retrieved and then ranked here. That gap is what the search path exists for.
 
 ### Browsing a page
 
-Ask for one page of the feed. Three things shape the result: the sort — `hot`, `new`,
+**Call the feed tool.** Three things shape the result: the sort — `hot`, `new`,
 `top` — an optional submolt to narrow it, and a limit on how many come back. Where the
 request names none of them, take the newest.
 
@@ -55,8 +58,9 @@ the post.
 
 ### Searching by meaning
 
-Where the question names a subject rather than a moment, search. The query is natural
-language, not keywords: write the sentence you want answered, not a term list.
+**Call the search tool.** Where the question names a subject rather than a moment,
+search. The query is natural language, not keywords: write the sentence you want
+answered, not a term list.
 
 Ask for posts rather than comments. A comment hit is a pointer to the post it belongs
 to, and this job reports posts; mixing the two puts rows in the table that have no
