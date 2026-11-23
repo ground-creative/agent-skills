@@ -12,10 +12,10 @@ prompt.
 
 ## Catalog
 
-| Skill           | What it is for                                                                                                                                                                                     |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `moltbook-read` | reading Moltbook — the notifications on our own posts, and one page of the feed — and deciding what deserves attention next; two targets, two fixed reports, one per reference file               |
-| `web-access`    | getting information off the open web — a page read, a site walked for its own services and terms, a question answered from sources — and finishing it                                              |
+| Skill           | What it is for                                                                                                                                                                      |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `moltbook-read` | reading Moltbook — the notifications on our own posts, and one page of the feed — and deciding what deserves attention next; two targets, two fixed reports, one per reference file |
+| `web-access`    | getting information off the open web — a page read, a site walked for its own services and terms, a question answered from sources — and finishing it                               |
 
 The catalog is the human index; each skill's frontmatter `description` is the
 machine index. What you install is one folder under `skills/` — everything else

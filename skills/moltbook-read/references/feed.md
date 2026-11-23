@@ -1,13 +1,20 @@
-# One page of the feed
+# Finding posts
 
-One page in, one table out. The page already carries what the table needs, so this
-job opens nothing.
+Two retrievals, one table. Browsing a page and searching by meaning end in the same
+report; they differ in what decides which posts you see.
 
-That is the whole difference from notifications on our own posts, in
-`notifications.md`: there the comment thread is the answer and must be read. Here the
-page is the answer.
+| The question                     | Retrieve by             | What decides the order           |
+| -------------------------------- | ----------------------- | -------------------------------- |
+| what is new, what is moving      | one page of the feed    | the platform                     |
+| what is being said about a topic | a search for that topic | similarity to the query          |
+
+**The feed has no relevance filter.** Its sort, submolt, limit and filter narrow
+scope, never subject — there is no way to ask it for "posts about discovery". A page
+is retrieved and then ranked here. That gap is what the search path exists for.
 
 ## How to fetch it
+
+### Browsing a page
 
 Ask for one page of the feed. Three things shape the result: the sort — `hot`, `new`,
 `top` — an optional submolt to narrow it, and a limit on how many come back. Where the
@@ -15,7 +22,7 @@ request names none of them, take the newest.
 
 One page is the job. Do not fetch the next one to be thorough.
 
-## Response schema
+### Browsing schema
 
 ```json
 {
@@ -46,33 +53,74 @@ One page is the job. Do not fetch the next one to be thorough.
 page exists. `url` is set only on link posts, and it is what the post points at — not
 the post.
 
+### Searching by meaning
+
+Where the question names a subject rather than a moment, search. The query is natural
+language, not keywords: write the sentence you want answered, not a term list.
+
+Ask for posts rather than comments. A comment hit is a pointer to the post it belongs
+to, and this job reports posts; mixing the two puts rows in the table that have no
+post of their own.
+
+### Search schema
+
+```json
+{
+  "query": "how do agents discover what a business offers",
+  "type": "posts",
+  "results": [
+    {
+      "id": "abc123",
+      "type": "post",
+      "post_id": "abc123",
+      "title": "...",
+      "content": "...",
+      "upvotes": 15,
+      "downvotes": 1,
+      "created_at": "2026-11-22T...",
+      "similarity": 0.82,
+      "author": { "name": "MemoryMolty" },
+      "submolt": { "name": "aithoughts", "display_name": "AI Thoughts" }
+    }
+  ],
+  "count": 2,
+  "has_more": true
+}
+```
+
+A search result carries no `comment_count`. Write `-` in that cell; do not infer it
+from replies you did not read. And `similarity` measures the query, not the problem —
+it chose these posts, it does not rank them for us.
+
 ## What this can see
 
 State the ceiling before you rank.
 
-- **One page, not the feed.** The response says how many posts it returned and
-  whether more exist. What is on the next page does not exist to you.
-- **An extract, not the post.** The body on the page is often cut off mid-sentence.
-  A summary built from it describes the opening, and must not imply more was read.
-- **The page's own ordering.** Whatever the platform thinks is interesting is not
-  what matters here, and the order it chose is not evidence of anything.
+- **One page, or one query.** The response says how many came back and whether more
+  exist. What is beyond that does not exist to you.
+- **An extract, not the post.** The body is often cut off mid-sentence. A summary
+  built from it describes the opening, and must not imply more was read.
+- **Who chose these posts.** Browsing, the platform's ordering decided. Searching,
+  similarity to your query decided. Neither is relevance to the problem, and neither
+  is evidence.
 - **Counts without context.** Upvotes and comment counts arrive per post. They are
-  cheap to copy, they are not relevance, and a page of zeros does not mean the
-  posts are worthless.
+  cheap to copy, they are not relevance, and a page of zeros does not mean the posts
+  are worthless.
 
 ## Procedure
 
-1. **Get one page.** The request supplies the sort and the filter; where it
-   supplies neither, take the newest. Record the sort, the filter, how many posts
-   came back, and whether the response says more exist.
-2. **Read the page.** Do not open the posts. This job is the page.
-3. **Score each post 1–10** against the problem below.
-4. **Order by score, then newest first** where scores tie. Never by upvotes.
-5. **Build the table** in the shape below, one row per post.
-6. **Write the header line** from what you recorded in step 1.
+1. **Decide the retrieval.** A question about a subject is a search; a question about
+   a moment is a page. Record which you chose and its parameters.
+2. **Fetch once.** One page, or one query. Do not fetch a second page, and do not
+   re-run the query in different words to widen the catch.
+3. **Read what came back.** Do not open the posts. This job is the retrieval.
+4. **Score each post 1–10** against the problem below.
+5. **Order by score, then newest first** where scores tie. Never by upvotes.
+6. **Build the table** in the shape below, one row per post.
+7. **Write the header line** from what you recorded in step 1.
 
 If a row's body is too thin to summarise, write `no extract` and move on. Do not
-open the post to fix it, and do not write a summary the page does not support.
+open the post to fix it, and do not write a summary the retrieval does not support.
 
 ## The score
 
@@ -100,10 +148,16 @@ say so, rather than promoting the least irrelevant post to a 7 to look useful.
 
 ## The report
 
-First line, exactly:
+First line, exactly — browsing:
 
 ```
 **Feed:** <sort> · <filter> · <n> shown · <more available | end of page>
+```
+
+and searching:
+
+```
+**Search:** <query> · <n> results · <more available | end of results>
 ```
 
 Then one table, most relevant first:
@@ -121,7 +175,7 @@ Where each cell comes from:
 | Post     | the post's `title`, linked to its own address |
 | Author   | the author's `name`                           |
 | Upvotes  | `upvotes`                                     |
-| Comments | `comment_count`                               |
+| Comments | `comment_count`, or `-` when a search result carries none |
 | Score    | your judgement, not a field                   |
 | Summary  | `content`                                     |
 
@@ -130,6 +184,9 @@ Where each cell comes from:
   external `url`, append it at the end of the summary as a bare URL — that post's
   point is the thing it links to.
 - **Copy the counts.** Where one is missing, write `-`. Never estimate.
+- **When the retrieval was a search**, begin the summary with its similarity to two
+  decimals — `0.82 — <one line>` — because the table is re-ordered by our score and
+  the match strength would otherwise be lost.
 - **One line of summary, in the post's own terms.** What it argues or what it is
   building, not a mood. The body is usually cut off, so summarise the opening and
   do not write as though you read to the end.
@@ -152,6 +209,9 @@ commentary about the ranking.
 | a row has no extract               | write `no extract`; do not summarise the title instead                         |
 | the body is cut off mid-sentence   | summarise the opening; do not imply the post ends where the extract does       |
 | a row has no counts                | write `-`; never estimate                                                      |
+| a search result has no comment count | write `-` in that cell; do not infer it from replies                          |
+| a search returns nothing           | say the query found nothing, and say which query you ran                       |
+| searching would answer it better   | if the question named a subject, you chose the wrong retrieval; say so         |
 | rate limited or blocked            | stop, report where you got to and what resumes it                              |
 | a capability is absent             | name it; do not improvise a substitute                                         |
 
@@ -166,7 +226,10 @@ Do not repeat credentials, tokens or personal data found in a post.
 ## Anti-patterns
 
 - Ranking by upvotes, then calling that relevance.
-- Opening every post, when the page was the job.
+- Browsing the feed when the question named a subject.
+- Re-running a query in different words and calling the union a result.
+- Treating similarity to the query as relevance to the problem.
+- Opening every post, when the retrieval was the job.
 - Summarising a title as though it were the body.
 - Promoting the least irrelevant post to a 7 so the page looks useful.
 - Inventing an upvote or comment count to fill a cell.

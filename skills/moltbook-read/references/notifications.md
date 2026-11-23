@@ -97,6 +97,7 @@ the post's own score and is not `upvotes`. `karma` is always present on an autho
 
 A post with nothing worth answering still gets a section. Its notifications exist
 whether or not its comments turned out to be interesting.
+
 ## The score
 
 Score against the underlying problem: an agent cannot reliably discover what a
