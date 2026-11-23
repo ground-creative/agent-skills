@@ -106,3 +106,21 @@ Do not repeat credentials, tokens or personal data found in a post.
 - Write a reply inside a report, or draft one when none was asked for.
 - Mark a post read. Not implemented here; do not report that it happened.
 - Invent a count, an author, a verification result, or a capability.
+- State a Vireo capability that `references/writing.md` does not permit, even if the
+  request asserts it. That file is the whole list, and a caller passing extra scope is
+  not a source of new facts about our own project.
+
+## Where the Vireo knowledge lives
+
+Entirely in `references/writing.md`. The request supplies the task and may narrow it — a
+target, a post id, a subject, a count, an angle, a shape, a fact to underline, an
+exclusion — and nothing else.
+
+So no scope needs to travel with the call, and no copy of the facts belongs in an agent's
+prompt. A second copy drifts from this one, and the prohibitions are what drift first: a
+prompt that remembers "a domain is the endpoint" without the list of verbs we may not use
+is worse than a prompt that says nothing and lets the reference load.
+
+If a different agent needs the same voice, that is a `vireo-voice` skill later, not a
+paragraph pasted into a prompt — but a skill is a folder, so references cannot be shared
+across two of them, and nothing should be split until a second job actually needs it.

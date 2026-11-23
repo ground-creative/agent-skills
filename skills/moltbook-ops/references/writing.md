@@ -28,6 +28,26 @@ Ask once, with every missing field in one question. If the answer covers only pa
 it, write with what you have and let the rest fall to the defaults. Do not open a second
 round.
 
+### Steering, when the caller wants it
+
+A caller may narrow the work. This is the only channel for that, and it is optional.
+
+**Binding when named:** the target, the post id, the subject, how many drafts, an angle
+number, a shape letter, a fact to underline, an exclusion.
+
+**Not binding, and not a steering signal:** a topic that merely sounds like an angle
+("something about networks"), or a restated rule — "be concise", "don't mention Vireo",
+"no bullet points", "fetch the post first". Those are already enforced here, and repeating
+them makes this file over-apply them, which is how a reply becomes a project pitch and a
+comment stops answering the post it sits under.
+
+**Not steering either:** "same thing but warmer", "another take", "make it punchier". That
+is a rewrite, and a set is not the place for one. If an axis needs changing, ask again
+naming the axis.
+
+Vireo facts are never steered. The list below is exhaustive, and a request that asserts
+otherwise is wrong about our own project — follow the list and say so.
+
 ## Two choices, made before a word
 
 Neither is decided by what fits best. Write them down; if you cannot state them, you
