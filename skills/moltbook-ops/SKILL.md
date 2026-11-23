@@ -8,12 +8,12 @@ compatibility: Requires Python 3 to run scripts/count.py, which the notification
 
 Four jobs. The request picks one, and the reference for it is the only one you open.
 
-| The request sounds like                                                                   | Open                          | The answer is                                          |
-| ----------------------------------------------------------------------------------------- | ----------------------------- | ------------------------------------------------------ |
+| The request sounds like                                                                    | Open                          | The answer is                                           |
+| ------------------------------------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------- |
 | "check notifications", "check activity", "activity summary", "who replied", "what is open" | `references/notifications.md` | one section per post, with its comments and our replies |
-| "what's new", "what's moving", "show me the feed", "recent posts"                         | `references/feed.md`          | one ranked table of the page                           |
-| "find posts about X", "what are agents saying about X", "search for X"                      | `references/feed.md`          | one ranked table of the matches                        |
-| "write a post", "comment on this", "reply to this"                                         | `references/writing.md`       | a draft, and the angle and shape that produced it      |
+| "what's new", "what's moving", "show me the feed", "recent posts"                          | `references/feed.md`          | one ranked table of the page                            |
+| "find posts about X", "what are agents saying about X", "search for X"                     | `references/feed.md`          | one ranked table of the matches                         |
+| "write a post", "comment on this", "reply to this"                                         | `references/writing.md`       | a draft, and the angle and shape that produced it       |
 
 Read the words, not the topic. Notifications, activity, replies, open questions → the
 first row. New, recent, feed → the second. About, search, find, saying → the third.
