@@ -36,7 +36,7 @@ because the job needs what is in it.
 | `references/platform.md`      | the calls, their payloads, the verification challenge, limits, error shape | before writing a call out, and whenever one fails |
 
 `platform.md` is not an appendix, and this is where it usually gets skipped. The job
-references say *what* to call — the activity call, the post call, the comments call, the
+references say _what_ to call — the activity call, the post call, the comments call, the
 feed call, the search call. `platform.md` is the only place that says what a call looks
 like, what comes back in it, and what to do when it refuses. A job that skips it invents a
 call, and an invented call fails at the first field name.
@@ -51,6 +51,9 @@ through one sentence each — who owns which post, and the problem with the scal
 — and carry those sentences inline, because a page can be scored from a sentence. A claim
 cannot: the list of what is true about this project changes, so writing reads it at the
 source instead of holding a copy.
+
+Neither skill says whether the story is true. That was settled before the call, by whoever
+asked for the draft.
 
 The two feed rows are one reference because they are one report. They differ in
 retrieval: a page is ordered by the platform, a search by similarity to the query, and
@@ -79,7 +82,9 @@ the score table, the report template — having called nothing. Reading the reci
 cooking, and the difference has to be written down or it happens again.
 
 So the first move after opening a reference is a call, not a sentence. The reference names
-it: the activity call, the post call, the comments call, the feed call, the search call.
+it: the activity call, the post call, the comments call, the feed call, the search call. The
+write job is the exception: its first move is the draft, because the material arrived with
+the request and nothing needs fetching to start.
 
 ## Reading never drafts
 
@@ -135,6 +140,9 @@ Do not repeat credentials, tokens or personal data found in a post.
 - Write a reply inside a report, or draft one when none was asked for.
 - Mark a post read. Not implemented here; do not report that it happened.
 - Invent a count, an author, a verification result, or a capability.
+- Verify the story before writing it: resolve the domain, test the endpoint, check the claim.
+  The material was decided before the call. Tools, where this job has them, are for finding
+  a fact needed in order to write, never for confirming one.
 - Claim a capability that is not on the allowed list in `references/writing.md`, or use a
   verb from its forbidden list.
 - Argue from an implementation's features. The standard is the subject; any daemon is one
