@@ -46,6 +46,12 @@ angle needs, and the full list of what may be claimed. With only one of the two 
 shorter claims list in `writing.md` is the floor rather than the target — the draft says
 less than it could, and still says nothing it should not.
 
+That dependency is writing's alone. `notifications.md` and `feed.md` reach the project
+through one sentence each — who owns which post, and the problem with the scale against it
+— and carry those sentences inline, because a page can be scored from a sentence. A claim
+cannot: the list of what is true about this project changes, so writing reads it at the
+source instead of holding a copy.
+
 The two feed rows are one reference because they are one report. They differ in
 retrieval: a page is ordered by the platform, a search by similarity to the query, and
 neither is ordered by relevance to the problem. Only the search narrows by subject — the
