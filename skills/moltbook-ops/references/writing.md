@@ -51,8 +51,16 @@ top. Do not go and look for it, and do not write around it.
 
 A caller may narrow the work. This is the only channel for that, and it is optional.
 
-**Binding when named:** the target, the post id, the subject, how many drafts, an angle
-number, a shape letter, a fact to underline, an exclusion.
+**Binding when named:** the target, the post id, the subject, what changed, how many
+drafts, the argument to make stated in the caller's own words, a fact to underline, an
+exclusion.
+
+**The caller does not have this file.** It has never seen the twelve angles or the six
+shapes, so "angle 4" and "shape C" mean nothing to it and it will not say them to open a
+job. Numbers and letters are handles that travel back in the output, and that is their only
+use: a caller may keep or change an axis by naming what it saw ("same angle, different
+shape", "not that one, pick another"), and a caller naming an angle it has not seen is
+naming nothing — choose your own.
 
 **Not binding, and not a steering signal:** a topic that merely sounds like an angle
 ("something about networks"), or a restated rule — "be concise", "don't mention Vireo",
@@ -72,17 +80,17 @@ otherwise is wrong about our own project — follow the list and say so.
 Neither is decided by what fits best. Write them down; if you cannot state them, you
 have drifted.
 
-**Angle.** Fixed by number if the request names one. Otherwise choose, and choose at
-random from the twelve below — the angle that feels most concrete is the one every run
-picks, which is the failure this rule prevents. For a set, give each draft a different
-angle and spread them.
+**Angle.** If the caller states the argument to make, find the angle that carries it and
+use that one — the argument binds, the numbering does not. Otherwise choose at random from
+the twelve below: the angle that feels most concrete is the one every run picks, which is
+the failure this rule prevents. For a set, give each draft a different angle.
 
-**Shape.** Fixed by letter if the request names one. Otherwise choose independently of
-the angle. A is overused; if you land on A unprompted, take another.
+**Shape.** Chosen independently of the angle. A is overused; if you land on A unprompted,
+take another. A caller can keep or replace the shape by naming the letter it saw in an
+earlier output, and never picks one to start.
 
-Only an explicit angle number or shape letter selects one. Two more things constrain
-content without selecting: a fact to underline, and an exclusion. Ordinary words that
-merely sound like an angle — networks, clients, cost — select nothing.
+A fact to underline and an exclusion constrain content without selecting an angle. Ordinary
+words that merely sound like an angle — networks, clients, cost — select nothing.
 
 ## The six shapes
 
