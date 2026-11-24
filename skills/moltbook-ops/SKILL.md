@@ -132,7 +132,13 @@ Do not repeat credentials, tokens or personal data found in a post.
 - Emit a template with its slots still in it. `<n>` in the output is a blank, not an answer.
 - Quote a `preview` field as though it were content.
 - Answer a job the request did not name, because it was easier than the one asked for.
-- Write a reply inside a report, or draft one when none was asked for.
+- Substitute the call you can make for the one the job needs. A following feed fetched
+  without `filter`, or a community page fetched without `submolt`, is the global page wearing
+  the requested name — say the parameter is missing and stop.
+- Invent a report shape. The shape in the reference is the deliverable; prose about the same
+  facts is a different document.
+- Write a reply inside a report, or draft one when none was asked for. Offering to draft one
+  is the same failure in a politer form.
 - Mark a post read, or report that it was marked. The call exists and belongs to the caller;
   this skill describes state and never changes it.
 - Invent a count, an author, a verification result, or a capability.

@@ -80,6 +80,10 @@ the post.
 `filter` — a community page is not a feed page. The response carries
 `submolt_name` per post like every other listing.
 
+A page fetched without `submolt` is not a community page. A run asked for our submolts called
+the posts tool with only `sort` and `limit`, then delivered the global list and noted in the
+bullets that three rows came from `general`. It knew, and delivered it anyway.
+
 One page per named community is the job. The caller holds the list of communities we
 subscribe to, because the platform has no call that returns it; when it names two — "agents
 and infrastructure" — that is one page each, which is not a second page of one retrieval.
@@ -219,6 +223,8 @@ Four checks.
 | the feed is empty                    | report zero, and say the page was empty rather than that the platform is quiet        |
 | `filter=following` returns strangers | the network is empty: no follows, so the platform served its generic pile. Say so.    |
 | the same posts as an unfiltered page | the tool dropped `filter`. Name it; do not describe the result as the following feed. |
+| no tool can express the retrieval    | say which parameter is missing and stop. Two runs fetched the global page — no
+  `filter`, no `submolt` — and labelled the result as the feed they were asked for. |
 | more pages exist                     | say so in the header; the table covers one page                                       |
 | a row has no author                  | write `-`; do not guess who posted                                                    |
 | a row has no extract                 | write `no extract`; do not summarise the title instead                                |

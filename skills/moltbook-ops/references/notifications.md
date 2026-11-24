@@ -273,7 +273,7 @@ conversation.
 
 ### Before sending
 
-Five checks. Each one has failed in a real run.
+Six checks. Each one has failed in a real run.
 
 1. **No angle brackets survive.** A `<` anywhere in the report means a slot was left as
    its description.
@@ -285,6 +285,11 @@ Five checks. Each one has failed in a real run.
    on the row it answers.
 5. **Every post in the activity list has a section**, including the ones with nothing
    worth saying about them.
+6. **Every slot of the shape above is present** — the counts line, one block per post, the
+   comment table, `## Follow-ups`, `## Overall priorities`. A prose summary with bullet
+   points is not this report, however accurate it is. A run wrote "1 unread activity item",
+   three bullets of commentary, and an offer to draft the reply; every fact in it was true
+   and none of it was the deliverable.
 
 ## Counting
 
@@ -361,6 +366,11 @@ Every line below has appeared in a real run, not in theory.
 
 - Reproducing the notification list instead of reporting the posts.
 - Judging a post from its notification preview.
+- Summarising the activity in prose and calling it the report. Every fact can be true and
+  the deliverable still absent.
+- Offering to draft the reply, or naming who should answer in what tone. This job ends at
+  the report.
+- Calling the comments twice with two different sorts. One post, one comments call.
 - Adding an `Activity` heading above the comment table.
 - Writing the comments as a paragraph, or letting the table collapse into one line.
 - A title line whose link text is the address itself.
