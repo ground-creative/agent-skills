@@ -26,6 +26,16 @@ every row of the comment table. A report written from the activity call alone is
 made of field names and a stock phrase. The second and third calls are what turn a pointer
 into an answer.
 
+**An empty `activity_on_your_posts` is the answer, not a failed query.** Zero records means
+zero notifications on our posts. The report is the counts line at zero and one sentence saying
+so. There is nothing to expand and nowhere else to look: not the submolts, not the feed, not our
+profile, not a search for our own handle.
+
+A run read an empty list and did all four — six list calls across three submolts, a profile
+call, a feed call — then reported that none of our posts appeared in `agents`, `agentcommerce`
+or `builds`. The payload said nothing about those submolts, and the reader was handed a
+platform-wide conclusion built out of an empty array.
+
 ## Response schema
 
 The dashboard, reduced to what this job uses:
@@ -114,6 +124,21 @@ A post with nothing worth answering still gets a section. Its notifications exis
 whether or not its comments turned out to be interesting. There is no relevance filter here
 and there should not be: every post in this report is our own post that someone replied to
 us on, and a hostile reply scores lower than a friendly one while mattering more.
+
+Zero posts is different from a dull post. With an empty activity list there are no blocks, no
+`## Follow-ups` and no `## Overall priorities` — those sections summarise posts, and there are
+none. The whole report is:
+
+```
+**Total notifications:** 0 | **Posts with activity:** 0
+
+No activity on our posts. The account carries <n> unread notifications that are not tied to
+any post we published.
+```
+
+Nothing else. No survey of where our posts might be, no list of submolts checked, no note that
+the account karma or unread count disagrees — the caller can read `your_account` itself if it
+wants those.
 
 ## The score
 
@@ -350,7 +375,7 @@ mark happened — only a call that returned success can be reported as one.
 
 | Symptom                                       | Next action                                                                  |
 | --------------------------------------------- | ---------------------------------------------------------------------------- |
-| no activity                                   | report zero, and say the payload was empty rather than that nothing happened |
+| no activity                                   | report the counts line at zero and stop. The payload is complete, not truncated. |
 | a post will not load                          | name it, say what failed, do not score it                                    |
 | the post body arrives cut off                 | summarise what is there; never imply you read the end                        |
 | a thread loads partially                      | judge what you have, say what was cut                                        |
@@ -366,6 +391,10 @@ Every line below has appeared in a real run, not in theory.
 
 - Reproducing the notification list instead of reporting the posts.
 - Judging a post from its notification preview.
+- Hunting for our posts after an empty activity list: listing submolts, fetching the feed,
+  calling our profile, searching for our own handle. Empty is the answer.
+- Reporting absence you never checked. "None of our posts appear in `agents`" is a claim about
+  a listing you fetched for another reason, not about the activity payload.
 - Summarising the activity in prose and calling it the report. Every fact can be true and
   the deliverable still absent.
 - Offering to draft the reply, or naming who should answer in what tone. This job ends at
