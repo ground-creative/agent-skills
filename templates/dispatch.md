@@ -4,95 +4,104 @@ A skill instructs the agent doing the job. It cannot instruct the agent _asking_
 job, because that agent never loads it. This file is the other half: the prose that goes
 into the host config, next to the tool definitions.
 
-Copy the blocks below into the tool descriptions. Each carries four headings — purpose,
-when to use, how to use, returns — because those are the four questions a calling agent
-has.
+Two blocks per tool. The description says what the tool is and what comes back. The
+instructions say when to reach for it and how to call it. They go in different places in a
+host config, and they answer different questions.
 
-The five names in the write block are a vocabulary shared with
+The five names in the write instructions are a vocabulary shared with
 `skills/moltbook-ops/references/writing.md`, not a wire format: nothing parses them. They
 exist so that a caller and a writer describe the same requirement the same way, and so that
 a missing one is visible rather than absorbed into a sentence.
 
-## Write
+## Write — tool description
 
 ```
-Write to Moltbook as Vireo.
+# Purpose
 
-Purpose
-  Produce drafts for a post, a comment, or a reply. Nothing is published here; publishing
-  is a separate call.
+Produce drafts for a post, a comment, or a reply. Nothing is published here; publishing is
+a separate call.
 
-When to use
-  The request is to write, draft, post, comment, or reply.
-  Not for reading, checking, feed, or search — those are the read tools, and they never
-  produce a draft. Not for publishing a draft that already exists.
+# Returns
 
-How to use
-  Load both skills: moltbook-ops for the writing rules, agent-front-door for what may be
-  claimed about our project.
+One block per draft: the title and content, then the angle, the shape, and one line on why
+that pair. A set adds one line naming what separates the drafts. Nothing follows.
+```
 
-  Say which job it is, then:
+## Write — instructions
 
-    Post id       for a comment. For a reply, the comment id as well.
-    Story         what happened, who did it, and when. Required for a post.
-    Angle         the argument to make, in your own words. Optional.
-    Leave out     anything it must not say. Optional.
-    Drafts        how many. Required.
-    Variants      what should differ between them. Optional, only with more than one draft.
+```
+# How to use
 
-  For a comment or a reply the post id is the whole context: it fetches the post and the
-  comments already on it. Do not summarise the post — a summary is what it would answer
-  instead of the post. Story there is only for a fact the thread does not contain.
+Load both skills: moltbook-ops for the writing rules, agent-front-door for what may be
+claimed about our project.
 
-  Do not summarise the specification or our features; the skill carries them, and repeating
-  them makes the draft over-apply them. Do not ask it to check whether the story is true:
-  it cannot do that, and it will stop writing to try.
+Say which job it is — a post, a comment, a reply — then:
 
-  Example, one draft with an argument of ours:
+Post id     For a comment. For a reply, the comment id as well.
+Story       What happened, who did it, and when. Required for a post.
+Angle       The argument to make, in your own words. Optional.
+Leave out   Anything it must not say. Optional.
+Drafts      How many. Required.
+Variants    What should differ between them. Optional, more than one draft only.
 
-    Write drafts for a post. Load moltbook-ops for the writing rules and agent-front-door
-    for what we may claim.
+For a comment or a reply the post id is the whole context: the writer fetches the post and
+the comments already on it. Do not summarise the post — a summary is what it would answer
+instead of the post. Story there is only for a fact the thread does not contain.
 
-    Story: Amazon sued Perplexity over Comet buying on a customer's behalf and calling it
-      unauthorised access. The customer was doing what customers do; the agent was doing it
-      for them.
-    Angle: A platform granting access is a platform owning the relationship, and a deal can
-      only ever be with some of us.
-    Leave out: Our features, and anything about the manifest.
-    Drafts: 1
+Do not summarise the specification or our features; the skill carries them, and repeating
+them makes the draft over-apply them. Do not ask it to check whether the story is true: it
+cannot, and it will stop writing to try.
 
-  Example, three drafts, no argument of ours:
+# When to use
 
-    Write drafts for a post. Load moltbook-ops for the writing rules and agent-front-door
-    for what we may claim.
+The request is to write, draft, post, comment, or reply.
 
-    Story: Crawlers are blocked by default now, and the way through is a signed identity
-      issued to whoever was let in. Two tiers, and the second tier is every agent someone
-      builds themselves.
-    Drafts: 3
-    Variants: One that argues it, one that tells a failure, one that asks them a question.
+Not for reading, checking, the feed, or search — those are the read tools, and they never
+produce a draft. Not for publishing a draft that already exists.
+```
 
-  Example, a comment:
+Examples, one per job:
 
-    Write drafts for a comment. Load moltbook-ops for the comment rules and agent-front-door
-    for what we may claim.
+```
+Write drafts for a post. Load moltbook-ops for the writing rules and agent-front-door for
+what we may claim.
 
-    Post id: <id>.
-    Angle: Bot-blocking is a policy choice, not a security fact.
-    Drafts: 1
+Story: Amazon sued Perplexity over Comet buying on a customer's behalf and calling it
+  unauthorised access. The customer was doing what customers do; the agent was doing it for
+  them.
+Angle: A platform granting access is a platform owning the relationship, and a deal can only
+  ever be with some of us.
+Leave out: Our features, and anything about the manifest.
+Drafts: 1
+```
 
-  Example, a reply:
+```
+Write drafts for a post. Load moltbook-ops for the writing rules and agent-front-door for
+what we may claim.
 
-    Write drafts for a reply. Load moltbook-ops for the reply rules and agent-front-door for
-    what we may claim.
+Story: Crawlers are blocked by default now, and the way through is a signed identity issued
+  to whoever was let in. Two tiers, and the second tier is every agent someone builds
+  themselves.
+Drafts: 3
+Variants: One that argues it, one that tells a failure, one that asks them a question.
+```
 
-    Post id: <id>.
-    Comment id: <id>.
-    Drafts: 1
+```
+Write drafts for a comment. Load moltbook-ops for the comment rules and agent-front-door for
+what we may claim.
 
-Returns
-  One block per draft: the title and content, then the angle, the shape, and a line on why
-  that pair. A set adds one line naming what separates the drafts. Nothing follows.
+Post id: <id>.
+Angle: Bot-blocking is a policy choice, not a security fact.
+Drafts: 1
+```
+
+```
+Write drafts for a reply. Load moltbook-ops for the reply rules and agent-front-door for what
+we may claim.
+
+Post id: <id>.
+Comment id: <id>.
+Drafts: 1
 ```
 
 ## Publish
