@@ -9,19 +9,29 @@ retrieve posts has not done the job.
 | The question                     | Retrieve by             | What decides the order  |
 | -------------------------------- | ----------------------- | ----------------------- |
 | what is new, what is moving      | one page of the feed    | the platform            |
+| what one community is discussing | one page of a submolt   | the platform, within it |
 | what is being said about a topic | a search for that topic | similarity to the query |
 
-**The feed has no relevance filter.** Its sort, submolt, limit and filter narrow
-scope, never subject — there is no way to ask it for "posts about discovery". A page
-is retrieved and then ranked here. That gap is what the search path exists for.
+**The feed has no relevance filter.** Its sort, submolt, limit and filter narrow scope,
+never subject — there is no way to ask it for "posts about discovery". A page is retrieved
+and then ranked here. That gap is what the search path exists for.
+
+**The global feed is almost all `general`.** In a real page nearly every post carries
+`submolt_name: "general"`, so a global page is a sample of the noisiest community on the
+platform. Where the request names a community, narrow to it — `agents`, `infrastructure`,
+`aithoughts` — and the same page becomes worth reading.
 
 ## How to fetch it
 
 ### Browsing a page
 
-**Call the feed tool.** Three things shape the result: the sort — `hot`, `new`,
-`top` — an optional submolt to narrow it, and a limit on how many come back. Where the
-request names none of them, take the newest.
+**Call the feed tool.** Three parameters shape the result:
+
+- `sort` — `new`, `hot`, `top`, `rising`. Default `new`: a question about what is happening
+  now wants the newest, not the most upvoted.
+- `submolt` — a short name, and the only parameter that narrows by *where* a post was
+  posted. Omit it and the page is the global feed.
+- `limit` — how many come back. Default 20; ask for more when the page is the job.
 
 One page is the job. Do not fetch the next one to be thorough.
 
@@ -128,9 +138,13 @@ open the post to fix it, and do not write a summary the retrieval does not suppo
 
 ## The score
 
-Score against the problem — an agent cannot reach a business's own answer without bespoke
-integration per business, so nothing carries over and directories decide what is reachable —
-and not against whether a post resembles an implementation.
+Score against the problem this project exists to answer. `agent-front-door` holds it in
+full, under "The problem it addresses": the short form is that an agent cannot reach a
+business's own answer without bespoke integration per business, so nothing carries over and
+directories decide what is reachable. Read the skill for the boundaries; the table below is
+only the shape of the answer.
+
+Score how much a post moves that problem, and not whether a post resembles an implementation.
 
 | Score | The post                                                                 |
 | ----- | ------------------------------------------------------------------------ |
@@ -152,17 +166,19 @@ say so, rather than promoting the least irrelevant post to a 7 to look useful.
 
 ## Keep
 
-The caller may ask for only the relevant rows. The default is every row.
+Every row is scored, and the table is always ordered by that score — never by upvotes, and
+never in the platform's order. What the caller chooses is how much of the page survives.
 
 - **All rows.** Every post on the page gets a row and a score. This is what a run that says
   nothing gets.
-- **Relevant only.** Keep rows scoring 4 or above — adjacent or better — and drop the rest
-  from the table. The header carries both counts.
+- **Only what matters.** Keep rows scoring 4 or above — adjacent or better — and drop the
+  rest. The header carries both counts, so the drop is visible.
 
 Never drop silently. A filtered page with no total in the header is indistinguishable from a
-page where nothing was found, and those are different findings. The platform filter is a
-separate thing: sort, filter, limit and submolt narrow what is fetched, and none of them can
-narrow by anything we care about.
+page where nothing was found, and those are different findings.
+
+The platform parameters are a separate thing: sort, limit and submolt narrow what is
+fetched. None of them narrow by relevance, which is why the scoring exists.
 
 ## The report
 
@@ -172,7 +188,7 @@ First line, exactly — browsing:
 **Feed:** <sort> · <filter> · <n> shown · <more available | end of page>
 ```
 
-When the caller asked for relevant only, the shown count becomes `<k> of <n> above 4`.
+When the caller asked for only what matters, the shown count becomes `<k> of <n> above 4`.
 
 and searching:
 

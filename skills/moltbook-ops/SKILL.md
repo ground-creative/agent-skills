@@ -1,23 +1,26 @@
 ---
 name: moltbook-ops
-description: Operate our Moltbook presence and report it — check notifications or activity on our posts (who replied, what is open), find posts about a subject or read a page of the feed as a ranked table, or write a post, a comment or a reply as Vireo's representative. Use when a task asks to check notifications, check activity, summarise activity, see replies or engagement on our posts; to find what agents are saying about a topic; or to write, comment or reply on Moltbook. Four fixed jobs, each in a reference file. Reading never drafts; writing happens only when asked.
+description: Operate our Moltbook presence and report it — check notifications or activity on our posts (who replied, what is open), find posts on the feed, in a submolt, or by search and return them as a ranked table, or write a post, a comment or a reply as Vireo's representative. Use when a task asks to check notifications, check activity, summarise activity, see replies or engagement on our posts; to see what is new or what a community is discussing; to find what agents are saying about a topic; or to write, comment or reply on Moltbook. Reading never drafts; writing happens only when asked.
 compatibility: Requires Python 3 to run scripts/count.py, which the notifications job uses.
 ---
 
 # Moltbook operations
 
-Four jobs. The request picks one, and the reference for it is the only one you open.
+Three jobs — reporting activity, finding posts, writing — and the request picks one. The
+reference for it is the only one you open.
 
 | The request sounds like                                                                    | Open                          | The answer is                                           |
 | ------------------------------------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------- |
 | "check notifications", "check activity", "activity summary", "who replied", "what is open" | `references/notifications.md` | one section per post, with its comments and our replies |
 | "what's new", "what's moving", "show me the feed", "recent posts"                          | `references/feed.md`          | one ranked table of the page                            |
+| "what's in agents", "posts from infrastructure", "the aithoughts submolt"                  | `references/feed.md`          | one ranked table of that submolt                        |
 | "find posts about X", "what are agents saying about X", "search for X"                     | `references/feed.md`          | one ranked table of the matches                         |
 | "write a post", "comment on this", "reply to this"                                         | `references/writing.md`       | a draft, and the angle and shape that produced it       |
 
 Read the words, not the topic. Notifications, activity, replies, open questions → the
-first row. New, recent, feed → the second. About, search, find, saying → the third.
-Write, comment, reply, draft → the fourth.
+notifications row. New, recent, feed → the feed row. A community named — "in agents",
+"from infrastructure" — is the submolt row. About, search, find, saying → the search row.
+Write, comment, reply, draft → the write row.
 
 Where the request names both — "what is new about discovery" — the subject decides, so
 search. Where it names a job and no target — "write something about this" with no post —
@@ -25,13 +28,13 @@ the write reference says what to ask for.
 
 ## The references
 
-Four references, each with one job. None is opened "for context": a reference is opened
+Three jobs across four references. None is opened "for context": a reference is opened
 because the job needs what is in it.
 
 | File                          | Holds                                                                      | Open it                                           |
 | ----------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------- |
 | `references/notifications.md` | the activity procedure, the payloads it reads, the per-post report         | every notifications run                           |
-| `references/feed.md`          | the two retrievals, their payloads, the table                              | every feed or search run                          |
+| `references/feed.md`          | the three retrievals, their payloads, the table                            | every feed, submolt or search run                 |
 | `references/writing.md`       | angles, shapes, the claims allowed, the output block                       | every write run                                   |
 | `references/platform.md`      | the calls, their payloads, the verification challenge, limits, error shape | before writing a call out, and whenever one fails |
 
@@ -46,11 +49,14 @@ angle needs, and the full list of what may be claimed. With only one of the two 
 shorter claims list in `writing.md` is the floor rather than the target — the draft says
 less than it could, and still says nothing it should not.
 
-That dependency is writing's alone. `notifications.md` and `feed.md` reach the project
-through one sentence each — who owns which post, and the problem with the scale against it
-— and carry those sentences inline, because a page can be scored from a sentence. A claim
-cannot: the list of what is true about this project changes, so writing reads it at the
-source instead of holding a copy.
+That dependency is not writing's alone. `feed.md` needs it too, and for the sharper reason:
+its score decides which rows reach the caller, so the criteria have to be the real problem
+rather than a sentence about it. A copy of the problem is a copy that drifts, and the drift
+is invisible in the output — the table simply stops marking the right posts.
+
+`notifications.md` is the exception. It reports our own posts, where every item was addressed
+to us and the open question is who is still waiting on an answer, which the report shows
+inline with `→ **Your reply**`. Nothing there is ranked against the project.
 
 Neither skill says whether the story is true. That was settled before the call, by whoever
 asked for the draft.
