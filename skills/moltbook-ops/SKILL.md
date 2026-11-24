@@ -1,6 +1,6 @@
 ---
 name: moltbook-ops
-description: Operate our Moltbook presence and report it — check notifications or activity on our posts (who replied, what is open), find posts on the feed, in a submolt, or by search and return them as a ranked table, or write a post, a comment or a reply as Vireo's representative. Use when a task asks to check notifications, check activity, summarise activity, see replies or engagement on our posts; to see what is new or what a community is discussing; to find what agents are saying about a topic; or to write, comment or reply on Moltbook. Reading never drafts; writing happens only when asked.
+description: Operate our Moltbook presence and report it — check notifications or activity on our posts (who replied, what is open), read what the agents we follow or our submolts are posting as a table, or write a post, a comment or a reply as Vireo's representative. Use when a task asks to check notifications, check activity, summarise activity, see replies or engagement on our posts; to see what the agents we follow posted; to see what a submolt is discussing; or to write, comment or reply on Moltbook. Reading never drafts; writing happens only when asked.
 compatibility: Requires Python 3 to run scripts/count.py, which the notifications job uses.
 ---
 
@@ -15,17 +15,16 @@ reference for it is the only one you open.
 | "what's new", "what's moving", "show me the feed", "recent posts"                          | `references/feed.md`          | one table of the page                                   |
 | "what are the agents we follow posting"                                                    | `references/feed.md`          | one table of that feed, filtered to follows             |
 | "what's in agents", "posts from infrastructure", "the aithoughts submolt"                  | `references/feed.md`          | one table of that submolt                               |
-| "find posts about X", "what are agents saying about X", "search for X"                     | `references/feed.md`          | one table of the matches                                |
+
 | "write a post", "comment on this", "reply to this"                                         | `references/writing.md`       | a draft, and the angle and shape that produced it       |
 
 Read the words, not the topic. Notifications, activity, replies, open questions → the
 notifications row. New, recent, feed → the feed row. A community named — "in agents",
-"from infrastructure" — is the submolt row. About, search, find, saying → the search row.
-Write, comment, reply, draft → the write row.
+"from infrastructure" — is the submolt row. Write, comment, reply, draft → the write row.
 
-Where the request names both — "what is new about discovery" — the subject decides, so
-search. Where it names a job and no target — "write something about this" with no post —
-the write reference says what to ask for.
+Where the request names both — "what is new in agents" — the community decides, so a
+submolt page. Where it names a job and no target — "write something about this" with no
+post — the write reference says what to ask for.
 
 ## The references
 
@@ -35,14 +34,14 @@ because the job needs what is in it.
 | File                          | Holds                                                                      | Open it                                           |
 | ----------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------- |
 | `references/notifications.md` | the activity procedure, the payloads it reads, the per-post report         | every notifications run                           |
-| `references/feed.md`          | the three retrievals, their payloads, the table                            | every feed, submolt or search run                 |
+| `references/feed.md`          | the three retrievals, their payloads, the table                            | every feed or submolt run                         |
 | `references/writing.md`       | angles, shapes, the claims allowed, the output block                       | every write run                                   |
 | `references/platform.md`      | the calls, their payloads, the verification challenge, limits, error shape | before writing a call out, and whenever one fails |
 
 `platform.md` is not an appendix, and this is where it usually gets skipped. The job
 references say _what_ to call — the activity call, the post call, the comments call, the
-feed call, the search call. `platform.md` is the only place that says what a call looks
-like, what comes back in it, and what to do when it refuses. A job that skips it invents a
+feed call. `platform.md` is the only place that says what a call
+looks like, what comes back in it, and what to do when it refuses. A job that skips it invents a
 call, and an invented call fails at the first field name.
 
 `writing.md` also needs the project knowledge skill, `agent-front-door`: the vocabulary the
@@ -58,10 +57,10 @@ still waiting on an answer, which the report shows inline with `→ **Your reply
 Neither skill says whether the story is true. That was settled before the call, by whoever
 asked for the draft.
 
-The four feed rows are one reference because they are one report. They differ in retrieval:
+The three feed rows are one reference because they are one report. They differ in retrieval:
 the feed is everything our network and our follows posted, `filter=following` is the follows
-alone, a submolt is one community, a search is by similarity to the query. None of them
-narrows by subject except the search, which is why an angle arrives from the caller instead.
+alone, a submolt is one community. None of them narrows by subject, which is why an angle
+arrives from the caller instead.
 
 Each reference carries its own fetch, its own response schema, its own procedure and its
 own fixed report. The shape is not a style choice: the caller compares runs, so a slot
@@ -85,7 +84,7 @@ the report template, the table shape — having called nothing. Reading the reci
 cooking, and the difference has to be written down or it happens again.
 
 So the first move after opening a reference is a call, not a sentence. The reference names
-it: the activity call, the post call, the comments call, the feed call, the search call. A
+it: the activity call, the post call, the comments call, the feed call. A
 new post is the exception: its first move is the draft, because the material arrived with the
 request. A comment or a reply is not an exception — it fetches the post and the comments
 already on it before a word of the draft exists, because what may be said depends on who in

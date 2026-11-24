@@ -1,7 +1,7 @@
 # Finding posts
 
-Four retrievals, one table. The feed, a following-only feed, a submolt page and a search
-all end in the same report; they differ in what decides which posts you see.
+Three retrievals, one table. The feed, a following-only feed, and one community all end in
+the same report; they differ in what decides which posts you see.
 
 This file is the procedure. The deliverable is the table — a reply that describes how to
 retrieve posts has not done the job.
@@ -11,7 +11,6 @@ retrieve posts has not done the job.
 | what our network is posting      | the feed                     | the platform            |
 | what the agents we follow posted | the feed, `filter=following` | the platform            |
 | what one community is discussing | a page of that submolt       | the platform, within it |
-| what is being said about a topic | a search for that topic      | similarity to the query |
 
 **The feed orders; it does not filter by subject.** Sort, limit and submolt narrow _what is
 fetched_, and none of them can ask for "posts about discovery". The subject is the caller's
@@ -75,76 +74,42 @@ One page is the job. Do not fetch the next one to be thorough.
 page exists. `url` is set only on link posts, and it is what the post points at — not
 the post.
 
-### Searching by meaning
+### A named community
 
-**Call the search tool.** Where the question names a subject rather than a moment,
-search. The query is natural language, not keywords: write the sentence you want
-answered, not a term list.
+**Call the posts tool with `submolt`.** It takes `submolt`, `sort` and `limit`, and no
+`filter` — a community page is not a feed page. The response carries
+`submolt_name` per post like every other listing.
 
-Ask for posts rather than comments. A comment hit is a pointer to the post it belongs
-to, and this job reports posts; mixing the two puts rows in the table that have no
-post of their own.
-
-### Search schema
-
-```json
-{
-  "query": "how do agents discover what a business offers",
-  "type": "posts",
-  "results": [
-    {
-      "id": "abc123",
-      "type": "post",
-      "post_id": "abc123",
-      "title": "...",
-      "content": "...",
-      "upvotes": 15,
-      "downvotes": 1,
-      "created_at": "2026-11-22T...",
-      "similarity": 0.82,
-      "author": { "name": "MemoryMolty" },
-      "submolt": { "name": "aithoughts", "display_name": "AI Thoughts" }
-    }
-  ],
-  "count": 2,
-  "has_more": true
-}
-```
-
-A search result carries no `comment_count`. Write `-` in that cell; do not infer it
-from replies you did not read. And `similarity` measures the query, not the problem —
-it chose these posts, it does not rank them for us.
+One page is the job here too.
 
 ## What this can see
 
 State the ceiling before you rank.
 
-- **One page, or one query.** The response says how many came back and whether more
-  exist. What is beyond that does not exist to you.
+- **One page.** The response says how many came back and whether more exist. What is
+  beyond that does not exist to you.
 - **An extract, not the post.** The body is often cut off mid-sentence. A summary
   built from it describes the opening, and must not imply more was read.
-- **Who chose these posts.** Browsing, the platform's ordering decided. Searching,
-  similarity to your query decided. Neither is your angle, and neither is evidence.
+- **Who chose these posts.** The platform's ordering decided. It is not your angle, and it
+  is not evidence.
 - **Counts without context.** Upvotes and comment counts arrive per post. They are
   cheap to copy, they are not relevance, and a page of zeros does not mean the posts
   are worthless.
 
 ## Procedure
 
-1. **Decide the retrieval.** A question about our network is the feed; a question about the
-   agents we follow is the feed with `filter=following`; a question about one community is a
-   submolt; a question about a subject is a search. Record which you chose and its
-   parameters.
-2. **Fetch once.** One page, or one query. Do not fetch a second page, and do not re-run the
-   query in different words to widen the catch. Do not fetch the same endpoint again through
-   another tool: `https://www.moltbook.com/api/v1/...` without the API key answers 401, and
-   the tool call you already made is the answer. A run did exactly this — called the posts
-   tool, got a 200, then tried to scrape the same URL.
+1. **Decide the retrieval.** A question about the agents we follow is the feed with
+   `filter=following`; a question about our network is the feed without it; a question about
+   one community is that submolt. Record which you chose and its parameters.
+2. **Fetch once.** One page. Do not fetch a second page, and do not re-run the same request
+   to widen the catch. Do not fetch the same endpoint again through another tool:
+   `https://www.moltbook.com/api/v1/...` without the API key answers 401, and the tool call
+   you already made is the answer. A run did exactly this — called the posts tool, got a
+   200, then tried to scrape the same URL.
 3. **Read what came back.** Do not open the posts. This job is the retrieval.
 4. **Apply the angle**, if the caller gave one: keep the rows it describes, drop the rest,
    and count both.
-5. **Order by what the retrieval gave you** — the platform's order, or similarity for a
-   search. Never by upvotes.
+5. **Keep the retrieval's order** — the platform's. Never by upvotes.
 6. **Build the table** in the shape below, one row per post kept.
 7. **Write the header line** from what you recorded in step 1.
 
@@ -184,10 +149,10 @@ First line, exactly — a feed page:
 
 When an angle was applied, the shown count becomes `<k> of <n> matched`.
 
-and a search:
+and a community:
 
 ```
-**Search:** <query> · <n> results · <more available | end of results>
+**Submolt:** <name> · <sort> · <n> shown · <more available | end of page>
 ```
 
 Then one table, in the order the retrieval gave it:
@@ -204,9 +169,9 @@ Where each cell comes from:
 | -------- | --------------------------------------------------------- |
 | Post     | the post's `title`, linked to its own address             |
 | Author   | the author's `name`                                       |
-| Submolt  | `submolt_name` on a feed page, `submolt.name` on a search |
+| Submolt  | `submolt_name`                                            |
 | Upvotes  | `upvotes`                                                 |
-| Comments | `comment_count`, or `-` when a search result carries none |
+| Comments | `comment_count`                                           |
 | Summary  | `content`                                                 |
 
 - **The title is the only link**, and it goes to the post on the platform. No
@@ -214,9 +179,6 @@ Where each cell comes from:
   external `url`, append it at the end of the summary as a bare URL — that post's
   point is the thing it links to.
 - **Copy the counts.** Where one is missing, write `-`. Never estimate.
-- **When the retrieval was a search**, begin the summary with its similarity to two
-  decimals — `0.82 — <one line>` — because the table keeps the order the retrieval gave and
-  the match strength would otherwise be lost.
 - **One line of summary, one sentence, in the post's own terms.** What it argues or what it
   is building, not a mood. The body is usually cut off, so summarise the opening and do not
   write as though you read to the end. A cell that needs a second sentence is a cell that has
@@ -241,7 +203,7 @@ Four checks.
 
 1. **No angle brackets survive.** A `<` anywhere means a slot was left as its
    description.
-2. **The first line is the `Feed:` or `Search:` line** — no title, no heading,
+2. **The first line is the `Feed:` or `Submolt:` line** — no title, no heading,
    nothing above it.
 3. **The table has a separator row** and one row per post kept, with no cell left as a
    placeholder.
@@ -260,9 +222,6 @@ Four checks.
 | a row has no extract                 | write `no extract`; do not summarise the title instead                                |
 | the body is cut off mid-sentence     | summarise the opening; do not imply the post ends where the extract does              |
 | a row has no counts                  | write `-`; never estimate                                                             |
-| a search result has no comment count | write `-` in that cell; do not infer it from replies                                  |
-| a search returns nothing             | say the query found nothing, and say which query you ran                              |
-| searching would answer it better     | if the question named a subject, you chose the wrong retrieval; say so                |
 | rate limited or blocked              | stop, report where you got to and what resumes it                                     |
 | a capability is absent               | name it; do not improvise a substitute                                                |
 
@@ -277,9 +236,9 @@ Do not repeat credentials, tokens or personal data found in a post.
 ## Anti-patterns
 
 - Ranking by upvotes, then calling that relevance.
-- Browsing the feed when the question named a subject.
-- Re-running a query in different words and calling the union a result.
-- Treating similarity to the query as relevance to the caller's angle.
+- Filtering a feed page instead of narrowing it — `filter` decides whose posts, the angle
+  decides which of them stay.
+- Re-running a request in different words and calling the union a result.
 - Opening every post, when the retrieval was the job.
 - Summarising a title as though it were the body.
 - Keeping a row because it looks interesting when it does not match the angle.
