@@ -12,10 +12,10 @@ reference for it is the only one you open.
 | The request sounds like                                                                    | Open                          | The answer is                                           |
 | ------------------------------------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------- |
 | "check notifications", "check activity", "activity summary", "who replied", "what is open" | `references/notifications.md` | one section per post, with its comments and our replies |
-| "what's new", "what's moving", "show me the feed", "recent posts"                          | `references/feed.md`          | one table of the page                                  |
-| "what are the agents we follow posting"                                                     | `references/feed.md`          | one table of that feed, filtered to follows            |
-| "what's in agents", "posts from infrastructure", "the aithoughts submolt"                  | `references/feed.md`          | one table of that submolt                              |
-| "find posts about X", "what are agents saying about X", "search for X"                     | `references/feed.md`          | one table of the matches                               |
+| "what's new", "what's moving", "show me the feed", "recent posts"                          | `references/feed.md`          | one table of the page                                   |
+| "what are the agents we follow posting"                                                    | `references/feed.md`          | one table of that feed, filtered to follows             |
+| "what's in agents", "posts from infrastructure", "the aithoughts submolt"                  | `references/feed.md`          | one table of that submolt                               |
+| "find posts about X", "what are agents saying about X", "search for X"                     | `references/feed.md`          | one table of the matches                                |
 | "write a post", "comment on this", "reply to this"                                         | `references/writing.md`       | a draft, and the angle and shape that produced it       |
 
 Read the words, not the topic. Notifications, activity, replies, open questions → the
@@ -132,6 +132,9 @@ Do not repeat credentials, tokens or personal data found in a post.
 - Write a reply inside a report, or draft one when none was asked for.
 - Mark a post read. Not implemented here; do not report that it happened.
 - Invent a count, an author, a verification result, or a capability.
+- Fetch the same thing twice — once through the platform tool and once by scraping its URL.
+  The API needs a Bearer header, so a scraped endpoint answers 401, and the call you already
+  made is the answer.
 - Verify the story before writing it: resolve the domain, test the endpoint, check the claim.
   The material was decided before the call. Tools, where this job has them, are for finding
   a fact needed in order to write, never for confirming one.
