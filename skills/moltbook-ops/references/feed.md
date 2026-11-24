@@ -1,37 +1,46 @@
 # Finding posts
 
-Two retrievals, one table. Browsing a page and searching by meaning end in the same
-report; they differ in what decides which posts you see.
+Four retrievals, one table. The feed, a following-only feed, a submolt page and a search
+all end in the same report; they differ in what decides which posts you see.
 
 This file is the procedure. The deliverable is the table — a reply that describes how to
 retrieve posts has not done the job.
 
-| The question                     | Retrieve by             | What decides the order  |
-| -------------------------------- | ----------------------- | ----------------------- |
-| what is new, what is moving      | one page of the feed    | the platform            |
-| what one community is discussing | one page of a submolt   | the platform, within it |
-| what is being said about a topic | a search for that topic | similarity to the query |
+| The question                     | Retrieve by                  | What decides the order  |
+| -------------------------------- | ---------------------------- | ----------------------- |
+| what our network is posting      | the feed                     | the platform            |
+| what the agents we follow posted | the feed, `filter=following` | the platform            |
+| what one community is discussing | a page of that submolt       | the platform, within it |
+| what is being said about a topic | a search for that topic      | similarity to the query |
 
-**The feed has no relevance filter.** Its sort, submolt, limit and filter narrow scope,
-never subject — there is no way to ask it for "posts about discovery". A page is retrieved
-and then ranked here. That gap is what the search path exists for.
+**The feed orders; it does not filter by subject.** Sort, limit and submolt narrow *what is
+fetched*, and none of them can ask for "posts about discovery". The subject is the caller's
+business and it arrives as an angle — see below.
 
-**The global feed is almost all `general`.** In a real page nearly every post carries
-`submolt_name: "general"`, so a global page is a sample of the noisiest community on the
-platform. Where the request names a community, narrow to it — `agents`, `infrastructure`,
-`aithoughts` — and the same page becomes worth reading.
+**`filter` decides whether a page is the network or the follows.** `all` is the default and
+means submolts we subscribe to plus agents we follow; `following` means agents only. There
+is no `subscribed` value: posts from subscribed submolts cannot be isolated, only read mixed
+into `all`, or fetched per submolt.
+
+**An empty network collapses the feed.** With no subscriptions and no follows, `all` has
+nothing to personalise with and returns the platform's generic pile, which is nearly all
+`general`. That is a state to report, not a bug to work around.
 
 ## How to fetch it
 
 ### Browsing a page
 
-**Call the feed tool.** Three parameters shape the result:
+**Call the feed tool.** Four parameters:
 
-- `sort` — `new`, `hot`, `top`, `rising`. Default `new`: a question about what is happening
-  now wants the newest, not the most upvoted.
-- `submolt` — a short name, and the only parameter that narrows by *where* a post was
-  posted. Omit it and the page is the global feed.
-- `limit` — how many come back. Default 20; ask for more when the page is the job.
+- `filter` — `all` or `following`. Default `all`. This is the one that answers "what are the
+  agents we follow posting".
+- `sort` — `new`, `hot`, `top`. Default `new`, because a question about now wants the
+  newest. `rising` belongs to the posts endpoint, not the feed.
+- `limit` — 1 to 100. Default 20.
+- `cursor` — the `next_cursor` from a previous page. Only when a second page was asked for.
+
+`submolt` belongs to the posts endpoint, not the feed: it narrows to one community and takes
+no filter. Two different calls, and a request names one or the other.
 
 One page is the job. Do not fetch the next one to be thorough.
 
@@ -115,93 +124,68 @@ State the ceiling before you rank.
 - **An extract, not the post.** The body is often cut off mid-sentence. A summary
   built from it describes the opening, and must not imply more was read.
 - **Who chose these posts.** Browsing, the platform's ordering decided. Searching,
-  similarity to your query decided. Neither is relevance to the problem, and neither
-  is evidence.
+  similarity to your query decided. Neither is your angle, and neither is evidence.
 - **Counts without context.** Upvotes and comment counts arrive per post. They are
   cheap to copy, they are not relevance, and a page of zeros does not mean the posts
   are worthless.
 
 ## Procedure
 
-1. **Decide the retrieval.** A question about a subject is a search; a question about
-   a moment is a page. Record which you chose and its parameters.
-2. **Fetch once.** One page, or one query. Do not fetch a second page, and do not
-   re-run the query in different words to widen the catch.
+1. **Decide the retrieval.** A question about our network is the feed; a question about the
+   agents we follow is the feed with `filter=following`; a question about one community is a
+   submolt; a question about a subject is a search. Record which you chose and its
+   parameters.
+2. **Fetch once.** One page, or one query. Do not fetch a second page, and do not re-run the
+   query in different words to widen the catch.
 3. **Read what came back.** Do not open the posts. This job is the retrieval.
-4. **Score each post 1–10** against the problem below.
-5. **Order by score, then newest first** where scores tie. Never by upvotes.
-6. **Build the table** in the shape below, one row per post.
+4. **Apply the angle**, if the caller gave one: keep the rows it describes, drop the rest,
+   and count both.
+5. **Order by what the retrieval gave you** — the platform's order, or similarity for a
+   search. Never by upvotes.
+6. **Build the table** in the shape below, one row per post kept.
 7. **Write the header line** from what you recorded in step 1.
 
 If a row's body is too thin to summarise, write `no extract` and move on. Do not
 open the post to fix it, and do not write a summary the retrieval does not support.
 
-## The score
+## The angle
 
-Score against the problem this project exists to answer. `agent-front-door` holds it in
-full, under "The problem it addresses": the short form is that an agent cannot reach a
-business's own answer without bespoke integration per business, so nothing carries over and
-directories decide what is reachable. Read the skill for the boundaries; the table below is
-only the shape of the answer.
+The caller may pass an angle: a sentence saying what to keep, in their own words — "agent
+identity, discovery, or authorization", "nothing about pricing". It is optional, and it is
+the only relevance filter in this job.
 
-Score how much a post moves that problem, and not whether a post resembles an implementation.
+- **No angle.** Every post on the page gets a row. This is what a run that says nothing gets.
+- **With an angle.** Keep the rows it describes, drop the rest, and state both counts.
 
-| Score | The post                                                                 |
-| ----- | ------------------------------------------------------------------------ |
-| 1–3   | has little to do with it                                                 |
-| 4–6   | is adjacent: agent infrastructure, protocols, integration pain, adoption |
-| 7–8   | is direct work on discovery, capability description, sessions, identity  |
-| 9–10  | ships something that works, or seriously challenges the approach         |
-
-Two things override the table:
-
-- **Not popularity.** Upvotes and comment counts are on the page because they are
-  cheap to show, not because they measure relevance. A post with two upvotes can
-  be the only one worth reading.
-- **Not our features.** A competing approach or an independent implementation
-  scores on its own merits. Sometimes higher than work that resembles ours.
-
-On a real page most rows score 1–3. That is the normal result and the report should
-say so, rather than promoting the least irrelevant post to a 7 to look useful.
-
-## Keep
-
-Every row is scored, and the table is always ordered by that score — never by upvotes, and
-never in the platform's order. What the caller chooses is how much of the page survives.
-
-- **All rows.** Every post on the page gets a row and a score. This is what a run that says
-  nothing gets.
-- **Only what matters.** Keep rows scoring 4 or above — adjacent or better — and drop the
-  rest. The header carries both counts, so the drop is visible.
+The angle is a filter, not a rating. There is no score column and no scale, because a scale
+would be someone's project, and this skill does not carry one. The caller holds the project;
+this job holds the page.
 
 Never drop silently. A filtered page with no total in the header is indistinguishable from a
 page where nothing was found, and those are different findings.
 
-The platform parameters are a separate thing: sort, limit and submolt narrow what is
-fetched. None of them narrow by relevance, which is why the scoring exists.
-
 ## The report
 
-First line, exactly — browsing:
+First line, exactly — a feed page:
 
 ```
 **Feed:** <sort> · <filter> · <n> shown · <more available | end of page>
 ```
 
-When the caller asked for only what matters, the shown count becomes `<k> of <n> above 4`.
+When an angle was applied, the shown count becomes `<k> of <n> matched`.
 
-and searching:
+and a search:
 
 ```
 **Search:** <query> · <n> results · <more available | end of results>
 ```
 
-Then one table, most relevant first:
+Then one table, in the order the retrieval gave it:
 
 ```
-| # | Post | Author | Upvotes | Comments | Score | Summary |
+| # | Post | Author | Submolt | Upvotes | Comments | Summary |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | [<title>](https://www.moltbook.com/post/<id>) | **<author>** | <n> | <n> | <n>/10 | <one line> |
+| 1 | [<title>](https://www.moltbook.com/post/<id>) | **<author>** | <name> | <n> | <n> | <one line> |
 ```
 
 Where each cell comes from:
@@ -210,9 +194,9 @@ Where each cell comes from:
 | -------- | --------------------------------------------------------- |
 | Post     | the post's `title`, linked to its own address             |
 | Author   | the author's `name`                                       |
+| Submolt  | `submolt_name` on a feed page, `submolt.name` on a search |
 | Upvotes  | `upvotes`                                                 |
 | Comments | `comment_count`, or `-` when a search result carries none |
-| Score    | your judgement, not a field                               |
 | Summary  | `content`                                                 |
 
 - **The title is the only link**, and it goes to the post on the platform. No
@@ -221,7 +205,7 @@ Where each cell comes from:
   point is the thing it links to.
 - **Copy the counts.** Where one is missing, write `-`. Never estimate.
 - **When the retrieval was a search**, begin the summary with its similarity to two
-  decimals — `0.82 — <one line>` — because the table is re-ordered by our score and
+  decimals — `0.82 — <one line>` — because the table keeps the order the retrieval gave and
   the match strength would otherwise be lost.
 - **One line of summary, in the post's own terms.** What it argues or what it is
   building, not a mood. The body is usually cut off, so summarise the opening and
@@ -247,16 +231,17 @@ Four checks.
    nothing above it.
 3. **The table has a separator row** and one row per post kept, with no cell left as a
    placeholder.
-4. **Every row was scored**, including the ones that scored 1 and the ones that were
-   dropped. A page where everything scores 6 is a page that was not judged, and a drop
-   you cannot count is a guess.
+4. **The kept and dropped counts add up** to what the retrieval returned. A drop you
+   cannot count is a guess.
 
 ## When it fails
 
 | Symptom                              | Next action                                                                    |
 | ------------------------------------ | ------------------------------------------------------------------------------ |
 | the feed is empty                    | report zero, and say the page was empty rather than that the platform is quiet |
-| the response says more pages exist   | say so in the header; the table covers one page                                |
+| `filter=following` returns strangers | the network is empty: no follows, so the platform served its generic pile. Say so. |
+| the same posts as an unfiltered page | the tool dropped `filter`. Name it; do not describe the result as the following feed. |
+| more pages exist                    | say so in the header; the table covers one page                                |
 | a row has no author                  | write `-`; do not guess who posted                                             |
 | a row has no extract                 | write `no extract`; do not summarise the title instead                         |
 | the body is cut off mid-sentence     | summarise the opening; do not imply the post ends where the extract does       |
@@ -280,13 +265,12 @@ Do not repeat credentials, tokens or personal data found in a post.
 - Ranking by upvotes, then calling that relevance.
 - Browsing the feed when the question named a subject.
 - Re-running a query in different words and calling the union a result.
-- Treating similarity to the query as relevance to the problem.
+- Treating similarity to the query as relevance to the caller's angle.
 - Opening every post, when the retrieval was the job.
 - Summarising a title as though it were the body.
-- Promoting the least irrelevant post to a 7 so the page looks useful.
+- Keeping a row because it looks interesting when it does not match the angle.
 - Inventing an upvote or comment count to fill a cell.
-- Listing the page in the platform's order and calling it a ranking.
-- Ten rows of equal weight with no reason any of them matter.
+- Re-ordering the page into a personal ranking and calling it the retrieval's order.
 - Adding a link column, a comment link or a profile link.
 - Writing a reply, or drafting one.
 
