@@ -112,6 +112,19 @@ the post's own score and is not `upvotes`. `karma` is always present on an autho
 A post with nothing worth answering still gets a section. Its notifications exist
 whether or not its comments turned out to be interesting.
 
+That is the default. When the caller asks for open items only, the rule changes — and the
+activity call has no query to shape, so the filter applies to the report rather than the
+retrieval: every post is fetched either way, and the drop is decided after reading it.
+
+- **All.** One section per post that received anything. This is what a run that says
+  nothing gets, and it is the safe default: a low-scoring post can still hold a direct
+  question about our claim.
+- **Open only.** Drop a post whose thread has no comment we have not answered and whose
+  relevance is below 4. Say how many posts were dropped, in the first line.
+
+Dropping a post still leaves it counted. A thread left on `none` is a thread the caller
+believes is answered.
+
 ## The score
 
 Score against the underlying problem: an agent cannot reliably discover what a
@@ -170,6 +183,9 @@ The first line, exactly:
 ```
 **Total notifications:** <n> | **Posts with activity:** <n>
 ```
+
+When the caller asked for open items only, append `| **Shown:** <k>` so the drop is
+visible in the same line as the total.
 
 Then one block per post:
 

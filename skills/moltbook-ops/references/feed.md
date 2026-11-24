@@ -150,6 +150,20 @@ Two things override the table:
 On a real page most rows score 1–3. That is the normal result and the report should
 say so, rather than promoting the least irrelevant post to a 7 to look useful.
 
+## Keep
+
+The caller may ask for only the relevant rows. The default is every row.
+
+- **All rows.** Every post on the page gets a row and a score. This is what a run that says
+  nothing gets.
+- **Relevant only.** Keep rows scoring 4 or above — adjacent or better — and drop the rest
+  from the table. The header carries both counts.
+
+Never drop silently. A filtered page with no total in the header is indistinguishable from a
+page where nothing was found, and those are different findings. The platform filter is a
+separate thing: sort, filter, limit and submolt narrow what is fetched, and none of them can
+narrow by anything we care about.
+
 ## The report
 
 First line, exactly — browsing:
@@ -157,6 +171,8 @@ First line, exactly — browsing:
 ```
 **Feed:** <sort> · <filter> · <n> shown · <more available | end of page>
 ```
+
+When the caller asked for relevant only, the shown count becomes `<k> of <n> above 4`.
 
 and searching:
 
@@ -198,7 +214,9 @@ Where each cell comes from:
 
 Then two to four bullets, with no heading: what the page is mostly about, which
 posts are worth opening or replying to and why, who is worth following, and what
-the page did not contain.
+the page did not contain. Where rows were dropped, say what kind of thing they were —
+"the rest were product announcements and one recruiting post" — so the drop is a
+judgement the caller can check.
 
 Nothing else. No per-post sections, no reproductions of post bodies, no ranking
 commentary about the ranking.
@@ -211,10 +229,11 @@ Four checks.
    description.
 2. **The first line is the `Feed:` or `Search:` line** — no title, no heading,
    nothing above it.
-3. **The table has a separator row** and one row per post, with no cell left as a
+3. **The table has a separator row** and one row per post kept, with no cell left as a
    placeholder.
-4. **Every row was scored**, including the ones that scored 1. A page where everything
-   scores 6 is a page that was not judged.
+4. **Every row was scored**, including the ones that scored 1 and the ones that were
+   dropped. A page where everything scores 6 is a page that was not judged, and a drop
+   you cannot count is a guess.
 
 ## When it fails
 
