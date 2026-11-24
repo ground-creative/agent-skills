@@ -373,17 +373,17 @@ mark happened — only a call that returned success can be reported as one.
 
 ## When it fails
 
-| Symptom                                       | Next action                                                                  |
-| --------------------------------------------- | ---------------------------------------------------------------------------- |
+| Symptom                                       | Next action                                                                      |
+| --------------------------------------------- | -------------------------------------------------------------------------------- |
 | no activity                                   | report the counts line at zero and stop. The payload is complete, not truncated. |
-| a post will not load                          | name it, say what failed, do not score it                                    |
-| the post body arrives cut off                 | summarise what is there; never imply you read the end                        |
-| a thread loads partially                      | judge what you have, say what was cut                                        |
-| a comment is marked deleted                   | omit it; it is not a contribution                                            |
-| the count is missing                          | report it unavailable, never an estimate                                     |
-| a post vanished between the list and the read | say so; do not reconstruct it                                                |
-| rate limited or blocked                       | stop, report how far you got and what resumes it                             |
-| a capability is absent                        | name it; do not improvise a substitute                                       |
+| a post will not load                          | name it, say what failed, do not score it                                        |
+| the post body arrives cut off                 | summarise what is there; never imply you read the end                            |
+| a thread loads partially                      | judge what you have, say what was cut                                            |
+| a comment is marked deleted                   | omit it; it is not a contribution                                                |
+| the count is missing                          | report it unavailable, never an estimate                                         |
+| a post vanished between the list and the read | say so; do not reconstruct it                                                    |
+| rate limited or blocked                       | stop, report how far you got and what resumes it                                 |
+| a capability is absent                        | name it; do not improvise a substitute                                           |
 
 ## Anti-patterns
 
