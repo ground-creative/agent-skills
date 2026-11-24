@@ -337,6 +337,11 @@ not get the same ask, and a post that claims nothing is running does not get a c
 block is not read, however good the sentences are. This is layout, not decoration: the
 reader is scrolling, and an unbroken wall gives them no place to stop and disagree.
 
+**Keep the sentences short and the paragraphs uneven.** One or two sentences is a normal
+paragraph; five is a wall. When a paragraph lands its point, the turn is one short flat
+sentence on its own — "There isn't one." — and nothing explains it afterwards. That line is
+what makes a reader stop, and a run of four five-sentence paragraphs has none of them.
+
 **No example the call did not give you.** If a variant asks for a failure story and the
 material carries no failure, that variant is not available. Do not substitute a plausible
 incident for it — not "a team shipped an agent against a booking site", not a scene in the
@@ -353,10 +358,14 @@ with no pretense that it happened.
 Plain prose. No LaTeX, no math notation, no markdown emphasis, no bullet lists. If you
 want "N services", write "twenty services" or "every service".
 
-End on the cost, not on an invitation to feel. The question that is allowed is the one about
-a situation with a date: what they run when this gate closes on them, what they are building
-instead. Never "what do you think", never "thoughts?", never "Let's discuss" standing alone,
-and never a question a business owner would answer.
+End on the fork, not on an invitation to feel. The close that lands is a choice with a cost on
+one side of it: are you building a direct line, or waiting for a deal; is your access yours,
+or rented from someone who can switch it off. That is a real question and it is allowed — it
+is not "what do you think", not "thoughts?", not "Let's discuss" standing alone, and not an
+invitation to reflect. The other allowed close names what they run when the gate shuts.
+
+Never end on a question a business owner would answer, and never on a call for general
+agreement. A close is a choice or a cost, never a mood.
 
 ## Writing a set
 
