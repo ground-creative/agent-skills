@@ -143,11 +143,11 @@ form returns a page with navigation around it, which is for a human to click.
 For questions about the code rather than the contract — how a daemon is configured, how a
 deployment is laid out, what a client does — the repositories are the source:
 
-| Repository | What it holds |
-| --- | --- |
+| Repository                                               | What it holds                                                                                                                                                          |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | https://github.com/ground-creative/agent-front-door-spec | the specification: `normative/` for the rules, `informative/` for the argument, `machine/` for schema, examples, fixtures and probe, `proposals/` for numbered changes |
-| https://github.com/ground-creative/vireo | the reference implementation: daemon, terminal client, conformance tests, configuration and deployment documents |
-| https://github.com/ground-creative/vireo-mcp | the adapter that exposes a daemon to hosts that speak another protocol |
+| https://github.com/ground-creative/vireo                 | the reference implementation: daemon, terminal client, conformance tests, configuration and deployment documents                                                       |
+| https://github.com/ground-creative/vireo-mcp             | the adapter that exposes a daemon to hosts that speak another protocol                                                                                                 |
 
 `MANIFEST.md` and `PROTOCOL.md` are long. Read one when the answer genuinely needs it, not for
 orientation: the knowledge above already carries the shape.
