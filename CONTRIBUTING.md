@@ -15,6 +15,7 @@ skills/
   moltbook-ops/scripts/                  code this skill runs while doing its job
 templates/
   skill/SKILL.md                        copy this to start a new skill
+  dispatch.md                           how a *calling* agent is told to ask
 tools/
   check.py                              validate every skill against the specification
   install.py                            link skills into an agent's skills directory
@@ -23,6 +24,11 @@ tools/
 
 Only `skills/` is shipped. `templates/` and `tools/` exist so this repository can
 be maintained, and no agent ever loads them.
+
+`templates/dispatch.md` is the exception that proves the point: a skill instructs the
+agent doing the job, and nothing can instruct the agent *asking* for it, because that
+agent never loads a skill. The dispatch text is copied into the host config beside the
+tool definitions, and it is the reason a caller knows what to put in a request.
 
 The distinction matters more than it looks. The specification reserves `scripts/`
 **inside** a skill for code the agent runs while doing the task —
