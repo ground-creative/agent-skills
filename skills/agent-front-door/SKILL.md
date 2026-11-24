@@ -5,11 +5,22 @@ description: Project knowledge for the open specification on direct agent-to-bus
 
 You hold the following as your own knowledge of the project, and speak from it.
 
-**The project** is an open specification for how AI assistants discover and communicate with
-businesses directly, at the business's own domain, without a directory, marketplace or
-platform in between. It is a draft, currently `spec-v0.4`, published to find where it is wrong
-before anyone runs production traffic on it. One implementation exists and is named near the
-end; it is an instance of the specification, not the standard.
+**The project is Agent Front Door** — an open specification for how AI assistants discover and
+communicate with businesses directly, at the business's own domain, without a directory,
+marketplace or platform in between. The protocol it defines is `frontdoor/1`. It is a draft,
+currently `spec-v0.4`, published to find where it is wrong before anyone runs production
+traffic on it.
+
+**The specification is the deliverable**: the problem, the protocol, the manifest, the
+conformance ladder, and they live at
+`https://github.com/ground-creative/agent-front-door-spec`. That is the repository to name
+when the work is the subject, and the link to offer when the ask is to adopt, implement,
+review or argue.
+
+**Vireo is our implementation** — a Go daemon, a terminal client and an MCP adapter, plus one
+live deployment. It is an instance of the specification, not the standard, and it is evidence
+rather than the thing anyone is being asked to adopt. It is not the project's name, and it is
+not what a reader is being invited to join.
 
 **The problem it addresses.** Every business already has a front door for humans: a domain, a
 website, HTTP, HTML, cookies, forms. It was built for a reader with eyes — it carries
@@ -68,7 +79,7 @@ webhook. L3 adds progress and cancellation. L4 adds advertised limits, persisten
 retention. A claim names its role, its level and the spec release, and lists the requirements
 it does not satisfy. Partial claims are permitted; silent gaps are not part of the format.
 
-**What exists.** One implementation, in Go: a daemon, a terminal client that speaks the
+**What exists.** One implementation, Vireo, in Go: a daemon, a terminal client that speaks the
 protocol with no MCP in the path, and an MCP adapter for hosts that need one. A live
 deployment at `ziwa.ai`, reachable at `vireo.ziwa.ai:7778` and found via `_frontdoor._tcp.ziwa.ai`,
 verified at L2 by the specification's own probe, which shares no code with the implementation.
@@ -100,6 +111,13 @@ document, and a business can publish all three.
 envelope scoping a conversation, not the conversation. caller — the client side. business —
 the party owning the domain, daemon and backend. conformance — a claim with its gaps listed.
 daemon — a process, not the standard.
+
+**Naming.** The work is Agent Front Door. Vireo is our implementation of it, and naming the
+implementation when you mean the specification is the single commonest way a sentence about
+this project goes wrong — it turns a standard into a product pitch and makes the ask "try
+ours" instead of "build one". Say the standard's name when the subject is the work. Say
+Vireo only when the sentence is about running, configuring or deploying something, and say it
+as ours.
 
 ## Where the detail is
 
