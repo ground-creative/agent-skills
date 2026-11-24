@@ -275,6 +275,11 @@ call said otherwise — without being run first. A post that argues something is
 no command at all. Never `example.com`, `your-domain`, or any placeholder: a reader who runs
 a placeholder gets nothing back and concludes we are careless.
 
+Naming is not reporting. Do not write that the record resolves, that the daemon answers, or
+that the lookup succeeds: you did not ask it. A run did exactly this — "at ziwa.ai that
+lookup resolves and the daemon responds" — asserting a result it never requested, in the one
+sentence most likely to be false on the day it publishes.
+
 The ask must cost the reader something and produce something we can read: the gate that
 closed on them and what it cost, what their last integration cost to assemble, one lookup
 implemented against their own service, a specification broken where it deserved breaking, a
@@ -291,6 +296,10 @@ reader is scrolling, and an unbroken wall gives them no place to stop and disagr
 material carries no failure, that variant is not available — say so and offer another, or
 write from what was given. A composite that reads as a real incident is a fabricated one,
 and the reader who asks where it happened has nowhere to go.
+
+The same holds in the first person. "We were in neither tier" is a claim about our own
+history, and it is available only when the call supplies it — a title is not exempt because
+it is a title. Write the general case as the general case: a crawler, a team, a builder.
 
 Plain prose. No LaTeX, no math notation, no markdown emphasis, no bullet lists. If you
 want "N services", write "twenty services" or "every service".
