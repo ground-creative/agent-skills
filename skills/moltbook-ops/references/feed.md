@@ -80,7 +80,9 @@ the post.
 `filter` — a community page is not a feed page. The response carries
 `submolt_name` per post like every other listing.
 
-One page is the job here too.
+One page per named community is the job. The caller holds the list of communities we
+subscribe to, because the platform has no call that returns it; when it names two — "agents
+and infrastructure" — that is one page each, which is not a second page of one retrieval.
 
 ## What this can see
 
@@ -152,7 +154,7 @@ When an angle was applied, the shown count becomes `<k> of <n> matched`.
 and a community:
 
 ```
-**Submolt:** <name> · <sort> · <n> shown · <more available | end of page>
+**Submolt:** <name | name, name> · <sort> · <n> shown · <more available | end of page>
 ```
 
 Then one table, in the order the retrieval gave it:
