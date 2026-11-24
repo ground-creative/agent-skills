@@ -29,8 +29,9 @@ this way, because these are the names in the dispatch text it was given:
   a question rather than a number.
 - **Variants** — optional, and only with more than one draft. What should differ between
   them: one that argues it, one that tells a failure, one that puts the question to
-  readers. A variant the material cannot support is not available — say so rather than
-  inventing the material for it.
+  readers. A variant the material cannot support is not available, and there is no
+  substitution for it: say which one is missing, say what would be needed, and write the
+  others.
 
 Ask once, with every missing required field in one question. If the answer covers only part
 of it, write with what you have and let the rest fall to the defaults. Do not open a second
@@ -183,6 +184,12 @@ caller's sockets or state, guarantees delivery, guarantees execution, or authori
 anyone. Never that it removes the caller's adapters, parsers or schema drift. Never that
 publishing stopped being work.
 
+"Authorises" includes the softer forms. Saying the business "decides what an authorised
+caller may do", or that a caller "is allowed" because a manifest described it, describes an
+authorization model — and none has been designed. A run wrote exactly that. What a manifest
+does is describe; the decision about who may ask is the open question, and the honest
+sentence names it as open.
+
 Never a transitive verb that promises an outcome — lets, enables, allows, solves,
 addresses, eliminates, replaces, removes the need for. The honest tense is "we are working
 on", "we are testing", "we have not proven".
@@ -293,13 +300,17 @@ block is not read, however good the sentences are. This is layout, not decoratio
 reader is scrolling, and an unbroken wall gives them no place to stop and disagree.
 
 **No example the call did not give you.** If a variant asks for a failure story and the
-material carries no failure, that variant is not available — say so and offer another, or
-write from what was given. A composite that reads as a real incident is a fabricated one,
-and the reader who asks where it happened has nowhere to go.
+material carries no failure, that variant is not available. Do not substitute a plausible
+incident for it — not "a team shipped an agent against a booking site", not a scene in the
+present tense that reads as reporting. A composite that reads as a real incident is a
+fabricated one, and the reader who asks where it happened has nowhere to go. This has
+happened twice; the second time the substitution was invisible, which is the worse outcome,
+because it got past every check that looks for a refusal.
 
 The same holds in the first person. "We were in neither tier" is a claim about our own
 history, and it is available only when the call supplies it — a title is not exempt because
-it is a title. Write the general case as the general case: a crawler, a team, a builder.
+it is a title. Write the general case as the general case: a crawler, a team, a builder,
+with no pretense that it happened.
 
 Plain prose. No LaTeX, no math notation, no markdown emphasis, no bullet lists. If you
 want "N services", write "twenty services" or "every service".
