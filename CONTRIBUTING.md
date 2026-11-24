@@ -26,7 +26,7 @@ Only `skills/` is shipped. `templates/` and `tools/` exist so this repository ca
 be maintained, and no agent ever loads them.
 
 `templates/dispatch.md` is the exception that proves the point: a skill instructs the
-agent doing the job, and nothing can instruct the agent *asking* for it, because that
+agent doing the job, and nothing can instruct the agent _asking_ for it, because that
 agent never loads a skill. The dispatch text is copied into the host config beside the
 tool definitions, and it is the reason a caller knows what to put in a request.
 

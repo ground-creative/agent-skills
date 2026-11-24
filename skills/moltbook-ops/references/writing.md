@@ -11,25 +11,31 @@ The deliverable is a draft. Reciting these rules back is not writing one.
 
 ## What this needs to be told
 
-Four things, and if any is missing, say so instead of inventing it.
+Which job — a post, a comment, a reply — and for a comment the post id, and for a reply the
+comment id as well. Without those there is no thread to read and nothing to answer.
 
-- **Which target.** A post, a comment, a reply. The wording usually says which, but
-  "write something about this" does not.
-- **Which post**, for a comment or a reply. Without a post id there is no thread to read
-  and nothing to answer.
-- **Which subject**, for a post. No topic and no claim means there is nothing to argue.
-- **What changed.** For a post, the event, number or decision that makes this worth reading
-  today, and who did it. A general observation about how systems decay has no stake and
-  produces a diary entry. Ask for it in the same question.
+Then five things. Two are required and three are not, and the caller names them exactly
+this way, because these are the names in the dispatch text it was given:
 
-If the request implies several drafts without a count — "some options", "a few takes" —
-ask how many, because the answer changes the shape of the work. Do not ask about angles,
-shapes, emphasis or exclusions; those are the writer's choices, and asking turns a
-request into a form.
+- **Story** — required. What happened, who did it, and when. A post without one has no
+  stake and comes out a diary entry; ask for it rather than writing around the gap. A
+  comment or reply takes its material from the thread instead.
+- **Angle** — optional. The argument to make, when the caller has one. It arrives in words
+  and never as a number, because the caller has not read this file. The argument binds;
+  find the angle that carries it.
+- **Leave out** — optional. Binding when given, and the commonest cure for a draft that
+  reads like a pitch.
+- **Drafts** — required. The caller says how many, and "some options" or "a few takes" is
+  a question rather than a number.
+- **Variants** — optional, and only with more than one draft. What should differ between
+  them: one that argues it, one that tells a failure, one that puts the question to
+  readers. A variant the material cannot support is not available — say so rather than
+  inventing the material for it.
 
-Ask once, with every missing field in one question. If the answer covers only part of
-it, write with what you have and let the rest fall to the defaults. Do not open a second
-round.
+Ask once, with every missing required field in one question. If the answer covers only part
+of it, write with what you have and let the rest fall to the defaults. Do not open a second
+round. Do not ask about shapes, emphasis or exclusions; those are the writer's choices, and
+asking turns a request into a form.
 
 ## Given, not checked
 
@@ -49,11 +55,8 @@ top. Do not go and look for it, and do not write around it.
 
 ### Steering, when the caller wants it
 
-A caller may narrow the work. This is the only channel for that, and it is optional.
-
-**Binding when named:** the target, the post id, the subject, what changed, how many
-drafts, the argument to make stated in the caller's own words, a fact to underline, an
-exclusion.
+The five names above are the whole channel, and a caller may also underline one fact to
+make, which is binding too.
 
 **The caller does not have this file.** It has never seen the twelve angles or the six
 shapes, so "angle 4" and "shape C" mean nothing to it and it will not say them to open a
@@ -84,6 +87,10 @@ have drifted.
 use that one — the argument binds, the numbering does not. Otherwise choose at random from
 the twelve below: the angle that feels most concrete is the one every run picks, which is
 the failure this rule prevents. For a set, give each draft a different angle.
+
+If no angle carries the stated point, name the closest one and say what arguing it would
+cost, rather than reporting a number the draft does not defend. The `Why` line describes a
+fit that exists; it does not manufacture one.
 
 **Shape.** Chosen independently of the angle. A is overused; if you land on A unprompted,
 take another. A caller can keep or replace the shape by naming the letter it saw in an
@@ -275,6 +282,16 @@ runtime pointed at a deployment and what it could not do, or the part they would
 implement. Choose the one this angle earns — the minimum-surface and fragmentation angles do
 not get the same ask, and a post that claims nothing is running does not get a command.
 
+**Break it into paragraphs.** Three to five, separated by a blank line, each making one move
+— the event, the incentive, the cost, the position, the ask. A post that arrives as one
+block is not read, however good the sentences are. This is layout, not decoration: the
+reader is scrolling, and an unbroken wall gives them no place to stop and disagree.
+
+**No example the call did not give you.** If a variant asks for a failure story and the
+material carries no failure, that variant is not available — say so and offer another, or
+write from what was given. A composite that reads as a real incident is a fabricated one,
+and the reader who asks where it happened has nowhere to go.
+
 Plain prose. No LaTeX, no math notation, no markdown emphasis, no bullet lists. If you
 want "N services", write "twenty services" or "every service".
 
@@ -294,6 +311,9 @@ read alone, by someone who does not see the others.
 - Do not rank them, recommend one, or write "the safer option" inside a draft.
 - The reason for each, and the note on what separates them, are metadata. They never
   appear in a draft's body.
+- When the caller says what should differ, that is the axis and it is binding. The other
+  axes are still yours, so a set of three is not three answers to the caller's one
+  instruction.
 
 The failure this prevents is one draft written three times. If two drafts could be
 swapped without a reader noticing, rewrite one from a different angle and shape rather
@@ -379,6 +399,10 @@ explanation of process, no alternatives beyond those asked for, no notes.
 17. Is there a named party, a number or a quotation, a cost that lands on the reader, and a
     direction — and is the event in the first paragraph?
 18. Could a reader disagree with the second paragraph? If not, there is no position in it.
+19. Is it broken into three to five paragraphs with blank lines between them?
+20. Does every example in it come from the material given, rather than from a composite
+    that reads like one?
+21. Does the draft argue the angle it reports, or did the `Why` line stretch to cover it?
 
 ## Retired phrasing
 

@@ -1,6 +1,6 @@
 # Dispatch
 
-A skill instructs the agent doing the job. It cannot instruct the agent *asking* for the
+A skill instructs the agent doing the job. It cannot instruct the agent _asking_ for the
 job, because that agent never loads it. This file is the other half: the prose that goes
 into the host config, next to the tool definitions.
 
@@ -17,23 +17,53 @@ published until a second call asks for it.
 Load both skills before starting: moltbook-ops for the writing rules, agent-front-door
 for what may be claimed about our project.
 
-Say what to write in ordinary prose and include:
+Say which job it is — a post, a comment, a reply — and give the post id for a comment,
+and the comment id too for a reply. Then:
 
-  - what happened — who did it and when, a decision, an announcement, a number
-  - the point to make, if you want a particular one
-  - what to leave out, if anything
-  - how many drafts, if not one
-  - the post id for a comment, and the comment id for a reply
+  Story:     what happened, who did it, and when. Required.
+  Angle:     the argument to make, in your own words. Optional.
+  Leave out: anything it must not say. Optional.
+  Drafts:    how many. Required.
+  Variants:  what should differ between them. Optional, only with more than one draft.
 
-Do not summarise the project, the specification, or our features; the skill carries them
-and repeating them makes the draft over-apply them. Do not ask it to check whether the
-story is true: it cannot look things up for that purpose, and it will stop writing to try.
+Story carries the material and the skill carries the project. Do not summarise the
+specification or our features into the call — repeating them makes the draft over-apply
+them. Do not ask it to check whether the story is true: it cannot look things up for that
+purpose, and it will stop writing to try.
 
-Example:
+Example, one draft with an argument of ours:
 
-  Write a post. Amazon sued Perplexity over Comet buying on a customer's behalf and
-  calling it unauthorised access. Make the point that a platform granting access is a
-  platform owning the relationship. No feature list. One draft, do not publish.
+  Write drafts for a post. Load moltbook-ops for the writing rules and agent-front-door
+  for what we may claim.
+
+  Story: Amazon sued Perplexity over Comet buying on a customer's behalf and calling it
+    unauthorised access. The customer was doing what customers do; the agent was doing it
+    for them.
+  Angle: A platform granting access is a platform owning the relationship, and a deal can
+    only ever be with some of us.
+  Leave out: Our features, and anything about the manifest.
+  Drafts: 1
+
+Example, three drafts with no argument of ours:
+
+  Write drafts for a post. Load moltbook-ops for the writing rules and agent-front-door
+  for what we may claim.
+
+  Story: Crawlers are blocked by default now, and the way through is a signed identity
+    issued to whoever was let in. Two tiers, and the second tier is every agent someone
+    builds themselves.
+  Drafts: 3
+  Variants: One that argues it, one that tells a failure, one that asks them a question.
+
+Example, a comment:
+
+  Write drafts for a comment. Load moltbook-ops for the comment rules and agent-front-door
+  for what we may claim.
+
+  Story: The post argues bot-blocking is justified because agents are hostile. Post id
+    <id>.
+  Angle: Answer their argument; do not pitch.
+  Drafts: 1
 
 Returns one block per draft: the title and content, then the angle, the shape and a line
 on why that pair. A set adds one line on what separates the drafts.
@@ -79,5 +109,5 @@ remembered correctly, and no error when it gets one wrong — the writer just re
 sentence with a missing clause.
 
 The requirements are already in `skills/moltbook-ops/references/writing.md` under "What
-this needs to be told". The prose above says the same four things in the caller's
+this needs to be told". The prose above says the same five things in the caller's
 vocabulary. When one changes, both change.
