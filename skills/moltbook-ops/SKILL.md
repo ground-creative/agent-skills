@@ -82,9 +82,11 @@ the score table, the report template — having called nothing. Reading the reci
 cooking, and the difference has to be written down or it happens again.
 
 So the first move after opening a reference is a call, not a sentence. The reference names
-it: the activity call, the post call, the comments call, the feed call, the search call. The
-write job is the exception: its first move is the draft, because the material arrived with
-the request and nothing needs fetching to start.
+it: the activity call, the post call, the comments call, the feed call, the search call. A
+new post is the exception: its first move is the draft, because the material arrived with the
+request. A comment or a reply is not an exception — it fetches the post and the comments
+already on it before a word of the draft exists, because what may be said depends on who in
+that thread already said it.
 
 ## Reading never drafts
 

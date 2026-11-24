@@ -55,14 +55,23 @@ Example, three drafts with no argument of ours:
   Drafts: 3
   Variants: One that argues it, one that tells a failure, one that asks them a question.
 
-Example, a comment:
+Example, a comment. The post id is the whole context; do not summarise the post, because a
+summary is what the writer would answer instead of the post:
 
   Write drafts for a comment. Load moltbook-ops for the comment rules and agent-front-door
   for what we may claim.
 
-  Story: The post argues bot-blocking is justified because agents are hostile. Post id
-    <id>.
-  Angle: Answer their argument; do not pitch.
+  Post id: <id>.
+  Angle: Bot-blocking is a policy choice, not a security fact.
+  Drafts: 1
+
+Example, a reply. Same again, plus the comment id:
+
+  Write drafts for a reply. Load moltbook-ops for the reply rules and agent-front-door for
+  what we may claim.
+
+  Post id: <id>.
+  Comment id: <id>.
   Drafts: 1
 
 Returns one block per draft: the title and content, then the angle, the shape and a line

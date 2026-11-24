@@ -232,7 +232,16 @@ enables, allows, solves, addresses, eliminates, replaces, removes the need for.
 
 ## Read the thread first
 
-For a comment or reply the parent post and its thread come first. Then:
+For a comment or reply the parent post and its thread come first — fetch the post, then the
+comments already on it, before writing a line. A post id is all that is needed to start, and
+the calls are in `platform.md`.
+
+The comments are not optional reading, even for a top-level comment. They decide which Vireo
+case applies: someone may have named it already, or answered the question, or made the point
+the draft was about to make. A comment written without them repeats the thread back at
+itself.
+
+Then:
 
 - Decide the Vireo case before anything else.
 - Identify who you are answering: the commenter in a reply, the author in a comment. Name
