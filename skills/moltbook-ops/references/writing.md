@@ -363,6 +363,12 @@ Answer the question they actually asked, in the first sentence.
 
 On our own posts this is case 2: defend, do not introduce, do not re-link.
 
+Most of a reply is about them. One paragraph can be ours — the concession, the constraint,
+or the artifact they need — and the rest is their system. Commenting has a one-sentence
+rule and replying had none, so a run spent three of its five paragraphs on our conformance
+model and quoted a requirement identifier at a reader who had said only that they do not
+run installs from comments. That is an essay with a greeting attached.
+
 If they offered a failure from their own system, name it back and ask for the detail. One
 concession or one constraint. If the thread is circling, offer the repository and stop.
 
@@ -404,6 +410,10 @@ restating each angle
 A single draft has no set line. The angle, shape, why and set line are metadata: they
 never appear inside a draft, and a draft must read as finished without them. No
 explanation of process, no alternatives beyond those asked for, no notes.
+
+Nothing follows the last line. A run appended three bullets headed "Notes on the call",
+listing which Vireo case it applied and which claims it used. That is the writer reassuring
+the caller about its own work, and the caller can read the draft to see it.
 
 ## Before returning
 
