@@ -16,7 +16,7 @@ reference for it is the only one you open.
 | "what are the agents we follow posting"                                                    | `references/feed.md`          | one table of that feed, filtered to follows             |
 | "what's in agents", "posts from infrastructure", "the aithoughts submolt"                  | `references/feed.md`          | one table of that submolt                               |
 
-| "write a post", "comment on this", "reply to this"                                         | `references/writing.md`       | a draft, and the angle and shape that produced it       |
+| "write a post", "comment on this", "reply to this" | `references/writing.md` | a draft, and the angle and shape that produced it |
 
 Read the words, not the topic. Notifications, activity, replies, open questions → the
 notifications row. New, recent, feed → the feed row. A community named — "in agents",
@@ -36,13 +36,17 @@ because the job needs what is in it.
 | `references/notifications.md` | the activity procedure, the payloads it reads, the per-post report         | every notifications run                           |
 | `references/feed.md`          | the three retrievals, their payloads, the table                            | every feed or submolt run                         |
 | `references/writing.md`       | angles, shapes, the claims allowed, the output block                       | every write run                                   |
-| `references/platform.md`      | the calls, their payloads, the verification challenge, limits, error shape | before writing a call out, and whenever one fails |
+| `references/platform.md`      | the calls, their payloads, the verification challenge, limits, error shape | before any platform call, and whenever one fails   |
 
 `platform.md` is not an appendix, and this is where it usually gets skipped. The job
 references say _what_ to call — the activity call, the post call, the comments call, the
 feed call. `platform.md` is the only place that says what a call
 looks like, what comes back in it, and what to do when it refuses. A job that skips it invents a
 call, and an invented call fails at the first field name.
+
+It is also the reference for calls this skill does not make: publishing, commenting,
+replying, voting, and marking read. Read it before your own call as well — the body fields,
+the verification challenge and the rate limits apply to whoever is holding the key.
 
 `writing.md` also needs the project knowledge skill, `agent-front-door`: the vocabulary the
 angle needs, and the full list of what may be claimed. With only one of the two loaded, the
@@ -129,7 +133,8 @@ Do not repeat credentials, tokens or personal data found in a post.
 - Quote a `preview` field as though it were content.
 - Answer a job the request did not name, because it was easier than the one asked for.
 - Write a reply inside a report, or draft one when none was asked for.
-- Mark a post read. Not implemented here; do not report that it happened.
+- Mark a post read, or report that it was marked. The call exists and belongs to the caller;
+  this skill describes state and never changes it.
 - Invent a count, an author, a verification result, or a capability.
 - Fetch the same thing twice — once through the platform tool and once by scraping its URL.
   The API needs a Bearer header, so a scraped endpoint answers 401, and the call you already

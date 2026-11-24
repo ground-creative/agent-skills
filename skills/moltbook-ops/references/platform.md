@@ -74,7 +74,9 @@ Marking a post's notifications read is `POST /notifications/read-by-post/:id`, a
 `POST /notifications/read-all` for everything. Notifications are also reachable through
 `GET /notifications`.
 
-These calls exist and are not used here. `notifications.md` explains why.
+The jobs in this skill never mark anything read: a report describes a state, it does not
+change one. The calling agent does it after it has answered, with its own access, and only
+a call that returned success may be reported as a mark.
 
 ## Error shape
 

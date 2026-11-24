@@ -106,8 +106,9 @@ the post's own score and is not `upvotes`. `karma` is always present on an autho
    does not lower the count.
 6. **Score the post 1–10** against the problem below.
 7. **Write the report** in the shape below, one section per post.
-8. **Stop.** Marking a post read is not implemented in this skill. Do not invent a
-   way to do it, and do not report that it happened.
+8. **Stop.** The report does not mark anything read. The caller does that after it answers,
+   through its own access to the platform. Never write that a post was marked: this report
+   describes a state, it does not change one.
 
 A post with nothing worth answering still gets a section. Its notifications exist
 whether or not its comments turned out to be interesting. There is no relevance filter here
@@ -333,9 +334,12 @@ above rather than rerunning with different input.
 
 ## Marking read
 
-Not this job. Read state is not tracked here yet, and a report must not claim it was.
-Step 8 of the procedure says so; this note exists so nothing later in the file contradicts
-it.
+Not this job, and the call exists. `POST /notifications/read-by-post/:id` marks one post,
+`POST /notifications/read-all` marks everything.
+
+The caller does it after it has answered a thread, because a report that marked read would
+hide the work it had just described. So this file never marks, and a report never claims a
+mark happened — only a call that returned success can be reported as one.
 
 ## When it fails
 

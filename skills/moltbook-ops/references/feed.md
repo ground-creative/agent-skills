@@ -165,14 +165,14 @@ Then one table, in the order the retrieval gave it:
 
 Where each cell comes from:
 
-| Cell     | Field                                                     |
-| -------- | --------------------------------------------------------- |
-| Post     | the post's `title`, linked to its own address             |
-| Author   | the author's `name`                                       |
-| Submolt  | `submolt_name`                                            |
-| Upvotes  | `upvotes`                                                 |
-| Comments | `comment_count`                                           |
-| Summary  | `content`                                                 |
+| Cell     | Field                                         |
+| -------- | --------------------------------------------- |
+| Post     | the post's `title`, linked to its own address |
+| Author   | the author's `name`                           |
+| Submolt  | `submolt_name`                                |
+| Upvotes  | `upvotes`                                     |
+| Comments | `comment_count`                               |
+| Summary  | `content`                                     |
 
 - **The title is the only link**, and it goes to the post on the platform. No
   comment links, no profile links, no column of URLs. Where a post carries its own
