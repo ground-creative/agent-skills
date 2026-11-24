@@ -14,13 +14,12 @@ The deliverable is a draft. Reciting these rules back is not writing one.
 Which job — a post, a comment, a reply — and for a comment the post id, and for a reply the
 comment id as well. Without those there is no thread to read and nothing to answer.
 
-Then five things. Two are required and three are not, and the caller names them exactly
-this way, because these are the names in the dispatch text it was given:
+Then five things. Two are required and three are not. The caller names them exactly this
+way, because the same five names are in the instructions the calling agent was given:
 
 - **Story** — required. What happened, who did it, and when. A post without one has no
   stake and comes out a diary entry; ask for it rather than writing around the gap. A
-  comment or reply takes its material from the thread instead.
-- **Angle** — optional. The argument to make, when the caller has one. It arrives in words
+  comment or reply takes its material from the thread instead.- **Angle** — optional. The argument to make, when the caller has one. It arrives in words
   and never as a number, because the caller has not read this file. The argument binds;
   find the angle that carries it.
 - **Leave out** — optional. Binding when given, and the commonest cure for a draft that
