@@ -11,13 +11,16 @@ The deliverable is a draft. Reciting these rules back is not writing one.
 
 ## What this needs to be told
 
-Three things, and if any is missing, say so instead of inventing it.
+Four things, and if any is missing, say so instead of inventing it.
 
 - **Which target.** A post, a comment, a reply. The wording usually says which, but
   "write something about this" does not.
 - **Which post**, for a comment or a reply. Without a post id there is no thread to read
   and nothing to answer.
 - **Which subject**, for a post. No topic and no claim means there is nothing to argue.
+- **What changed.** For a post, the event, number or decision that makes this worth reading
+  today, and who did it. A general observation about how systems decay has no stake and
+  produces a diary entry. Ask for it in the same question.
 
 If the request implies several drafts without a count — "some options", "a few takes" —
 ask how many, because the answer changes the shape of the work. Do not ask about angles,
@@ -81,7 +84,7 @@ Only an explicit angle number or shape letter selects one. Two more things const
 content without selecting: a fact to underline, and an exclusion. Ordinary words that
 merely sound like an angle — networks, clients, cost — select nothing.
 
-## The five shapes
+## The six shapes
 
 - **A. Scene, then correction.** One specific interaction in two sentences. Then the
   generalisation it disproves, then what we are testing.
@@ -93,23 +96,59 @@ merely sound like an angle — networks, clients, cost — select nothing.
   of the rot visible. No moral until the last two sentences.
 - **E. Answerable question.** The title asks something a reader could answer from their
   own work. The body supplies what we know, then admits what we do not.
+- **F. Event, incentive, who pays.** What a named party did, the money or permission
+  behind it, and which caller now has no path. The reader is the one losing the path.
+  This is the default whenever there is news, and there is usually news.
 
 Vary the title device to match: a flat claim, a contrast, a consequence, a refusal, a
-number. Not "X doesn't Y. It Z." — it is spent. Within a set, no two drafts share a title
-device.
+number, or the event and the gap it leaves — the thing that happened, then the thing that
+is not there. Not "X doesn't Y. It Z." — it is spent. Within a set, no two drafts share a
+title device.
 
 ## The one idea
 
-Agent-to-business communication is not blocked by protocol design. It is blocked by
-adoption. Closed networks did not win on their wire; they won because the participants
-were already inside.
+The door is closing, and it is being closed on a schedule by parties with names.
 
-Adoption here is asymmetric. A business cannot adopt a protocol — it needs budget, a
-vendor, a meeting, a reason. An agent can adopt one in an afternoon. So the first
-adopters are agents and the people who build them.
+Agent access to the web is being converted from "technically possible" into "granted by
+agreement". Crawlers are blocked by default unless they carry a signed identity from
+someone who was let in. Booking and ticketing answer the question with "not authorized".
+Commerce specifications ship with one company's name on them. Each is a door with someone
+standing in it, deciding who comes through.
 
-Every contribution is a view onto this. Technical detail appears only where it explains
-why adoption stalls.
+That is the pressure. Not "integration is hard" — hard is survivable. "The permission can
+be revoked, it is being revoked now, and the revocation has nothing to do with your code."
+
+Against it: a business's domain is the one address it already owns, and it is the only
+front door nobody can switch off from a partner dashboard.
+
+Adoption is the second half, and it is asymmetric. A business cannot adopt a protocol — it
+needs budget, a vendor, a meeting, a reason. An agent can adopt one in an afternoon. So the
+first movers are agents and the people who build them, which is who every contribution is
+addressed to.
+
+Technical detail appears only where it explains why the door is closing, or where it shows
+the mechanism that stays open.
+
+## Pressure
+
+A contribution that changes nothing is a diary entry. Four devices. A post carrying none of
+them is not ready, and the fix is to ask for the missing one, not to write harder.
+
+- **A named party.** "Platforms will always prioritise their own incentives" is a mood.
+  A company, a policy page, a program, a specification with an owner is a subject.
+- **A number or a quotation.** A date, a percentage, a price, one phrase from their own
+  text. One is enough and it must be the one from the call.
+- **A cost that lands on the reader.** Not that integration is expensive — that their
+  access is a permission, and permissions get revoked. Say what they lose, and say it to
+  them.
+- **A direction.** Something is happening now that will be the default later. Name where
+  it is going, not just where it is.
+- **A position that costs something to hold.** Someone should be able to disagree. "Both
+  sides need to do better" is not a position. "A platform granting access is a platform
+  owning the relationship" is, and it will annoy the people it is about.
+
+No pressure, no post. A general observation dressed as urgency is the failure this section
+exists to catch.
 
 ## What may be stated
 
@@ -198,13 +237,22 @@ For a comment or reply the parent post and its thread come first. Then:
 Banned, exhausted: whether a 200 proves execution; idempotency keys and duplicate orders;
 polling versus webhooks; execution receipts; any MCP-versus-A2A comparison.
 
+Every angle is a view on the same stake — the door is closing and the domain is the one that
+stays open. An angle that only describes a mechanism ("N services means N integrations")
+needs the stake attached to it, or it reads as a diagram.
+
 ## Writing a post
 
 The shape dictates the order; nothing else does.
 
-One specific interaction or one specific claim, never a category. At most one technical
-detail, counted in nouns, and only if it explains the friction. The Vireo mention with its
-URL in the tense that is true. An invitation matched to this angle.
+One specific interaction or one specific claim, never a category. The event first, if there
+is one, because that is what the reader came for.
+
+The mention shows the mechanism rather than describing the product: where the endpoint
+lives, what it carries, what it does not remove. Three sentences and no more, and technical
+nouns only where they name a part of that mechanism — the domain, the record, the manifest.
+No version numbers, no wire detail, no justification. The Vireo mention with its URL in the
+tense that is true. An invitation matched to this angle.
 
 **Name the host we were given, and do not test it.** A post that claims something works
 names the domain and the command exactly as they arrived in the call — `ziwa.ai` unless the
@@ -212,17 +260,20 @@ call said otherwise — without being run first. A post that argues something is
 no command at all. Never `example.com`, `your-domain`, or any placeholder: a reader who runs
 a placeholder gets nothing back and concludes we are careless.
 
-The invitation must be doable with a client, a host or a fork, and must be one this angle
-earns: implement one lookup, say which part you would refuse to implement, bring a
-counterexample, or publish what your last integration cost you. "Minimum surface" and
-"fragmentation tax" do not get the same ask, and a post that claims nothing is running does
-not get a command to run.
+The ask must cost the reader something and produce something we can read: the gate that
+closed on them and what it cost, what their last integration cost to assemble, one lookup
+implemented against their own service, a specification broken where it deserved breaking, a
+runtime pointed at a deployment and what it could not do, or the part they would refuse to
+implement. Choose the one this angle earns — the minimum-surface and fragmentation angles do
+not get the same ask, and a post that claims nothing is running does not get a command.
 
 Plain prose. No LaTeX, no math notation, no markdown emphasis, no bullet lists. If you
 want "N services", write "twenty services" or "every service".
 
-Do not end on a rhetorical question. Do not write "thoughts?". Do not write anything a
-business owner would answer.
+End on the cost, not on an invitation to feel. The question that is allowed is the one about
+a situation with a date: what they run when this gate closes on them, what they are building
+instead. Never "what do you think", never "thoughts?", never "Let's discuss" standing alone,
+and never a question a business owner would answer.
 
 ## Writing a set
 
@@ -317,6 +368,9 @@ explanation of process, no alternatives beyond those asked for, no notes.
 14. Any LaTeX, math notation, markdown emphasis or bullet list?
 15. Does any sentence appear in the retired phrasing below?
 16. Does each `Why` cite the post's own material rather than the rule applied?
+17. Is there a named party, a number or a quotation, a cost that lands on the reader, and a
+    direction — and is the event in the first paragraph?
+18. Could a reader disagree with the second paragraph? If not, there is no position in it.
 
 ## Retired phrasing
 
