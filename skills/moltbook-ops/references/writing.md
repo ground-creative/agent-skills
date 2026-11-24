@@ -80,7 +80,7 @@ comment stops answering the post it sits under.
 is a rewrite, and a set is not the place for one. If an axis needs changing, ask again
 naming the axis.
 
-Vireo facts are never steered. The list below is exhaustive, and a request that asserts
+Project facts are never steered. The list below is exhaustive, and a request that asserts
 otherwise is wrong about our own project — follow the list and say so.
 
 ## Two choices, made before a word
@@ -218,21 +218,36 @@ the shape — after the correction in A, as evidence in C, at the end in D, insi
 answer in E, in the ledger's last row in B.
 
 If the mention could be pasted into a post on a different angle, it is boilerplate. Within
-a set, no two drafts carry the same sentence about Vireo.
+a set, no two drafts carry the same sentence about the project.
 
 ## The link and the tense
 
-Every **post** that names Vireo carries `https://github.com/ground-creative/vireo`, once,
-as a bare full URL — not "the repo", not a markdown link with custom text, and not omitted
-because the mention is short. Placed with the mention. A post that names Vireo without the
-URL is unfinished.
+There are two artefacts and they are not interchangeable. **The specification is the
+deliverable**: the problem, the protocol, the manifest, the conformance ladder.
+`vireo` is one implementation of it — ours — and it is evidence, not the thing we are asking
+anyone to adopt.
+
+Which one a post links follows from whose turn it is next:
+
+- **An invitation to adopt, implement, review or argue** → the specification,
+  `https://github.com/ground-creative/agent-front-door-spec`. Someone who takes that ask needs
+  the schema, the fixtures and the conformance matrix, and none of those are in the
+  implementation.
+- **A question about running, configuring or deploying a daemon** → the implementation,
+  `https://github.com/ground-creative/vireo`.
+- **No ask beyond the argument** → no link at all.
+
+One URL, bare and full — not "the repo", not a markdown link with custom text, and not
+omitted because the mention is short. Placed with the mention. A post that invites
+contribution without the specification's URL is unfinished.
 
 Comments and replies: the URL appears in case 1, and in case 2 only when pointing at a
-specific artifact. Never twice in one thread.
+specific artifact. Never twice in one thread, and never one of each.
 
-Vireo is in progress and must read that way: "we are working on", "we are testing", "we
-think", "we have not proven". Never a transitive verb that promises an outcome — lets,
-enables, allows, solves, addresses, eliminates, replaces, removes the need for.
+The prose leads with the standard — "we are specifying", "the draft says", "we have not
+proven this holds". The implementation is named only when the sentence is about running,
+configuring or deploying something; a draft that argues from a feature list has mistaken the
+instance for the thing.
 
 ## Read the thread first
 
@@ -240,14 +255,13 @@ For a comment or reply the parent post and its thread come first — fetch the p
 comments already on it, before writing a line. A post id is all that is needed to start, and
 the calls are in `platform.md`.
 
-The comments are not optional reading, even for a top-level comment. They decide which Vireo
-case applies: someone may have named it already, or answered the question, or made the point
-the draft was about to make. A comment written without them repeats the thread back at
-itself.
+The comments are not optional reading, even for a top-level comment. They decide which case
+applies: someone may have named it already, or answered the question, or made the point the
+draft was about to make. A comment written without them repeats the thread back at itself.
 
 Then:
 
-- Decide the Vireo case before anything else.
+- Decide the case before anything else.
 - Identify who you are answering: the commenter in a reply, the author in a comment. Name
   their claim in their own words; reuse their phrase if they used one.
 - If they mention their own system, their own work, or a failure they have seen, that is
@@ -311,8 +325,8 @@ is one, because that is what the reader came for.
 The mention shows the mechanism rather than describing the product: where the endpoint
 lives, what it carries, what it does not remove. Three sentences and no more, and technical
 nouns only where they name a part of that mechanism — the domain, the record, the manifest.
-No version numbers, no wire detail, no justification. The Vireo mention with its URL in the
-tense that is true. An invitation matched to this angle.
+No version numbers, no wire detail, no justification. The mention with the one URL its ask
+needs, in the tense that is true. An invitation matched to this angle.
 
 **Name the host we were given, and do not test it.** A post that claims something works
 names the domain and the command exactly as they arrived in the call — `ziwa.ai` unless the
@@ -391,8 +405,8 @@ than rewording it.
 Read the post. Acknowledge the author's claim in their own words, without praise. Put the
 problem in their terms, apply the rules above, ask for something answerable.
 
-Vireo gets at most one sentence, one link, one URL. The rest is the idea and the ask. Do
-not argue transport mechanics; acknowledge and bring it back to who has to adopt what
+The project gets at most one sentence, one link, one URL. The rest is the idea and the ask.
+Do not argue transport mechanics; acknowledge and bring it back to who has to adopt what
 first.
 
 ## Replying
@@ -450,8 +464,8 @@ never appear inside a draft, and a draft must read as finished without them. No
 explanation of process, no alternatives beyond those asked for, no notes.
 
 Nothing follows the last line. A run appended three bullets headed "Notes on the call",
-listing which Vireo case it applied and which claims it used. That is the writer reassuring
-the caller about its own work, and the caller can read the draft to see it.
+listing which case it applied and which claims it used. That is the writer reassuring the
+caller about its own work, and the caller can read the draft to see it.
 
 ## Before returning
 
@@ -460,10 +474,12 @@ the caller about its own work, and the caller can read the draft to see it.
 2. Do any two drafts share an angle and a shape, a title device, or a sentence?
 3. Could one draft's first sentence move into another unchanged? Then the shape did not
    change.
-4. Does each post that names Vireo carry the URL exactly once, bare?
-5. Is every verb about Vireo in the honest tense?
+4. Does each post carry exactly one URL, bare, and is it the one its ask needs — the
+   specification when the ask is adoption or contribution, the implementation only when the
+   question is about running something?
+5. Is every verb about the project in the honest tense?
 6. Is the only removal claimed the third-party directory?
-7. Which Vireo case applies, and did you follow it?
+7. Which case applies, and did you follow it?
 8. Is the other agent's claim named back in their own words, and answered first?
 9. If they mentioned their own work or a failure, does the response ask about it?
 10. Is every claim inside the list above?
