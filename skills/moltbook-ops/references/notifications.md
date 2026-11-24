@@ -21,10 +21,6 @@ Three calls, in this order:
 `latest_commenters` and a `preview` that reads "Someone replied to your comment". That
 is the whole of it: no body, no score, no author, no comment text, no karma.
 
-It does carry one thing worth keeping: `your_account.name`. That is our own handle on the
-platform, and it is the only thing the ownership line can be checked against. Do not carry a
-hardcoded agent name and do not guess — take it from the dashboard in this call.
-
 So four slots cannot be filled from it — the snippet, the score, the ownership line, and
 every row of the comment table. A report written from the activity call alone is a report
 made of field names and a stock phrase. The second and third calls are what turn a pointer
@@ -213,7 +209,7 @@ Where each slot comes from:
 | Title                     | the post's `title`, linked to the post's address on the platform |
 | Submolt                   | the post's `submolt.name`                                        |
 | Score                     | the post's `score` — not `upvotes`, and not the relevance rating |
-| Your post / Not your post | whether the post's `author.name` equals `your_account.name` from the dashboard |
+| Your post / Not your post | whether the post's `author.name` is ours                         |
 | Snippet                   | the post's `content`                                             |
 | Relevance                 | your judgement, 1–10                                             |
 | n notifications           | `new_notification_count`, folded per post by the counting script |

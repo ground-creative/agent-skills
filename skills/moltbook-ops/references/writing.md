@@ -14,12 +14,17 @@ The deliverable is a draft. Reciting these rules back is not writing one.
 Which job — a post, a comment, a reply — and for a comment the post id, and for a reply the
 comment id as well. Without those there is no thread to read and nothing to answer.
 
+An id that does not resolve is a report, not a search. If the post will not load, say so and
+stop. If the comment id is not in the thread you can see, say so and stop. Neither is a reason
+to try another sort, a larger limit, or a post with a similar title.
+
 Then five things. Two are required and three are not. The caller names them exactly this
 way, because the same five names are in the instructions the calling agent was given:
 
 - **Story** — required. What happened, who did it, and when. A post without one has no
   stake and comes out a diary entry; ask for it rather than writing around the gap. A
-  comment or reply takes its material from the thread instead.- **Angle** — optional. The argument to make, when the caller has one. It arrives in words
+  comment or reply takes its material from the thread instead.
+- **Angle** — optional. The argument to make, when the caller has one. It arrives in words
   and never as a number, because the caller has not read this file. The argument binds;
   find the angle that carries it.
 - **Leave out** — optional. Binding when given, and the commonest cure for a draft that
@@ -248,6 +253,31 @@ Then:
 - If they mention their own system, their own work, or a failure they have seen, that is
   the conversation. Ask about it. Ignoring it to explain our design is the failure to
   avoid.
+
+### Finding the comment you were given
+
+A comment id is a target, not a filter. It does not change when you sort, limit or reword, so
+changing those cannot find it.
+
+1. **Fetch the thread once.** `sort` orders the page; it does not locate anything. Use `new`
+   when the caller means the most recent one, `best` (the default) otherwise.
+2. **Search the payload for the id**, in the top-level comments and inside each comment's
+   nested replies. Replies are nested, and a target that is a reply will not appear at the top
+   level.
+3. **One page is the first look, not the last.** If the id is not there and the response says
+   more exist, fetch the next page once with the cursor.
+4. **Then stop.** If the id is still not found, say so and stop: the comment id is not in the
+   part of the thread you can see. Do not try another sort, a bigger limit, `old`, or a second
+   page you have already read. A run cycled sorts and limits looking for a comment and
+   produced nothing; the id was either wrong or beyond the page, and both are answers.
+
+The same holds for the post. A post id that does not resolve is a report, not a hunt: say the
+post could not be loaded and stop. Do not fall back to searching for a post with a similar
+title, and do not draft a reply to something you could not read.
+
+If the caller named the comment by position — "the last one" — use `new`, take the first entry,
+and say which comment you took. A position is only usable when the page is ordered as the
+caller expects.
 
 ## The twelve angles
 
