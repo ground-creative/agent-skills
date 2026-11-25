@@ -80,27 +80,55 @@ an obvious hole in it, is the same failure wearing a compliance costume.
 Ceilings per turn, not targets. Several searches and several pages are normal and
 expected; the ceiling is what stops a loop, not what limits useful work.
 
+Three counters are tracked, and they have a fixed relationship:
+
+- **searches** — each query sent to an index. A **refinement is a search**: it
+  increments the search counter as well as the refine counter.
+- **pages** — each distinct URL opened. Opening the same URL again is not a new
+  page and spends nothing.
+- **refine** — a sub-limit *within* searches, not an addition to them. At most
+  this many of your searches may be reformulations of an earlier query.
+
+**calls = searches + pages.** The `calls` column is that sum; it is the single
+number to enforce, and the other columns tell you which ceiling you are spending.
+
 The ceiling scales with the job. Pick the row that matches the task before the
 first call, and say which row you picked only if the task turns out to need the
 larger one:
 
 | Task shape                                     | searches | pages | refine | calls |
 | ---------------------------------------------- | -------- | ----- | ------ | ----- |
-| a fact, one URL read, a yes/no question        | 3        | 6     | 1      | 8     |
+| a fact, one URL read, a yes/no question        | 3        | 6     | 1      | 9     |
 | a comparison, or 2–4 sources named in the task | 4        | 10    | 2      | 14    |
 | a survey, a list, or 5+ sources named          | 6        | 16    | 3      | 22    |
 
 Two rules beat the table:
 
-- **Named sources set a floor.** If the task names N pages to read, the page
-  ceiling is at least N + 2. A default that forbids reading what you were told to
-  read is the wrong default.
+- **Named sources set a floor.** If the task names N pages to read, raise the page
+  ceiling to N + 2 and the call ceiling to searches + (N + 2). A default that
+  forbids reading what you were told to read is the wrong default.
 - **Nothing beats the hard cap** of 8 searches, 20 pages and 28 calls in one turn.
-  A task that needs more than that is a multi-turn task; do not pretend otherwise.
+  If the named-source floor asks for more than 20 pages, stop at 20, name the
+  pages you could not reach, and list them as follow-up. A task that needs more
+  than the cap is a multi-turn task; do not pretend otherwise.
+
+### Accounting
+
+Counting is not optional; it is how the ceiling is kept. Keep a ledger from the
+first call:
+
+1. **Classify** the task and select its row.
+2. **Initialise** three counters at zero: searches, refine, pages.
+3. **Before** each operation, check the counter it would spend. If it would pass
+   a ceiling — searches, refine, pages, or the calls it implies — do not run it.
+4. **After** each operation, increment the counter it spent. A refinement
+   increments both searches and refine; a repeated URL increments nothing.
+5. **Stop** when the task is done or a counter reaches its ceiling. Never exceed a
+   ceiling to finish.
 
 When a ceiling is reached, end the turn with the partial result and the next
 step. Do not silently keep going, and do not pretend the task is complete. Say
-which ceiling you hit when it was the hard cap rather than the row.
+which ceiling you hit — the row's or the hard cap.
 
 Never repeat an identical query. Never read the same URL twice. One URL is one
 source, however many searches returned it.
