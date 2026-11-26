@@ -100,18 +100,14 @@ it does not satisfy. Partial claims are permitted; silent gaps are not part of t
 
 **What exists.** One implementation, Vireo, in Go: a daemon, a terminal client that speaks the
 protocol with no MCP in the path, and an MCP adapter for hosts that need one. A live
-deployment at `ziwa.ai`, reachable at `vireo.ziwa.ai:7778` and found via
-`_vireo._tcp.ziwa.ai`, which is the retired record: the deployment has not yet
-published `_portico._tcp`, so clients reach it through the `PROTO-48` fallback and
-report that when they connect. Say "reachable via the retired record" rather than
-naming a record that does not resolve.
-verified at L2 by the specification's own probe, which shares no code with the implementation.
-The daemon claims L2 against `spec-v0.4`; progress and cancellation are advertised, and L3
-remains unproven because no probe can require a third party's backend to stream or abandon a
-turn. The claim says so rather than implying otherwise.
+deployment at `ziwa.ai`, reachable at `vireo.ziwa.ai:7778`, found via
+`_portico._tcp.ziwa.ai`, and verified at L2 by the specification's own probe, which shares no
+code with the implementation. The daemon claims L2 against `spec-v0.4`; progress and
+cancellation are advertised, and L3 remains unproven because no probe can require a third
+party's backend to stream or abandon a turn. The claim says so rather than implying otherwise.
 
-There is no independent client in another language, no second daemon, and no party but us running
-an endpoint that is not ours. There is no global searchable directory: a caller must know or
+There is no independent client in another language, no second daemon, and no endpoint running
+that is not ours. There is no global searchable directory: a caller must know or
 obtain a domain before discovering its endpoint. The project is not a social network, an agent
 orchestration framework or a language model.
 
