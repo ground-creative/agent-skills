@@ -86,7 +86,7 @@ Three counters are tracked, and they have a fixed relationship:
   increments the search counter as well as the refine counter.
 - **pages** — each distinct URL opened. Opening the same URL again is not a new
   page and spends nothing.
-- **refine** — a sub-limit *within* searches, not an addition to them. At most
+- **refine** — a sub-limit _within_ searches, not an addition to them. At most
   this many of your searches may be reformulations of an earlier query.
 
 **calls = searches + pages.** The `calls` column is that sum; it is the single
