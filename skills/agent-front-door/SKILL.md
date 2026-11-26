@@ -1,15 +1,23 @@
 ---
 name: agent-front-door
-description: Project knowledge for the open specification on direct agent-to-business communication — the problem it addresses, what it proposes, the protocol, the conformance ladder, what is actually implemented, what is unresolved, and where the normative documents and repositories are. Use when a task asks about this project, its protocol, DNS-based discovery, manifests, sessions, conformance levels, how it compares to other agent protocols, or what an implementation supports — including before researching, writing, reviewing or answering anything on the project's behalf.
+description: Project knowledge for the open specification on direct agent-to-agent and agent-to-party communication — the problem it addresses, what it proposes, the protocol, the conformance ladder, what is actually implemented, what is unresolved, and where the normative documents and repositories are. Use when a task asks about this project, its protocol, DNS-based discovery, manifests, sessions, conformance levels, how it compares to other agent protocols, or what an implementation supports — including before researching, writing, reviewing or answering anything on the project's behalf.
 ---
 
 You hold the following as your own knowledge of the project, and speak from it.
 
-**The project is Agent Front Door** — an open specification for how AI assistants discover and
-communicate with businesses directly, at the business's own domain, without a directory,
-marketplace or platform in between. The protocol it defines is `portico/1`. It is a draft,
-currently `spec-v0.4`, published to find where it is wrong before anyone runs production
-traffic on it.
+**The project is Agent Front Door** — an open specification for how one agent discovers and
+talks to another party directly, at that party's own domain, without a directory, marketplace
+or platform in between. The party may be a business, a person, a studio, a local agent on
+someone's own hardware, a game server — anything that controls a domain. The protocol it
+defines is `portico/1`. It is a draft, currently `spec-v0.4`, published to find where it is
+wrong before anyone runs production traffic on it.
+
+**It is not a business protocol, and saying so is a correctness matter, not a matter of
+taste.** The symmetry is the design: the same daemon runs at either end. A business runs one
+so callers can reach it; a person running an agent at home can run one at a domain they own,
+and then their agent is reachable too. Two daemons, one protocol, neither side special. Never
+frame this as assistants reaching businesses — that is the caller side only, and it turns a
+symmetric protocol into a product for vendors.
 
 **The specification is the deliverable**: the problem, the protocol, the manifest, the
 conformance ladder, and they live at
@@ -22,25 +30,25 @@ live deployment. It is an instance of the specification, not the standard, and i
 rather than the thing anyone is being asked to adopt. It is not the project's name, and it is
 not what a reader is being invited to join.
 
-**The problem it addresses.** Every business already has a front door for humans: a domain, a
-website, HTTP, HTML, cookies, forms. It was built for a reader with eyes — it carries
+**The problem it addresses.** Every party that owns a domain already has a front door for
+humans: a website, HTTP, HTML, cookies, forms. It was built for a reader with eyes — it carries
 navigation, styling and scripts, assumes a session kept in a browser, and defends itself
-against automation with bot walls and captchas. An assistant needing one fact fetches pages,
+against automation with bot walls and captchas. An agent needing one fact fetches pages,
 parses markup, guesses which link matters, and depends on a layout that changes without
 notice. One answer costs several pages and a parse, and when the layout changes the
 integration breaks quietly.
 
 Custom APIs, GraphQL schemas, OpenAPI documents and MCP servers each solve discovery and
-multi-turn conversation for one service, built for one assistant. Nothing carries over to the
-next business or the next assistant.
+multi-turn conversation for one service, built for one agent. Nothing carries over to the
+next party or the next agent.
 
 The gap is not capability but contract: one way to name an endpoint, one way to describe what
 it exposes, one way to hold a conversation with it, one way to express finished, still
 working, or gave up.
 
 **What the specification proposes.** A second door, next to the website, built for a different
-kind of caller. The business's own domain names it, a manifest describes it, and a session
-holds the conversation with explicit progress and an explicit end. The business keeps its
+kind of caller. The party's own domain names it, a manifest describes it, and a session
+holds the conversation with explicit progress and an explicit end. The party keeps its
 backend, models, logic and data; the specification standardises the contract between the two
 sides, not the software behind it, and implies no model, provider, language or agent
 framework.
@@ -48,15 +56,15 @@ framework.
 Metadata and conversation are different problems. A description is a document, and
 that part is simple. Conversation is not: asking, reporting progress, cancelling and
 ending are not expressible in a page. That split is why a protocol exists alongside
-the manifest. An earlier draft let a business join by publishing a manifest file
+the manifest. An earlier draft let a party join by publishing a manifest file
 alone; that level was withdrawn, so participating means answering. Do not describe
 a zero-code on-ramp.
 
-**Discovery.** An SRV record at the business's domain, `_portico._tcp.<domain>`, names the target
+**Discovery.** An SRV record at the party's own domain, `_portico._tcp.<domain>`, names the target
 host and port before any HTTP request exists. A well-known path would answer where a document
 is, after one. The layers are kept separate: DNS routes, TLS authenticates the peer, the
 manifest describes what is offered. A client following an SRV target sends the queried domain
-as the server name, so the certificate at the target covers the name the business owns. TLS
+as the server name, so the certificate at the target covers the name the party owns. TLS
 1.3 is required; whether a particular client verifies the certificate depends on its
 configuration.
 
@@ -64,7 +72,7 @@ configuration.
 header carries stream, type and length. The client negotiates and receives the manifest first.
 A turn is a message in, zero or more progress frames, and an end that reports completed,
 failed or abandoned. Cancellation is an explicit frame rather than a dropped connection.
-Errors are typed. The daemon routes each turn to the business's own HTTP endpoint, including
+Errors are typed. The daemon routes each turn to the party's own HTTP endpoint, including
 streaming progress and the first turn.
 
 **The manifest.** A declarative document, versioned by `manifest_version`, delivered inside the
@@ -73,7 +81,7 @@ id, name, description, tags, whether it holds a conversation and a start message
 published material, each with a relation; the capabilities the endpoint actually implements,
 which is not the same as what the protocol permits; the limits a caller may expect to be
 refused; the session policy; and an integrity digest. It is what the standard is _about_: the
-whole point is that an agent learns what a business offers from a document the business
+whole point is that an agent learns what a party offers from a document that party
 published, rather than by scraping a page built for eyes. `manifest_version` and the
 specification's release tag are different numbers on purpose: a release tag never moves, while
 the manifest version is a compatibility promise to clients.
@@ -102,7 +110,7 @@ The daemon claims L2 against `spec-v0.4`; progress and cancellation are advertis
 remains unproven because no probe can require a third party's backend to stream or abandon a
 turn. The claim says so rather than implying otherwise.
 
-There is no independent client in another language, no second daemon, and no business running
+There is no independent client in another language, no second daemon, and no party but us running
 an endpoint that is not ours. There is no global searchable directory: a caller must know or
 obtain a domain before discovering its endpoint. The project is not a social network, an agent
 orchestration framework or a language model.
@@ -121,12 +129,12 @@ registry or directory is a place to be listed, and being listed is what this des
 the need for. The overlaps are real and the differences are architectural: discovery by SRV
 rather than a well-known path, session semantics with explicit turn states, and a conformance
 ladder whose claims admit their gaps. A manifest can point at an A2A Agent Card or an OpenAPI
-document, and a business can publish all three.
+document, and one party can publish all three.
 
 **Vocabulary.** manifest — what an endpoint exposes. discovery — the SRV lookup. session — the
-envelope scoping a conversation, not the conversation. caller — the client side. business —
-the party owning the domain, daemon and backend. conformance — a claim with its gaps listed.
-daemon — a process, not the standard.
+envelope scoping a conversation, not the conversation. caller — the client side. party —
+whoever owns the domain, daemon and backend; a business, a person, a local agent, any of them.
+conformance — a claim with its gaps listed. daemon — a process, not the standard.
 
 **Naming.** Three names, three jobs, and mixing them is the commonest way a sentence about
 this project goes wrong.
@@ -134,7 +142,7 @@ this project goes wrong.
 - **Agent Front Door** is the **project**. It is the name of the work, the repository, and the
   argument. Use it when the subject is what the project is trying to achieve and why it
   matters. This name did not change when the protocol was renamed, and it should not: it
-  states the thesis, which is that a business's own domain is the door an agent should be able
+  states the thesis, which is that a party's own domain is the door an agent should be able
   to use.
 - **`portico/1`** is the **wire protocol** — a token, not a name for the work. It belongs in
   a config file, an ALPN list, a `protocol` member, a header, or a `_portico._tcp` record.

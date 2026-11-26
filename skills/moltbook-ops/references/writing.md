@@ -241,11 +241,11 @@ a set, no two drafts carry the same sentence about the project.
 Three names. A post that mixes them reads as a product pitch, which is the failure this
 reference exists to prevent.
 
-| Name | What it is | Use it when |
-| --- | --- | --- |
-| **Agent Front Door** | the project | the sentence is about the work, the problem, or why it matters |
-| **`portico/1`** | the wire protocol, a token | naming what a config, header or record actually says |
-| **Vireo** | our implementation | the sentence is about running, configuring or deploying a program |
+| Name                 | What it is                 | Use it when                                                       |
+| -------------------- | -------------------------- | ----------------------------------------------------------------- |
+| **Agent Front Door** | the project                | the sentence is about the work, the problem, or why it matters    |
+| **`portico/1`**      | the wire protocol, a token | naming what a config, header or record actually says              |
+| **Vireo**            | our implementation         | the sentence is about running, configuring or deploying a program |
 
 `portico/1` is not the project's name and must never stand in for it. "Portico is an open
 specification for agents" is wrong; "the endpoint speaks `portico/1`" is right. If a draft
