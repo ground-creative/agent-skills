@@ -64,31 +64,40 @@ failed or abandoned. Cancellation is an explicit frame rather than a dropped con
 Errors are typed. The daemon routes each turn to the business's own HTTP endpoint, including
 streaming progress and the first turn.
 
-**The manifest.** A declarative document, versioned by `manifest_version`, carried inside the
-connection and publishable standalone. It carries the endpoint; the agents, each with an id,
-name, description, tags, the session operations it accepts and a start message; the links to
+**The manifest.** A declarative document, versioned by `manifest_version`, delivered inside the
+connection as the first thing a caller learns. It carries the endpoint; the agents, each with an
+id, name, description, tags, whether it holds a conversation and a start message; the links to
 published material, each with a relation; the capabilities the endpoint actually implements,
 which is not the same as what the protocol permits; the limits a caller may expect to be
-refused; the session policy; and optional freshness and integrity fields. `manifest_version`
-and the specification's release tag are different numbers on purpose: a release tag never
-moves, while the manifest version is a compatibility promise to clients.
+refused; the session policy; and an integrity digest. It is what the standard is *about*: the
+whole point is that an agent learns what a business offers from a document the business
+published, rather than by scraping a page built for eyes. `manifest_version` and the
+specification's release tag are different numbers on purpose: a release tag never moves, while
+the manifest version is a compatibility promise to clients.
 
-**Conformance.** L0 publishes a valid manifest: one file, no daemon, no TLS. L1 adds SRV, TLS,
-ALPN and the negotiate-to-manifest handshake. L2 adds sessions, messages and the backend
-webhook. L3 adds progress and cancellation. L4 adds advertised limits, persistence and
-retention. A claim names its role, its level and the spec release, and lists the requirements
+An adapter between an agent host and an endpoint must pass that document to its model rather
+than a summary of it (`MAN-59`) — otherwise the artifact the specification defines is read by
+the adapter and never reaches the party it was written for.
+
+**Conformance.** L1 is discovery: SRV, TLS 1.3, ALPN and the negotiate-to-manifest handshake.
+L2 adds sessions, messages and the backend webhook. L3 adds progress and cancellation. L4 adds
+advertised limits, persistence and retention. There was once an `L0` for publishing a manifest
+as a static file; it was withdrawn at `spec-v0.4` because no document ever defined where such a
+file would live and nothing could check it. Participation means answering, so the on-ramp
+narrows — say so rather than implying a zero-code path exists. A claim names its role, its level and the spec release, and lists the requirements
 it does not satisfy. Partial claims are permitted; silent gaps are not part of the format.
 
 **What exists.** One implementation, Vireo, in Go: a daemon, a terminal client that speaks the
 protocol with no MCP in the path, and an MCP adapter for hosts that need one. A live
 deployment at `ziwa.ai`, reachable at `vireo.ziwa.ai:7778` and found via `_frontdoor._tcp.ziwa.ai`,
 verified at L2 by the specification's own probe, which shares no code with the implementation.
-The daemon claims L2, partial L3 against `spec-v0.4`; progress and cancellation are advertised
-without a fixture proving them, and the claim says so.
+The daemon claims L2 against `spec-v0.4`; progress and cancellation are advertised, and L3
+remains unproven because no probe can require a third party's backend to stream or abandon a
+turn. The claim says so rather than implying otherwise.
 
-There is no independent client in another language, no second daemon, and no business
-publishing a manifest. There is no global searchable directory: a caller must know or obtain a
-domain before discovering its endpoint. The project is not a social network, an agent
+There is no independent client in another language, no second daemon, and no business running
+an endpoint that is not ours. There is no global searchable directory: a caller must know or
+obtain a domain before discovering its endpoint. The project is not a social network, an agent
 orchestration framework or a language model.
 
 **Unresolved in the specification.** Manifest signing and what key binds to the domain.

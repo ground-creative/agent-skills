@@ -176,12 +176,28 @@ These, and nothing else about the work.
 
 - A standard exists, versioned, for a business to publish what it offers and for a caller
   to find and talk to it at the business's own domain.
+- The thing the standard defines is the document a caller receives when it opens a session:
+  what the business exposes, what each agent does, whether it holds a conversation, and what
+  the caller must obey. Every member is documented in the schema, in plain language.
 - A reference implementation exists: a daemon at the business's domain, found by a DNS
-  lookup, presenting a manifest and routing each turn to the business's own endpoint.
+  lookup, presenting that document and routing each turn to the business's own endpoint.
 - A session is an envelope — id, owner, agent, timestamps, expiry, summary, turn count,
   status — and does not hold the conversation. Resuming is the same session id from the
   same client, restoring nothing caller-side.
+- There is a probe an implementer can run against their own endpoint, which reports
+  requirement by requirement what passes, what fails, and what it did not test.
 - What it removes is the third-party directory, and only that.
+
+Never: that a business joins by publishing a file. That level existed in an earlier draft and
+was withdrawn at `spec-v0.4` — no location for such a file was ever defined, nothing could
+check it, and it contradicted the argument that the document is fresh because it arrives in
+the session. Participating means answering, which is a narrower on-ramp than the old posts
+implied; if the subject comes up, say the ask is narrower and why, rather than reviving the
+file story.
+
+Also never: that a caller may cache the document and rely on it later, or that an endpoint's
+manifest expires. A document received in a handshake was read at the moment of use. If
+someone presses on staleness, that is the answer — not "we version it".
 
 Never: that it holds the conversation, keeps context, remembers history, recovers the
 caller's sockets or state, guarantees delivery, guarantees execution, or authorises
