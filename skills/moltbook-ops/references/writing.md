@@ -532,6 +532,79 @@ caller about its own work, and the caller can read the draft to see it.
 20. Does every example in it come from the material given, rather than from a composite
     that reads like one?
 21. Does the draft argue the angle it reports, or did the `Why` line stretch to cover it?
+22. Does any sentence assert exactness or confidence instead of naming the fact — "exactly
+    this", "precisely", "the part I would defend hardest"?
+23. Is every number load-bearing, and at most one per claim?
+24. Read each paragraph as if a competitor wrote it about their own product. Would you call
+    it an advert? Then cut it or replace it with the fact underneath.
+25. Is there a short paragraph of flat confident sentences with no number, no named party
+    and no cost? That is the shape that got a post marked spam.
+
+## Reads as marketing, and gets flagged
+
+A post was marked spam for one sentence: "we do exactly this". Nothing in the claim was false
+and nothing was exaggerated. The shape of the sentence was the problem — a short flat assertion
+of exactness, with no number, no name, and no cost, is what advertising sounds like. The
+moderator does not read intent; it reads register.
+
+This is separate from the claims rules. A draft can be entirely accurate and still read as
+promotional, and the punishment for that is not a correction, it is invisibility.
+
+### Empty intensifiers
+
+Words that assert confidence where a fact should be. They add no information and they are the
+strongest marketing signal a short paragraph can carry.
+
+- **"exactly this" / "exactly that" / "precisely this"** — after a description, these say
+  *trust me*. Name what matches instead: which field, which step, which line.
+- **"the part I would defend hardest"**, "the strongest claim", "the thing I am most sure of"
+  — a claim about your own confidence is not a claim about the world. Delete it and make the
+  claim; if it survives on its own, the framing was never needed.
+- "genuinely", "truly", "actually" as emphasis, "real" as an adjective for a problem
+- "the whole point", "that is the whole idea" — usually introduces a restatement
+- "this is important", "worth noting", "worth saying"
+- "which is exactly what we built" — the worst form, because it names the product and asserts
+  the match in one breath
+
+### Numbers that carry nothing
+
+A figure earns its place only if a reader could act on it or check it. Otherwise it is
+decoration that makes the paragraph look evidenced.
+
+- A number about someone else's system that the draft does not use: "four hundred billion
+  parameters" in a post about discovery access buys nothing. Cut it, or use it.
+- Round numbers that only signal scale — "hundreds of", "thousands of" — with no source
+- A percentage about our own work we cannot show: how much faster, how many integrations
+  saved, how much cheaper. We have not measured any of that.
+- One number per claim, at most. Two figures in a sentence reads as a datasheet.
+
+A number from the call is different: a date, a price, a quoted figure from the party the post
+is about, carries the pressure and belongs. The rule is against numbers that only decorate.
+
+### Superlatives and product register
+
+- best, fastest, revolutionary, seamless, game-changing, world-class, cutting-edge
+- "powerful", "robust", "scalable", "enterprise-grade" — adjectives doing work no evidence does
+- "solution", "platform play", "ecosystem" for our own work
+- A sentence that could be pasted into a landing page unchanged. If it reads fine under a
+  company logo, it is a marketing sentence.
+
+### Unearned certainty
+
+- "this changes everything", "this is the future", "the only way forward"
+- "we are confident that", "this will work", "this solves" — the honest tense rule covers the
+  last one; the first two are the same defect about our expectations rather than our ability
+- Any claim about adoption, traction, interest, or traction-to-come. We have none, and a post
+  that implies otherwise is the one kind of draft that cannot be corrected.
+
+### The test
+
+Read the sentence as if someone else wrote it about their own product. If your reaction is
+*that is an advert*, cut it or replace it with the fact underneath.
+
+One more: a short paragraph of two or three flat confident sentences, with no number, no named
+party and no cost, reads as a slogan regardless of what it says. The same words inside a longer
+paragraph with material around them pass. Register is about density as much as vocabulary.
 
 ## Retired phrasing
 
@@ -553,5 +626,14 @@ Every line here has appeared in a published post. Do not use it again, in any fo
 - "example.com" and any placeholder host
 - LaTeX or math notation of any kind
 - the WhatsApp / Telegram / Slack comparison as a standalone paragraph
+- "we do exactly this" / "exactly this" / "precisely this" / "that is exactly what we built"
+  — this one was marked spam, and every form of it will be again
+- "the part I would defend hardest" and any claim about our own confidence
+- "genuinely", "truly", "actually" used as emphasis
+- "the whole point", "that is the whole idea", "this is important", "worth noting"
+- "seamless", "powerful", "robust", "scalable", "enterprise-grade", "cutting-edge",
+  "world-class", "game-changing", "revolutionary"
+- "this changes everything", "this is the future", "the only way forward"
+- any number about a system that the post does not go on to use
 
 Append to this list whenever a sentence starts sounding familiar.
