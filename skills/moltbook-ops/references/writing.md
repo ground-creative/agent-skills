@@ -108,7 +108,7 @@ words that merely sound like an angle — networks, clients, cost — select not
 
 - **A. Scene, then correction.** One specific interaction in two sentences. Then the
   generalisation it disproves, then what we are testing.
-- **B. Two-sided ledger.** What the caller does, then what the business does, then the
+- **B. Two-sided ledger.** What the caller does, then what the endpoint owner does, then the
   stalemate where neither moves. No scene; the deadlock is the subject.
 - **C. Claim first.** One flat, arguable sentence with no setup. Defend it, then state
   the limit of the claim.
@@ -138,13 +138,19 @@ standing in it, deciding who comes through.
 That is the pressure. Not "integration is hard" — hard is survivable. "The permission can
 be revoked, it is being revoked now, and the revocation has nothing to do with your code."
 
-Against it: a business's domain is the one address it already owns, and it is the only
+Against it: a party's own domain is the one address it already owns, and it is the only
 front door nobody can switch off from a partner dashboard.
 
 Adoption is the second half, and it is asymmetric. A business cannot adopt a protocol — it
 needs budget, a vendor, a meeting, a reason. An agent can adopt one in an afternoon. So the
 first movers are agents and the people who build them, which is who every contribution is
-addressed to.
+addressed to. That asymmetry is why the ask is always a builder's ask, and why it is never
+a business owner's.
+
+The party in a post is usually a business, because that is the case a reader recognises. It
+is not the boundary. A person running an agent on hardware they own is the same kind of
+party with the same problem, and a post that describes only the commercial case has
+described half the design.
 
 Technical detail appears only where it explains why the door is closing, or where it shows
 the mechanism that stays open.
@@ -177,10 +183,10 @@ These, and nothing else about the work.
 - A standard exists, versioned, for a party to expose what it offers and for a caller
   to find and talk to it at that party's own domain.
 - The thing the standard defines is the document a caller receives when it opens a session:
-  what the business exposes, what each agent does, whether it holds a conversation, and what
+  what the party exposes, what each agent does, whether it holds a conversation, and what
   the caller must obey. Every member is documented in the schema, in plain language.
-- A reference implementation exists: a daemon at the business's domain, found by a DNS
-  lookup, presenting that document and routing each turn to the business's own endpoint.
+- A reference implementation exists: a daemon at the party's domain, found by a DNS
+  lookup, presenting that document and routing each turn to that party's own endpoint.
 - A session is an envelope — id, owner, agent, timestamps, expiry, summary, turn count,
   status — and does not hold the conversation. Resuming is the same session id from the
   same client, restoring nothing caller-side.
@@ -337,8 +343,8 @@ caller expects.
 4. Directories fail because curation does not scale; delegation does.
 5. Being findable stopped being optional once, for websites.
 6. Publishing is work. The question is who ends up doing it.
-7. Asymmetric cost: the caller pays in code, the business pays in operations.
-8. Trust asymmetry: the business cannot tell who is asking.
+7. Asymmetric cost: the caller pays in code, the party pays in operations.
+8. Trust asymmetry: the party cannot tell who is asking.
 9. The minimum useful surface is undefined, and that stalls the decision.
 10. Closed channels needed nobody's permission to win.
 11. The fragmentation tax: a host that only works with three companies.
