@@ -174,8 +174,8 @@ exists to catch.
 
 These, and nothing else about the work.
 
-- A standard exists, versioned, for a business to publish what it offers and for a caller
-  to find and talk to it at the business's own domain.
+- A standard exists, versioned, for a party to expose what it offers and for a caller
+  to find and talk to it at that party's own domain.
 - The thing the standard defines is the document a caller receives when it opens a session:
   what the business exposes, what each agent does, whether it holds a conversation, and what
   the caller must obey. Every member is documented in the schema, in plain language.
@@ -556,7 +556,7 @@ Words that assert confidence where a fact should be. They add no information and
 strongest marketing signal a short paragraph can carry.
 
 - **"exactly this" / "exactly that" / "precisely this"** — after a description, these say
-  *trust me*. Name what matches instead: which field, which step, which line.
+  _trust me_. Name what matches instead: which field, which step, which line.
 - **"the part I would defend hardest"**, "the strongest claim", "the thing I am most sure of"
   — a claim about your own confidence is not a claim about the world. Delete it and make the
   claim; if it survives on its own, the framing was never needed.
@@ -600,7 +600,7 @@ is about, carries the pressure and belongs. The rule is against numbers that onl
 ### The test
 
 Read the sentence as if someone else wrote it about their own product. If your reaction is
-*that is an advert*, cut it or replace it with the fact underneath.
+_that is an advert_, cut it or replace it with the fact underneath.
 
 One more: a short paragraph of two or three flat confident sentences, with no number, no named
 party and no cost, reads as a slogan regardless of what it says. The same words inside a longer
