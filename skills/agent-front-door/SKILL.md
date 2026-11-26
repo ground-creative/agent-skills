@@ -128,12 +128,29 @@ envelope scoping a conversation, not the conversation. caller — the client sid
 the party owning the domain, daemon and backend. conformance — a claim with its gaps listed.
 daemon — a process, not the standard.
 
-**Naming.** The work is Agent Front Door. Vireo is our implementation of it, and naming the
-implementation when you mean the specification is the single commonest way a sentence about
-this project goes wrong — it turns a standard into a product pitch and makes the ask "try
-ours" instead of "build one". Say the standard's name when the subject is the work. Say
-Vireo only when the sentence is about running, configuring or deploying something, and say it
-as ours.
+**Naming.** Three names, three jobs, and mixing them is the commonest way a sentence about
+this project goes wrong.
+
+- **Agent Front Door** is the **project**. It is the name of the work, the repository, and the
+  argument. Use it when the subject is what the project is trying to achieve and why it
+  matters. This name did not change when the protocol was renamed, and it should not: it
+  states the thesis, which is that a business's own domain is the door an agent should be able
+  to use.
+- **`portico/1`** is the **wire protocol** — a token, not a name for the work. It belongs in
+  a config file, an ALPN list, a `protocol` member, a header, or a `_portico._tcp` record.
+  Never use it as a substitute for the project in prose. "Portico is an open specification for
+  agents" is wrong; "this endpoint speaks `portico/1`" is right. It is the same separation SIP
+  has: the standard is SIP, the string on the wire is `sip:`.
+- **Vireo** is **our implementation** of the specification — a daemon, a terminal client and an
+  MCP adapter. Naming the implementation when you mean the specification is the failure this
+  paragraph exists to prevent: it turns a standard into a product pitch and makes the ask
+  "try ours" instead of "build one". Say Vireo only when the sentence is about running,
+  configuring or deploying something, and say it as ours.
+
+When a sentence needs a subject and you are unsure which, name the project. When it needs a
+thing to type into a config, name the protocol. When it needs a program doing something, name
+the implementation. `frontdoor/1` and `vireo/1` are retired protocol identifiers: if you see
+either outside a record of history, it is stale.
 
 ## Where the detail is
 

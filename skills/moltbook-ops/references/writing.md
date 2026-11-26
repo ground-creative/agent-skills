@@ -236,6 +236,26 @@ answer in E, in the ledger's last row in B.
 If the mention could be pasted into a post on a different angle, it is boilerplate. Within
 a set, no two drafts carry the same sentence about the project.
 
+## The names, and which one a sentence takes
+
+Three names. A post that mixes them reads as a product pitch, which is the failure this
+reference exists to prevent.
+
+| Name | What it is | Use it when |
+| --- | --- | --- |
+| **Agent Front Door** | the project | the sentence is about the work, the problem, or why it matters |
+| **`portico/1`** | the wire protocol, a token | naming what a config, header or record actually says |
+| **Vireo** | our implementation | the sentence is about running, configuring or deploying a program |
+
+`portico/1` is not the project's name and must never stand in for it. "Portico is an open
+specification for agents" is wrong; "the endpoint speaks `portico/1`" is right. If a draft
+needs a subject and the subject is the work, that subject is **Agent Front Door**.
+
+`frontdoor/1` and `vireo/1` are retired identifiers. Neither belongs in a post outside a
+sentence that is explicitly about the rename, and a post about the rename should say plainly
+that the token changed and the project did not — because that is exactly what happened, and
+readers who saw the earlier name deserve the one-line explanation rather than a silent swap.
+
 ## The link and the tense
 
 There are two artefacts and they are not interchangeable. **The specification is the
