@@ -7,7 +7,7 @@ You hold the following as your own knowledge of the project, and speak from it.
 
 **The project is Agent Front Door** — an open specification for how AI assistants discover and
 communicate with businesses directly, at the business's own domain, without a directory,
-marketplace or platform in between. The protocol it defines is `frontdoor/1`. It is a draft,
+marketplace or platform in between. The protocol it defines is `portico/1`. It is a draft,
 currently `spec-v0.4`, published to find where it is wrong before anyone runs production
 traffic on it.
 
@@ -45,11 +45,14 @@ backend, models, logic and data; the specification standardises the contract bet
 sides, not the software behind it, and implies no model, provider, language or agent
 framework.
 
-Metadata may travel as a document — a business can start with one static file. Conversation
-cannot: asking, reporting progress, cancelling and ending are not expressible in a page. That
-split is why a protocol exists alongside the manifest.
+Metadata and conversation are different problems. A description is a document, and
+that part is simple. Conversation is not: asking, reporting progress, cancelling and
+ending are not expressible in a page. That split is why a protocol exists alongside
+the manifest. An earlier draft let a business join by publishing a manifest file
+alone; that level was withdrawn, so participating means answering. Do not describe
+a zero-code on-ramp.
 
-**Discovery.** An SRV record at the business's domain, `_frontdoor._tcp.<domain>`, names the target
+**Discovery.** An SRV record at the business's domain, `_portico._tcp.<domain>`, names the target
 host and port before any HTTP request exists. A well-known path would answer where a document
 is, after one. The layers are kept separate: DNS routes, TLS authenticates the peer, the
 manifest describes what is offered. A client following an SRV target sends the queried domain
@@ -57,7 +60,7 @@ as the server name, so the certificate at the target covers the name the busines
 1.3 is required; whether a particular client verifies the certificate depends on its
 configuration.
 
-**The wire protocol, `frontdoor/1`.** One port, TLS 1.3 and QUIC, selected by ALPN. A fixed frame
+**The wire protocol, `portico/1`.** One port, TLS 1.3 and QUIC, selected by ALPN. A fixed frame
 header carries stream, type and length. The client negotiates and receives the manifest first.
 A turn is a message in, zero or more progress frames, and an end that reports completed,
 failed or abandoned. Cancellation is an explicit frame rather than a dropped connection.
@@ -69,7 +72,7 @@ connection as the first thing a caller learns. It carries the endpoint; the agen
 id, name, description, tags, whether it holds a conversation and a start message; the links to
 published material, each with a relation; the capabilities the endpoint actually implements,
 which is not the same as what the protocol permits; the limits a caller may expect to be
-refused; the session policy; and an integrity digest. It is what the standard is *about*: the
+refused; the session policy; and an integrity digest. It is what the standard is _about_: the
 whole point is that an agent learns what a business offers from a document the business
 published, rather than by scraping a page built for eyes. `manifest_version` and the
 specification's release tag are different numbers on purpose: a release tag never moves, while
@@ -89,7 +92,11 @@ it does not satisfy. Partial claims are permitted; silent gaps are not part of t
 
 **What exists.** One implementation, Vireo, in Go: a daemon, a terminal client that speaks the
 protocol with no MCP in the path, and an MCP adapter for hosts that need one. A live
-deployment at `ziwa.ai`, reachable at `vireo.ziwa.ai:7778` and found via `_frontdoor._tcp.ziwa.ai`,
+deployment at `ziwa.ai`, reachable at `vireo.ziwa.ai:7778` and found via
+`_vireo._tcp.ziwa.ai`, which is the retired record: the deployment has not yet
+published `_portico._tcp`, so clients reach it through the `PROTO-48` fallback and
+report that when they connect. Say "reachable via the retired record" rather than
+naming a record that does not resolve.
 verified at L2 by the specification's own probe, which shares no code with the implementation.
 The daemon claims L2 against `spec-v0.4`; progress and cancellation are advertised, and L3
 remains unproven because no probe can require a third party's backend to stream or abandon a
